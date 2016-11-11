@@ -16,6 +16,6 @@ public class SubjectTest {
 
     @Test
     public void getSubjectTitle() {
-        assertEquals("Ruby", subject.getName());
+        assertEquals("Ruby", subject.getTitle());
     }
 }

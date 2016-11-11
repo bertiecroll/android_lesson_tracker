@@ -7,4 +7,8 @@ public class Subject implements Teachable {
     public Subject(String title) {
         mTitle = title;
     }
+
+    public String getTitle() {
+        return mTitle;
+    }
 }
