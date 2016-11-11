@@ -11,4 +11,8 @@ public class Subject implements Teachable {
     public String getTitle() {
         return mTitle;
     }
+
+    public void setTitle(String newTitle) {
+        mTitle = newTitle;
+    }
 }

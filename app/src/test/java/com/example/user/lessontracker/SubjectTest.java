@@ -18,4 +18,10 @@ public class SubjectTest {
     public void getSubjectTitle() {
         assertEquals("Ruby", subject.getTitle());
     }
+
+    @Test
+    public void setSubjectTitle() {
+        subject.setTitle("Java");
+        assertEquals("Java", subject.getTitle());
+    }
 }
