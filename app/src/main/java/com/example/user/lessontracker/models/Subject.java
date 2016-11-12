@@ -4,10 +4,17 @@ import com.example.user.lessontracker.Teachable;
 
 public class Subject implements Teachable {
 
+    private int mId;
     private String mTitle;
     private String mDetail;
 
     public Subject(String title, String detail) {
+        mTitle = title;
+        mDetail = detail;
+    }
+
+    public Subject(int id, String title, String detail) {
+        mId = id;
         mTitle = title;
         mDetail = detail;
     }
@@ -26,5 +33,9 @@ public class Subject implements Teachable {
 
     public void setDetail(String newDetail) {
         mDetail = newDetail;
+    }
+
+    public int getId() {
+        return mId;
     }
 }

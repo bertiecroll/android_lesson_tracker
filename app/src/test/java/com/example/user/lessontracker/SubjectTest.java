@@ -10,10 +10,12 @@ import static org.junit.Assert.*;
 public class SubjectTest {
 
     Subject subject;
+    Subject subjectWithId;
 
     @Before
     public void before() {
         subject = new Subject("Ruby", "A dynamic programming language");
+        subjectWithId = new Subject(1, "Ruby", "A dynamic programming language");
     }
 
     @Test
@@ -36,5 +38,10 @@ public class SubjectTest {
     public void setSubjectDetail() {
         subject.setDetail("Designed by Matz");
         assertEquals("Designed by Matz", subject.getDetail());
+    }
+
+    @Test
+    public void getSubjectId() {
+        assertEquals(1, subjectWithId.getId());
     }
 }
