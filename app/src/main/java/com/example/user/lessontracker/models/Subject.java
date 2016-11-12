@@ -38,4 +38,8 @@ public class Subject implements Teachable {
     public int getId() {
         return mId;
     }
+
+    public void setId(int id) {
+        mId = id;
+    }
 }

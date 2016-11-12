@@ -44,4 +44,10 @@ public class SubjectTest {
     public void getSubjectId() {
         assertEquals(1, subjectWithId.getId());
     }
+
+    @Test
+    public void setSubjectId() {
+        subjectWithId.setId(2);
+        assertEquals(2, subjectWithId.getId());
+    }
 }
