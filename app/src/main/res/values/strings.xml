@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">LessonTracker</string>
+    <string name="sample_title">Ruby</string>
+    <string name="sample_detail">A popular oo programming language</string>
 </resources>
