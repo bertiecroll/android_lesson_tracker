@@ -1,4 +1,6 @@
-package com.example.user.lessontracker;
+package com.example.user.lessontracker.models;
+
+import com.example.user.lessontracker.Teachable;
 
 public class Subject implements Teachable {
 

@@ -1,5 +1,7 @@
 package com.example.user.lessontracker;
 
+import com.example.user.lessontracker.models.Subject;
+
 import org.junit.Before;
 import org.junit.Test;
 
