@@ -11,7 +11,7 @@ public class SubjectTest {
 
     @Before
     public void before() {
-        subject = new Subject("Ruby");
+        subject = new Subject("Ruby", "A dynamic programming language");
     }
 
     @Test
@@ -23,5 +23,16 @@ public class SubjectTest {
     public void setSubjectTitle() {
         subject.setTitle("Java");
         assertEquals("Java", subject.getTitle());
+    }
+
+    @Test
+    public void getSubjectDetail() {
+        assertEquals("A dynamic programming language", subject.getDetail());
+    }
+
+    @Test
+    public void setSubjectDetail() {
+        subject.setDetail("Designed by Matz");
+        assertEquals("Designed by Matz", subject.getDetail());
     }
 }
