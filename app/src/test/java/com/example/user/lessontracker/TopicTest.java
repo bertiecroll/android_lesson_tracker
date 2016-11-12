@@ -26,4 +26,15 @@ public class TopicTest {
         topic.setTitle("Loops");
         assertEquals("Loops", topic.getTitle());
     }
+
+    @Test
+    public void getTopicDetail() {
+        assertEquals("How to organise large amounts of data", topic.getDetail());
+    }
+
+    @Test
+    public void setTopicDetail() {
+        topic.setDetail("Hashes and Arrays");
+        assertEquals("Hashes and Arrays", topic.getDetail());
+    }
 }
