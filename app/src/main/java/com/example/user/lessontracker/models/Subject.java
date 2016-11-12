@@ -4,6 +4,7 @@ import android.content.ContentValues;
 import android.database.sqlite.SQLiteDatabase;
 
 import com.example.user.lessontracker.Teachable;
+import com.example.user.lessontracker.database.LessonTrackerDbHelper;
 import com.example.user.lessontracker.database.LessonTrackerSchema.SubjectTable;
 
 public class Subject implements Teachable {
@@ -11,7 +12,6 @@ public class Subject implements Teachable {
     private int mId;
     private String mTitle;
     private String mDetail;
-    private SQLiteDatabase mDatabase;
 
     public Subject(String title, String detail) {
         mTitle = title;
@@ -46,6 +46,11 @@ public class Subject implements Teachable {
 
     public void setId(int id) {
         mId = id;
+    }
+
+    public void save(LessonTrackerDbHelper dbHelper) {
+        SQLiteDatabase database = dbHelper.getWritableDatabase();
+        database.insert(SubjectTable.NAME, null, getContentValues());
     }
 
     private ContentValues getContentValues() {

@@ -10,6 +10,8 @@ import com.example.user.lessontracker.fragments.SubjectFragment;
 
 public class SubjectActivity extends FragmentActivity {
 
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -22,5 +24,7 @@ public class SubjectActivity extends FragmentActivity {
             fragment = new SubjectFragment();
             fm.beginTransaction().add(R.id.fragment_container, fragment).commit();
         }
+
+
     }
 }
