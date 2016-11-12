@@ -29,4 +29,12 @@ public class Topic implements Teachable {
     public void setDetail(String newDetail) {
         mDetail = newDetail;
     }
+
+    public int getSubjectId() {
+        return mSubjectId;
+    }
+
+    public void setSubjectId(int subjectId) {
+        mSubjectId = subjectId;
+    }
 }

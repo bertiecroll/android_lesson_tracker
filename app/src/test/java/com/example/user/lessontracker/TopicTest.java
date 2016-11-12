@@ -37,4 +37,15 @@ public class TopicTest {
         topic.setDetail("Hashes and Arrays");
         assertEquals("Hashes and Arrays", topic.getDetail());
     }
+
+    @Test
+    public void getTopicSubjectId() {
+        assertEquals(1, topic.getSubjectId());
+    }
+
+    @Test
+    public void setTopicSubjectId() {
+        topic.setSubjectId(2);
+        assertEquals(2, topic.getSubjectId());
+    }
 }
