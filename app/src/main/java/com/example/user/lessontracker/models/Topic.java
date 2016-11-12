@@ -4,11 +4,19 @@ import com.example.user.lessontracker.Teachable;
 
 public class Topic implements Teachable {
 
+    private int mId;
     private int mSubjectId;
     private String mTitle;
     private String mDetail;
 
     public Topic(int subjectId, String title, String detail) {
+        mSubjectId = subjectId;
+        mTitle = title;
+        mDetail = detail;
+    }
+
+    public Topic(int id, int subjectId, String title, String detail) {
+        mId = id;
         mSubjectId = subjectId;
         mTitle = title;
         mDetail = detail;

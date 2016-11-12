@@ -10,10 +10,12 @@ import static org.junit.Assert.*;
 public class TopicTest {
 
     Topic topic;
+    Topic topicWithId;
 
     @Before
     public void before() {
         topic = new Topic(1, "Collections", "How to organise large amounts of data");
+        topicWithId = new Topic(1, 1, "Collections", "How to organise large amounts of data");
     }
 
     @Test
