@@ -45,4 +45,12 @@ public class Topic implements Teachable {
     public void setSubjectId(int subjectId) {
         mSubjectId = subjectId;
     }
+
+    public int getId() {
+        return mId;
+    }
+
+    public void setId(int id) {
+        mId = id;
+    }
 }

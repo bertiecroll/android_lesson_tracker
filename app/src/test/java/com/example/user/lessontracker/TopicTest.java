@@ -50,4 +50,15 @@ public class TopicTest {
         topic.setSubjectId(2);
         assertEquals(2, topic.getSubjectId());
     }
+
+    @Test
+    public void getTopicId() {
+        assertEquals(1, topicWithId.getId());
+    }
+
+    @Test
+    public void setTopicId() {
+        topicWithId.setId(4);
+        assertEquals(4, topicWithId.getId());
+    }
 }
