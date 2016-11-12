@@ -11,4 +11,12 @@ public class Topic implements Teachable {
         mTitle = title;
         mDetail = detail;
     }
+
+    public String getTitle() {
+        return mTitle;
+    }
+
+    public void setTitle(String newTitle) {
+        mTitle = newTitle;
+    }
 }
