@@ -13,7 +13,7 @@ public class TopicTest {
 
     @Before
     public void before() {
-        topic = new Topic("Collections", "How to organise large amounts of data");
+        topic = new Topic(1, "Collections", "How to organise large amounts of data");
     }
 
     @Test

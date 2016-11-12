@@ -4,10 +4,12 @@ import com.example.user.lessontracker.Teachable;
 
 public class Topic implements Teachable {
 
+    private int mSubjectId;
     private String mTitle;
     private String mDetail;
 
-    public Topic(String title, String detail) {
+    public Topic(int subjectId, String title, String detail) {
+        mSubjectId = subjectId;
         mTitle = title;
         mDetail = detail;
     }
