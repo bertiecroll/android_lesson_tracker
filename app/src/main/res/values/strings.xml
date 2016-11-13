@@ -6,4 +6,6 @@
     <string name="subject_detail_hint">Enter details of new subject</string>
     <string name="subject_add_button">Add Subject</string>
     <string name="subject_new_button">New Subject</string>
+    <string name="topic_title_hint">Enter Topic Title</string>
+    <string name="topic_detail_hint">Enter details of new topic</string>
 </resources>
