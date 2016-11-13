@@ -1,6 +1,7 @@
 package com.example.user.lessontracker.database;
 
 import android.content.Context;
+import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
@@ -45,7 +46,29 @@ public class LessonTrackerDbHelper extends SQLiteOpenHelper {
     public void updateSubject(Subject subject) {
         SQLiteDatabase database = this.getWritableDatabase();
         database.update(SubjectTable.NAME, subject.getContentValues(),
-                TopicTable.Cols.ID + " = ?", new String[] { String.valueOf(subject.getId())});
+                SubjectTable.Cols.ID + " = ?", new String[] { String.valueOf(subject.getId())});
+    }
+
+    public Subject findSubject(long id) {
+        LessonTrackerCursorWrapper cursor = querySubjects(SubjectTable.NAME,
+                SubjectTable.Cols.ID + " = ?", new String[] { Long.toString(id)} );
+
+        try {
+            if (cursor.getCount() == 0) {
+                return null;
+            }
+            cursor.moveToFirst();
+            return cursor.getSubject();
+        } finally {
+            cursor.close();
+        }
+    }
+
+    private LessonTrackerCursorWrapper querySubjects(String tableName, String whereClause, String[] whereArgs) {
+        SQLiteDatabase database = this.getWritableDatabase();
+        Cursor cursor = database.query(
+            tableName, null, whereClause, whereArgs, null, null, null);
+        return new LessonTrackerCursorWrapper(cursor);
     }
 
 
