@@ -47,4 +47,6 @@ public class LessonTrackerDbHelper extends SQLiteOpenHelper {
         database.update(SubjectTable.NAME, subject.getContentValues(),
                 "_id = ?", new String[] { String.valueOf(subject.getId())});
     }
+
+
 }
