@@ -8,6 +8,7 @@ import android.database.sqlite.SQLiteOpenHelper;
 import com.example.user.lessontracker.database.LessonTrackerSchema.SubjectTable;
 import com.example.user.lessontracker.database.LessonTrackerSchema.TopicTable;
 import com.example.user.lessontracker.models.Subject;
+import com.example.user.lessontracker.models.Topic;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -23,7 +24,8 @@ public class LessonTrackerDbHelper extends SQLiteOpenHelper {
 
     private static final String CREATE_TABLE_TOPIC = "create table "
             + TopicTable.NAME + "( " + TopicTable.Cols.ID + " integer primary key autoincrement, "
-            + TopicTable.Cols.TITLE + " text, " + TopicTable.Cols.DETAIL + " text )";
+            + TopicTable.Cols.SUBJECT_ID + " integer, " + TopicTable.Cols.TITLE + " text, "
+            + TopicTable.Cols.DETAIL + " text )";
 
     public LessonTrackerDbHelper(Context context) {
         super(context, DATABASE_NAME, null, VERSION);
@@ -41,13 +43,13 @@ public class LessonTrackerDbHelper extends SQLiteOpenHelper {
     }
 
     public void saveSubject(Subject subject) {
-        SQLiteDatabase database = this.getWritableDatabase();
+        SQLiteDatabase database = getDatabase();
         long id = database.insert(SubjectTable.NAME, null, subject.getContentValues());
         subject.setId(id);
     }
 
     public void updateSubject(Subject subject) {
-        SQLiteDatabase database = this.getWritableDatabase();
+        SQLiteDatabase database = getDatabase();
         database.update(SubjectTable.NAME, subject.getContentValues(),
                 SubjectTable.Cols.ID + " = ?", new String[] { String.valueOf(subject.getId())});
     }
@@ -85,8 +87,12 @@ public class LessonTrackerDbHelper extends SQLiteOpenHelper {
         return subjects;
     }
 
+    private SQLiteDatabase getDatabase() {
+        return this.getWritableDatabase();
+    }
+
     private LessonTrackerCursorWrapper query(String tableName, String whereClause, String[] whereArgs) {
-        SQLiteDatabase database = this.getWritableDatabase();
+        SQLiteDatabase database = getDatabase();
         Cursor cursor = database.query(
             tableName, null, whereClause, whereArgs, null, null, null);
         return new LessonTrackerCursorWrapper(cursor);
