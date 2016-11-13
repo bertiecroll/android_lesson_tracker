@@ -87,6 +87,12 @@ public class LessonTrackerDbHelper extends SQLiteOpenHelper {
         return subjects;
     }
 
+    public void saveTopic(Topic topic) {
+        SQLiteDatabase database = getDatabase();
+        long id = database.insert(TopicTable.NAME, null, topic.getContentValues());
+        topic.setId(id);
+    }
+
     private SQLiteDatabase getDatabase() {
         return this.getWritableDatabase();
     }

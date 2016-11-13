@@ -3,7 +3,6 @@ package com.example.user.lessontracker.models;
 import android.content.ContentValues;
 
 import com.example.user.lessontracker.Teachable;
-import com.example.user.lessontracker.database.LessonTrackerSchema;
 import com.example.user.lessontracker.database.LessonTrackerSchema.TopicTable;
 
 public class Topic implements Teachable {
