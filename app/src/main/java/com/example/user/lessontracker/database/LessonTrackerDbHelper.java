@@ -14,11 +14,11 @@ public class LessonTrackerDbHelper extends SQLiteOpenHelper {
     private static final String DATABASE_NAME = "lessonTracker.db";
 
     private static final String CREATE_TABLE_SUBJECT = "create table "
-            + SubjectTable.NAME + "( _id integer primary key autoincrement, "
+            + SubjectTable.NAME + "( " + SubjectTable.Cols.ID + " integer primary key autoincrement, "
             + SubjectTable.Cols.TITLE + " text, " + SubjectTable.Cols.DETAIL + " text )";
 
     private static final String CREATE_TABLE_TOPIC = "create table "
-            + TopicTable.NAME + "( _id integer primary key autoincrement, "
+            + TopicTable.NAME + "( " + TopicTable.Cols.ID + " integer primary key autoincrement, "
             + TopicTable.Cols.TITLE + " text, " + TopicTable.Cols.DETAIL + " text )";
 
     public LessonTrackerDbHelper(Context context) {
@@ -45,7 +45,7 @@ public class LessonTrackerDbHelper extends SQLiteOpenHelper {
     public void updateSubject(Subject subject) {
         SQLiteDatabase database = this.getWritableDatabase();
         database.update(SubjectTable.NAME, subject.getContentValues(),
-                "_id = ?", new String[] { String.valueOf(subject.getId())});
+                TopicTable.Cols.ID + " = ?", new String[] { String.valueOf(subject.getId())});
     }
 
 

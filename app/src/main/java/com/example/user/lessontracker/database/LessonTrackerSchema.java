@@ -6,6 +6,7 @@ public class LessonTrackerSchema {
         public static final String NAME = "subjects";
 
         public static final class Cols {
+            public static final String ID = "_id";
             public static final String TITLE = "title";
             public static final String DETAIL = "detail";
         }
@@ -15,6 +16,7 @@ public class LessonTrackerSchema {
         public static final String NAME = "topics";
 
         public static final class Cols {
+            public static final String ID = "_id";
             public static final String SUBJECT_ID = "subject_id";
             public static final String TITLE = "title";
             public static final String DETAIL = "detail";
