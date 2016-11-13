@@ -10,9 +10,12 @@ import android.widget.EditText;
 import android.widget.TextView;
 
 import com.example.user.lessontracker.R;
+import com.example.user.lessontracker.database.LessonTrackerDbHelper;
+import com.example.user.lessontracker.models.Topic;
 
 public class AddTopicFragment extends Fragment {
 
+    LessonTrackerDbHelper mDbHelper;
     TextView mSubjectText;
     EditText mTitleEditText;
     EditText mDetailEditText;
@@ -27,11 +30,21 @@ public class AddTopicFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_add_topic, container, false);
 
+        mDbHelper = new LessonTrackerDbHelper(getActivity());
         mSubjectText = (TextView) view.findViewById(R.id.topic_subject_text);
         mTitleEditText = (EditText) view.findViewById(R.id.topic_title_edit);
         mDetailEditText = (EditText) view.findViewById(R.id.topic_detil_edit);
         mAddButton = (Button) view.findViewById(R.id.topic_add_button);
-
+        mAddButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+//                long subject_id =
+                String title = mTitleEditText.getText().toString();
+                String detail = mDetailEditText.getText().toString();
+                Topic topic = new Topic(0, title, detail);
+                mDbHelper.saveTopic(topic);
+            }
+        });
 
 
         return view;
