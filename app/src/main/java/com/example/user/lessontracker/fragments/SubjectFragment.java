@@ -11,6 +11,7 @@ import android.widget.TextView;
 
 import com.example.user.lessontracker.R;
 import com.example.user.lessontracker.database.LessonTrackerDbHelper;
+import com.example.user.lessontracker.models.Subject;
 
 public class SubjectFragment extends Fragment {
 
@@ -19,6 +20,7 @@ public class SubjectFragment extends Fragment {
     TextView mDetailTextView;
     Button mNewSubjectButton;
     Button mNewTopicButton;
+    Subject mSubject;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -30,6 +32,7 @@ public class SubjectFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_subject, container, false);
 
         mDbHelper = new LessonTrackerDbHelper(getActivity());
+        mSubject = mDbHelper.findSubject(1);
         mTitleTextView = (TextView) view.findViewById(R.id.subject_title);
         mDetailTextView = (TextView) view.findViewById(R.id.subject_detail);
         mNewSubjectButton = (Button) view.findViewById(R.id.subject_new_subject_button);
@@ -37,16 +40,29 @@ public class SubjectFragment extends Fragment {
             @Override
             public void onClick(View view) {
                 FragmentTransaction transaction = getFragmentManager().beginTransaction();
-                AddSubjectFragment AddFragment = new AddSubjectFragment();
-                transaction.replace(R.id.fragment_container, AddFragment);
+                AddSubjectFragment AddSubjectFrag = new AddSubjectFragment();
+                transaction.replace(R.id.fragment_container, AddSubjectFrag);
                 transaction.commit();
             }
         });
         mNewTopicButton = (Button) view.findViewById(R.id.subject_new_topic_button);
+        if (mSubject == null) {
+            mNewTopicButton.setVisibility(View.INVISIBLE);
+        }
+        mNewTopicButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                FragmentTransaction transaction = getFragmentManager().beginTransaction();
+                AddTopicFragment AddTopicFrag = new AddTopicFragment();
 
-//        Subject querySubject = mDbHelper.findSubject(subject.getId());
-//        mQueryTextView.setText("Title: " + querySubject.getTitle() + "%nDetail: " + querySubject.getDetail() +
-//                "%nID: " + Long.toString(querySubject.getId()));
+                Bundle args = new Bundle();
+                args.putLong("subjectId", mSubject.getId());
+                args.putString("subjectTitle", mSubject.getTitle());
+                AddTopicFrag.setArguments(args);
+                transaction.replace(R.id.fragment_container, AddTopicFrag);
+                transaction.commit();
+            }
+        });
 
         return view;
     }
