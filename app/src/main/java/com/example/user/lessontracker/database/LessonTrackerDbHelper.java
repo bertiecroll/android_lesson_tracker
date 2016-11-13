@@ -6,6 +6,7 @@ import android.database.sqlite.SQLiteOpenHelper;
 
 import com.example.user.lessontracker.database.LessonTrackerSchema.SubjectTable;
 import com.example.user.lessontracker.database.LessonTrackerSchema.TopicTable;
+import com.example.user.lessontracker.models.Subject;
 
 public class LessonTrackerDbHelper extends SQLiteOpenHelper {
 
@@ -33,5 +34,11 @@ public class LessonTrackerDbHelper extends SQLiteOpenHelper {
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
 
+    }
+
+    public void saveSubject(Subject subject) {
+        SQLiteDatabase database = this.getWritableDatabase();
+        long id = database.insert(SubjectTable.NAME, null, subject.getContentValues());
+        subject.setId(id);
     }
 }

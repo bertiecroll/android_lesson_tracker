@@ -33,7 +33,7 @@ public class SubjectFragment extends Fragment {
         mDetailTextView = (TextView) view.findViewById(R.id.subject_detail);
 
         Subject subject = new Subject(mTitleTextView.getText().toString(), mDetailTextView.getText().toString());
-        subject.save(mDbHelper);
+        mDbHelper.saveSubject(subject);
 
         return view;
     }

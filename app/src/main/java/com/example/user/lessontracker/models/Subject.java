@@ -9,7 +9,7 @@ import com.example.user.lessontracker.database.LessonTrackerSchema.SubjectTable;
 
 public class Subject implements Teachable {
 
-    private int mId;
+    private long mId;
     private String mTitle;
     private String mDetail;
 
@@ -18,7 +18,7 @@ public class Subject implements Teachable {
         mDetail = detail;
     }
 
-    public Subject(int id, String title, String detail) {
+    public Subject(long id, String title, String detail) {
         mId = id;
         mTitle = title;
         mDetail = detail;
@@ -40,20 +40,15 @@ public class Subject implements Teachable {
         mDetail = newDetail;
     }
 
-    public int getId() {
+    public long getId() {
         return mId;
     }
 
-    public void setId(int id) {
+    public void setId(long id) {
         mId = id;
     }
 
-    public void save(LessonTrackerDbHelper dbHelper) {
-        SQLiteDatabase database = dbHelper.getWritableDatabase();
-        database.insert(SubjectTable.NAME, null, getContentValues());
-    }
-
-    private ContentValues getContentValues() {
+    public ContentValues getContentValues() {
         ContentValues values = new ContentValues();
         values.put(SubjectTable.Cols.TITLE, mTitle);
         values.put(SubjectTable.Cols.DETAIL, mDetail);
