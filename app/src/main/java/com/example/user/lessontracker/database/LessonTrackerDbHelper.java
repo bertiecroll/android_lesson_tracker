@@ -99,6 +99,21 @@ public class LessonTrackerDbHelper extends SQLiteOpenHelper {
                 TopicTable.Cols.ID + " = ?", new String[] { String.valueOf(topic.getId())});
     }
 
+    public Topic findTopic(long id) {
+        LessonTrackerCursorWrapper cursor = query(TopicTable.NAME,
+                TopicTable.Cols.ID + " = ?", new String[] { Long.toString(id)} );
+
+        try {
+            if (cursor.getCount() == 0) {
+                return null;
+            }
+            cursor.moveToFirst();
+            return cursor.getTopic();
+        } finally {
+            cursor.close();
+        }
+    }
+
     private SQLiteDatabase getDatabase() {
         return this.getWritableDatabase();
     }
