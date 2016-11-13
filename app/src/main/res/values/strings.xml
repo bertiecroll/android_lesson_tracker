@@ -2,4 +2,6 @@
     <string name="app_name">LessonTracker</string>
     <string name="sample_title">Ruby</string>
     <string name="sample_detail">A popular oo programming language</string>
+    <string name="subject_title_hint">Enter subject Title</string>
+    <string name="subject_detail_hint">Enter details of new subject</string>
 </resources>
