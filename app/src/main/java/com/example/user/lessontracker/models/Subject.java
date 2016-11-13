@@ -1,10 +1,8 @@
 package com.example.user.lessontracker.models;
 
 import android.content.ContentValues;
-import android.database.sqlite.SQLiteDatabase;
 
 import com.example.user.lessontracker.Teachable;
-import com.example.user.lessontracker.database.LessonTrackerDbHelper;
 import com.example.user.lessontracker.database.LessonTrackerSchema.SubjectTable;
 
 public class Subject implements Teachable {

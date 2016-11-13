@@ -41,4 +41,10 @@ public class LessonTrackerDbHelper extends SQLiteOpenHelper {
         long id = database.insert(SubjectTable.NAME, null, subject.getContentValues());
         subject.setId(id);
     }
+
+    public void updateSubject(Subject subject) {
+        SQLiteDatabase database = this.getWritableDatabase();
+        database.update(SubjectTable.NAME, subject.getContentValues(),
+                "_id = ?", new String[] { String.valueOf(subject.getId())});
+    }
 }
