@@ -63,6 +63,7 @@ public class SubjectFragment extends Fragment {
                 FragmentTransaction transaction = getFragmentManager().beginTransaction();
                 AddSubjectFragment AddSubjectFrag = new AddSubjectFragment();
                 transaction.replace(R.id.fragment_container, AddSubjectFrag);
+                transaction.addToBackStack(null);
                 transaction.commit();
             }
         });
@@ -81,6 +82,7 @@ public class SubjectFragment extends Fragment {
                     args.putString("subjectTitle", mSubject.getTitle());
                     AddTopicFrag.setArguments(args);
                     transaction.replace(R.id.fragment_container, AddTopicFrag);
+                    transaction.addToBackStack(null);
                     transaction.commit();
                 }
             });
@@ -105,6 +107,7 @@ public class SubjectFragment extends Fragment {
                     args.putString("subjectTitle", mSubject.getTitle());
                     topicFrag.setArguments(args);
                     transaction.replace(R.id.fragment_container, topicFrag);
+                    transaction.addToBackStack(null);
                     transaction.commit();
                 }
             });

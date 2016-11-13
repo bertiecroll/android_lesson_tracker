@@ -24,7 +24,5 @@ public class SubjectActivity extends FragmentActivity {
             fragment = new SubjectFragment();
             fm.beginTransaction().add(R.id.fragment_container, fragment).commit();
         }
-
-
     }
 }

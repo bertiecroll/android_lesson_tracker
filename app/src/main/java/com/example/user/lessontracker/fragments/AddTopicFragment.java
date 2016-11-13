@@ -56,6 +56,7 @@ public class AddTopicFragment extends Fragment {
                 fragment.setArguments(args);
 
                 transaction.replace(R.id.fragment_container, fragment);
+                transaction.addToBackStack(null);
                 transaction.commit();
             }
         });
