@@ -35,7 +35,6 @@ public class SubjectFragment extends Fragment {
         mQueryTextView = (TextView) view.findViewById(R.id.query_result);
 
         Subject subject = new Subject(mTitleTextView.getText().toString(), mDetailTextView.getText().toString());
-        mDbHelper.saveSubject(subject);
 
         Subject querySubject = mDbHelper.findSubject(subject.getId());
         mQueryTextView.setText("Title: " + querySubject.getTitle() + "%nDetail: " + querySubject.getDetail() +
