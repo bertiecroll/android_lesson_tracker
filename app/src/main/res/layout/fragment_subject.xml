@@ -16,12 +16,6 @@
         android:layout_height="wrap_content"
         android:text=""/>
 
-    <TextView
-        android:id="@+id/query_result"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text=""/>
-
     <Button
         android:id="@+id/subject_new_subject_button"
         android:layout_width="wrap_content"
