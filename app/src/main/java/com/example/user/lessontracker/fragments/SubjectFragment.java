@@ -86,10 +86,6 @@ public class SubjectFragment extends Fragment {
             });
 
             List<Topic> topics = new ArrayList<>(mDbHelper.findTopicsBySubject(mSubject.getId()));
-//            List<String> topicTitles = new ArrayList<>();
-//            for (Topic topic : topics) {
-//                topicTitles.add(topic.getTitle());
-//            }
             ArrayAdapter<Topic> adapter = new ArrayAdapter<>(getActivity(),
                     android.R.layout.simple_list_item_1, topics);
 
