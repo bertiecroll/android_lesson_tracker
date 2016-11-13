@@ -6,12 +6,18 @@ import android.support.v4.app.FragmentTransaction;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.ListView;
 import android.widget.TextView;
 
 import com.example.user.lessontracker.R;
 import com.example.user.lessontracker.database.LessonTrackerDbHelper;
 import com.example.user.lessontracker.models.Subject;
+import com.example.user.lessontracker.models.Topic;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class SubjectFragment extends Fragment {
 
@@ -20,6 +26,7 @@ public class SubjectFragment extends Fragment {
     TextView mDetailTextView;
     Button mNewSubjectButton;
     Button mNewTopicButton;
+    ListView mTopicList;
     Subject mSubject;
 
     @Override
@@ -34,7 +41,7 @@ public class SubjectFragment extends Fragment {
         mDbHelper = new LessonTrackerDbHelper(getActivity());
 
         Bundle arguments = getArguments();
-        if (arguments.containsKey("subjectId")) {
+        if (arguments != null && arguments.containsKey("subjectId")) {
             long subjectId = arguments.getLong("subjectId");
             mSubject = mDbHelper.findSubject(subjectId);
         } else {
@@ -58,23 +65,36 @@ public class SubjectFragment extends Fragment {
             }
         });
         mNewTopicButton = (Button) view.findViewById(R.id.subject_new_topic_button);
-        if (mSubject == null) {
-            mNewTopicButton.setVisibility(View.INVISIBLE);
-        }
-        mNewTopicButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                FragmentTransaction transaction = getFragmentManager().beginTransaction();
-                AddTopicFragment AddTopicFrag = new AddTopicFragment();
+        mTopicList = (ListView) view.findViewById(R.id.subject_topics_list);
 
-                Bundle args = new Bundle();
-                args.putLong("subjectId", mSubject.getId());
-                args.putString("subjectTitle", mSubject.getTitle());
-                AddTopicFrag.setArguments(args);
-                transaction.replace(R.id.fragment_container, AddTopicFrag);
-                transaction.commit();
+        if (mSubject != null) {
+            mNewTopicButton.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    FragmentTransaction transaction = getFragmentManager().beginTransaction();
+                    AddTopicFragment AddTopicFrag = new AddTopicFragment();
+
+                    Bundle args = new Bundle();
+                    args.putLong("subjectId", mSubject.getId());
+                    args.putString("subjectTitle", mSubject.getTitle());
+                    AddTopicFrag.setArguments(args);
+                    transaction.replace(R.id.fragment_container, AddTopicFrag);
+                    transaction.commit();
+                }
+            });
+
+            List<Topic> topics = new ArrayList<>(mDbHelper.findTopicsBySubject(mSubject.getId()));
+            List<String> topicTitles = new ArrayList<>();
+            for (Topic topic : topics) {
+                topicTitles.add(topic.getTitle());
             }
-        });
+            ArrayAdapter<String> adapter = new ArrayAdapter<>(getActivity(), android.R.layout.simple_list_item_1, topicTitles);
+
+            mTopicList.setAdapter(adapter);
+        } else {
+            mNewTopicButton.setVisibility(View.INVISIBLE);
+            mTopicList.setVisibility(View.INVISIBLE);
+        }
 
         return view;
     }
