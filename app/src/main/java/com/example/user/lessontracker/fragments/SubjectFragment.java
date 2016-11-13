@@ -11,9 +11,6 @@ import android.widget.TextView;
 
 import com.example.user.lessontracker.R;
 import com.example.user.lessontracker.database.LessonTrackerDbHelper;
-import com.example.user.lessontracker.models.Subject;
-
-import org.w3c.dom.Text;
 
 public class SubjectFragment extends Fragment {
 
@@ -45,9 +42,7 @@ public class SubjectFragment extends Fragment {
             }
         });
 
-        Subject subject = new Subject(mTitleTextView.getText().toString(), mDetailTextView.getText().toString());
-
-        Subject querySubject = mDbHelper.findSubject(subject.getId());
+//        Subject querySubject = mDbHelper.findSubject(subject.getId());
 //        mQueryTextView.setText("Title: " + querySubject.getTitle() + "%nDetail: " + querySubject.getDetail() +
 //                "%nID: " + Long.toString(querySubject.getId()));
 
