@@ -8,4 +8,5 @@
     <string name="subject_new_button">New Subject</string>
     <string name="topic_title_hint">Enter Topic Title</string>
     <string name="topic_detail_hint">Enter details of new topic</string>
+    <string name="topic_add_button">Add Topic</string>
 </resources>

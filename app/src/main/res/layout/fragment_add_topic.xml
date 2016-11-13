@@ -26,4 +26,12 @@
         android:layout_marginTop="16dp"
         android:hint="@string/topic_detail_hint"/>
 
+    <Button
+        android:id="@+id/topic_add_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="16dp"
+        android:layout_marginTop="16dp"
+        android:text="@string/topic_add_button"/>
+
 </LinearLayout>
