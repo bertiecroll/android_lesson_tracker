@@ -12,7 +12,7 @@ public class Topic implements Teachable {
     private String mTitle;
     private String mDetail;
 
-    public Topic(int subjectId, String title, String detail) {
+    public Topic(long subjectId, String title, String detail) {
         mSubjectId = subjectId;
         mTitle = title;
         mDetail = detail;

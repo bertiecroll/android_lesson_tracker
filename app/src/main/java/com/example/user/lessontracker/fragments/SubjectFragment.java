@@ -32,9 +32,21 @@ public class SubjectFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_subject, container, false);
 
         mDbHelper = new LessonTrackerDbHelper(getActivity());
-        mSubject = mDbHelper.findSubject(1);
+
+        Bundle arguments = getArguments();
+        if (arguments.containsKey("subjectId")) {
+            long subjectId = arguments.getLong("subjectId");
+            mSubject = mDbHelper.findSubject(subjectId);
+        } else {
+            mSubject = mDbHelper.findSubject(1);
+        }
+
         mTitleTextView = (TextView) view.findViewById(R.id.subject_title);
+        mTitleTextView.setText(mSubject.getTitle());
+
         mDetailTextView = (TextView) view.findViewById(R.id.subject_detail);
+        mDetailTextView.setText(mSubject.getDetail());
+
         mNewSubjectButton = (Button) view.findViewById(R.id.subject_new_subject_button);
         mNewSubjectButton.setOnClickListener(new View.OnClickListener() {
             @Override

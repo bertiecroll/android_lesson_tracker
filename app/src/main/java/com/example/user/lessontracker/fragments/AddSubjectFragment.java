@@ -45,7 +45,7 @@ public class AddSubjectFragment extends Fragment {
                 FragmentTransaction transaction = getFragmentManager().beginTransaction();
                 SubjectFragment fragment = new SubjectFragment();
                 Bundle args = new Bundle();
-                args.putLong("id", id);
+                args.putLong("subjectId", id);
                 fragment.setArguments(args);
 
                 transaction.replace(R.id.fragment_container, fragment);

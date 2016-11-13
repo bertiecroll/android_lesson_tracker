@@ -8,13 +8,13 @@
         android:id="@+id/subject_title"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/sample_title"/>
+        android:text=""/>
 
     <TextView
         android:id="@+id/subject_detail"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/sample_detail"/>
+        android:text=""/>
 
     <TextView
         android:id="@+id/query_result"
