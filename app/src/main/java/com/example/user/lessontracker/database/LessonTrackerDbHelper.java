@@ -9,6 +9,9 @@ import com.example.user.lessontracker.database.LessonTrackerSchema.SubjectTable;
 import com.example.user.lessontracker.database.LessonTrackerSchema.TopicTable;
 import com.example.user.lessontracker.models.Subject;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class LessonTrackerDbHelper extends SQLiteOpenHelper {
 
     private static final int VERSION = 1;
@@ -50,7 +53,7 @@ public class LessonTrackerDbHelper extends SQLiteOpenHelper {
     }
 
     public Subject findSubject(long id) {
-        LessonTrackerCursorWrapper cursor = querySubjects(SubjectTable.NAME,
+        LessonTrackerCursorWrapper cursor = query(SubjectTable.NAME,
                 SubjectTable.Cols.ID + " = ?", new String[] { Long.toString(id)} );
 
         try {
@@ -64,7 +67,25 @@ public class LessonTrackerDbHelper extends SQLiteOpenHelper {
         }
     }
 
-    private LessonTrackerCursorWrapper querySubjects(String tableName, String whereClause, String[] whereArgs) {
+    public List<Subject> allSubjects() {
+        List<Subject> subjects = new ArrayList<>();
+
+        LessonTrackerCursorWrapper cursor = query(SubjectTable.NAME, null, null);
+
+        try {
+            cursor.moveToFirst();
+            while (!cursor.isAfterLast()) {
+                subjects.add(cursor.getSubject());
+                cursor.moveToNext();
+            }
+        } finally {
+            cursor.close();
+        }
+
+        return subjects;
+    }
+
+    private LessonTrackerCursorWrapper query(String tableName, String whereClause, String[] whereArgs) {
         SQLiteDatabase database = this.getWritableDatabase();
         Cursor cursor = database.query(
             tableName, null, whereClause, whereArgs, null, null, null);
