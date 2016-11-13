@@ -93,6 +93,12 @@ public class LessonTrackerDbHelper extends SQLiteOpenHelper {
         topic.setId(id);
     }
 
+    public void updateTopic(Topic topic) {
+        SQLiteDatabase database = getDatabase();
+        database.update(TopicTable.NAME, topic.getContentValues(),
+                TopicTable.Cols.ID + " = ?", new String[] { String.valueOf(topic.getId())});
+    }
+
     private SQLiteDatabase getDatabase() {
         return this.getWritableDatabase();
     }
