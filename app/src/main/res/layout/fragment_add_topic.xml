@@ -19,7 +19,7 @@
         android:hint="@string/topic_title_hint"/>
 
     <EditText
-        android:id="@+id/topic_detil_edit"
+        android:id="@+id/topic_detail_edit"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginLeft="16dp"

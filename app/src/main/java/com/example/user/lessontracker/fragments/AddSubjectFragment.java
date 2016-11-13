@@ -31,7 +31,7 @@ public class AddSubjectFragment extends Fragment {
 
         mDbHelper = new LessonTrackerDbHelper(getActivity());
         mTitleEditText = (EditText) view.findViewById(R.id.subject_title_edit);
-        mDetailEditText = (EditText) view.findViewById(R.id.subject_detil_edit);
+        mDetailEditText = (EditText) view.findViewById(R.id.subject_detail_edit);
         mAddButton = (Button) view.findViewById(R.id.subject_add_button);
         mAddButton.setOnClickListener(new View.OnClickListener() {
             @Override

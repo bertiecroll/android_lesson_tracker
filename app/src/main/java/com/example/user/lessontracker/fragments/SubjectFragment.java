@@ -17,7 +17,8 @@ public class SubjectFragment extends Fragment {
     LessonTrackerDbHelper mDbHelper;
     TextView mTitleTextView;
     TextView mDetailTextView;
-    Button mNewButton;
+    Button mNewSubjectButton;
+    Button mNewTopicButton;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -31,8 +32,8 @@ public class SubjectFragment extends Fragment {
         mDbHelper = new LessonTrackerDbHelper(getActivity());
         mTitleTextView = (TextView) view.findViewById(R.id.subject_title);
         mDetailTextView = (TextView) view.findViewById(R.id.subject_detail);
-        mNewButton = (Button) view.findViewById(R.id.subject_new_button);
-        mNewButton.setOnClickListener(new View.OnClickListener() {
+        mNewSubjectButton = (Button) view.findViewById(R.id.subject_new_subject_button);
+        mNewSubjectButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 FragmentTransaction transaction = getFragmentManager().beginTransaction();
@@ -41,6 +42,7 @@ public class SubjectFragment extends Fragment {
                 transaction.commit();
             }
         });
+        mNewTopicButton = (Button) view.findViewById(R.id.subject_new_topic_button);
 
 //        Subject querySubject = mDbHelper.findSubject(subject.getId());
 //        mQueryTextView.setText("Title: " + querySubject.getTitle() + "%nDetail: " + querySubject.getDetail() +

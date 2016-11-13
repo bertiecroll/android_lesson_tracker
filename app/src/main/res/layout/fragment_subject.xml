@@ -23,13 +23,19 @@
         android:text=""/>
 
     <Button
-        android:id="@+id/subject_new_button"
+        android:id="@+id/subject_new_subject_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/subject_new_button"/>
+        android:text="@string/subject_new_subject_button"/>
+
+    <Button
+        android:id="@+id/subject_new_topic_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/subject_new_topic_button"/>
 
     <ListView
-        android:id="@+id/subject_list"
+        android:id="@+id/subject_topics_list"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
