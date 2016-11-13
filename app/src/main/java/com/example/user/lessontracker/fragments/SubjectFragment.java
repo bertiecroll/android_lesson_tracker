@@ -94,8 +94,18 @@ public class SubjectFragment extends Fragment {
             mTopicList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                 @Override
                 public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                   Topic selectedTopic = (Topic) mTopicList.getItemAtPosition(position);
-                   Log.d("mTopicList", selectedTopic + " selected");
+                    Topic selectedTopic = (Topic) mTopicList.getItemAtPosition(position);
+                    Log.d("mTopicList", selectedTopic + " selected");
+
+                    FragmentTransaction transaction = getFragmentManager().beginTransaction();
+                    TopicFragment topicFrag = new TopicFragment();
+
+                    Bundle args = new Bundle();
+                    args.putLong("topicId", mSubject.getId());
+                    args.putString("subjectTitle", mSubject.getTitle());
+                    topicFrag.setArguments(args);
+                    transaction.replace(R.id.fragment_container, topicFrag);
+                    transaction.commit();
                 }
             });
         } else {
