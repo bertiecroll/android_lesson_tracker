@@ -61,4 +61,9 @@ public class TopicTest {
         topicWithId.setId(4);
         assertEquals(4, topicWithId.getId());
     }
+
+    @Test
+    public void getToString() {
+        assertEquals("Collections", topic.toString());
+    }
 }
