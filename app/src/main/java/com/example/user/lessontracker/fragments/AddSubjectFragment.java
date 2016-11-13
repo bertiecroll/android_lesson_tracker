@@ -31,7 +31,7 @@ public class AddSubjectFragment extends Fragment {
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_subject, container, false);
+        View view = inflater.inflate(R.layout.fragment_add_subject, container, false);
 
         mDbHelper = new LessonTrackerDbHelper(getActivity());
         mTitleEditText = (EditText) view.findViewById(R.id.subject_title_edit);

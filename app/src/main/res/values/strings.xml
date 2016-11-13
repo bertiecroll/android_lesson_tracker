@@ -5,4 +5,5 @@
     <string name="subject_title_hint">Enter subject Title</string>
     <string name="subject_detail_hint">Enter details of new subject</string>
     <string name="subject_add_button">Add Subject</string>
+    <string name="subject_new_button">New Subject</string>
 </resources>
