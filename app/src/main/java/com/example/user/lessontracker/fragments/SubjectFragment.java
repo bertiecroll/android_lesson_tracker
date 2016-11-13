@@ -18,6 +18,7 @@ public class SubjectFragment extends Fragment {
     LessonTrackerDbHelper mDbHelper;
     TextView mTitleTextView;
     TextView mDetailTextView;
+    TextView mQueryTextView;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -31,9 +32,14 @@ public class SubjectFragment extends Fragment {
         mDbHelper = new LessonTrackerDbHelper(getActivity());
         mTitleTextView = (TextView) view.findViewById(R.id.subject_title);
         mDetailTextView = (TextView) view.findViewById(R.id.subject_detail);
+        mQueryTextView = (TextView) view.findViewById(R.id.query_result);
 
         Subject subject = new Subject(mTitleTextView.getText().toString(), mDetailTextView.getText().toString());
         mDbHelper.saveSubject(subject);
+
+        Subject querySubject = mDbHelper.findSubject(subject.getId());
+        mQueryTextView.setText("Title: " + querySubject.getTitle() + "%nDetail: " + querySubject.getDetail() +
+                "%nID: " + Long.toString(querySubject.getId()));
 
         return view;
     }

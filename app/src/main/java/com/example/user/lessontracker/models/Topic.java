@@ -4,7 +4,7 @@ import com.example.user.lessontracker.Teachable;
 
 public class Topic implements Teachable {
 
-    private int mId;
+    private long mId;
     private int mSubjectId;
     private String mTitle;
     private String mDetail;
@@ -15,7 +15,7 @@ public class Topic implements Teachable {
         mDetail = detail;
     }
 
-    public Topic(int id, int subjectId, String title, String detail) {
+    public Topic(long id, int subjectId, String title, String detail) {
         mId = id;
         mSubjectId = subjectId;
         mTitle = title;
@@ -46,11 +46,11 @@ public class Topic implements Teachable {
         mSubjectId = subjectId;
     }
 
-    public int getId() {
+    public long getId() {
         return mId;
     }
 
-    public void setId(int id) {
+    public void setId(long id) {
         mId = id;
     }
 }
