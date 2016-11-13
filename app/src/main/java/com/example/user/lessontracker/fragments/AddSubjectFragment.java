@@ -13,10 +13,6 @@ import com.example.user.lessontracker.R;
 import com.example.user.lessontracker.database.LessonTrackerDbHelper;
 import com.example.user.lessontracker.models.Subject;
 
-/**
- * Created by user on 13/11/2016.
- */
-
 public class AddSubjectFragment extends Fragment {
 
     LessonTrackerDbHelper mDbHelper;
