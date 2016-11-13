@@ -8,7 +8,7 @@ import com.example.user.lessontracker.database.LessonTrackerSchema.TopicTable;
 public class Topic implements Teachable {
 
     private long mId;
-    private int mSubjectId;
+    private long mSubjectId;
     private String mTitle;
     private String mDetail;
 
@@ -18,7 +18,7 @@ public class Topic implements Teachable {
         mDetail = detail;
     }
 
-    public Topic(long id, int subjectId, String title, String detail) {
+    public Topic(long id, long subjectId, String title, String detail) {
         mId = id;
         mSubjectId = subjectId;
         mTitle = title;
@@ -41,11 +41,11 @@ public class Topic implements Teachable {
         mDetail = newDetail;
     }
 
-    public int getSubjectId() {
+    public long getSubjectId() {
         return mSubjectId;
     }
 
-    public void setSubjectId(int subjectId) {
+    public void setSubjectId(long subjectId) {
         mSubjectId = subjectId;
     }
 
