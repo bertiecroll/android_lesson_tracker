@@ -29,4 +29,16 @@ public class LearningObjectiveTest {
         learningObjective.setTitle(newTitle);
         assertEquals(newTitle, learningObjective.getTitle());
     }
+
+    @Test
+    public void getLearningObjectiveDetail() {
+        assertEquals(detail, learningObjective.getDetail());
+    }
+
+    @Test
+    public void setLearningObjectiveDetail() {
+        String newDetail = "Using .each on arrays";
+        learningObjective.setDetail(newDetail);
+        assertEquals(newDetail, learningObjective.getDetail());
+    }
 }

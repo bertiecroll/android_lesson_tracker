@@ -29,4 +29,12 @@ public class LearningObjective {
     public void setTitle(String newTitle) {
         mTitle = newTitle;
     }
+
+    public String getDetail() {
+        return mDetail;
+    }
+
+    public void setDetail(String newDetail) {
+        mDetail = newDetail;
+    }
 }
