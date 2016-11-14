@@ -42,19 +42,8 @@ public class SubjectFragment extends Fragment {
 
         mDbHelper = new LessonTrackerDbHelper(getActivity());
 
-        Bundle arguments = getArguments();
-        if (arguments != null && arguments.containsKey("subjectId")) {
-            long subjectId = arguments.getLong("subjectId");
-            mSubject = mDbHelper.findSubject(subjectId);
-        } else {
-            mSubject = mDbHelper.findSubject(1);
-        }
-
         mTitleTextView = (TextView) view.findViewById(R.id.subject_title);
-        mTitleTextView.setText(mSubject.getTitle());
-
         mDetailTextView = (TextView) view.findViewById(R.id.subject_detail);
-        mDetailTextView.setText(mSubject.getDetail());
 
         mNewSubjectButton = (Button) view.findViewById(R.id.subject_new_subject_button);
         mNewSubjectButton.setOnClickListener(new View.OnClickListener() {
@@ -67,10 +56,20 @@ public class SubjectFragment extends Fragment {
                 transaction.commit();
             }
         });
+
         mNewTopicButton = (Button) view.findViewById(R.id.subject_new_topic_button);
         mTopicList = (ListView) view.findViewById(R.id.subject_topics_list);
 
+        Bundle arguments = getArguments();
+        if (arguments != null && arguments.containsKey("subjectId")) {
+            long subjectId = arguments.getLong("subjectId");
+            mSubject = mDbHelper.findSubject(subjectId);
+        }
+
         if (mSubject != null) {
+            mTitleTextView.setText(mSubject.getTitle());
+            mDetailTextView.setText(mSubject.getDetail());
+
             mNewTopicButton.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {

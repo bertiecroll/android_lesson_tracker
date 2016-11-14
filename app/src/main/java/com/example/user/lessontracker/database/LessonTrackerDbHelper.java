@@ -29,7 +29,7 @@ public class LessonTrackerDbHelper extends SQLiteOpenHelper {
             + SubjectTable.Cols.ID + ") on delete cascade, " + TopicTable.Cols.TITLE + " text, "
             + TopicTable.Cols.DETAIL + " text )";
 
-    private static final String CREATE_TABLE_LEARNING_OBJECTIVE = "create table"
+    private static final String CREATE_TABLE_LEARNING_OBJECTIVE = "create table "
             + LearningObjectiveTable.NAME + "( " + LearningObjectiveTable.Cols.ID +
             " integer primary key autoincrement, " + LearningObjectiveTable.Cols.TOPIC_ID +
             " integer references " + TopicTable.NAME + "(" + TopicTable.Cols.ID +
