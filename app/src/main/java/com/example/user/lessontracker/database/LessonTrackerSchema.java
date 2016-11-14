@@ -23,4 +23,15 @@ public class LessonTrackerSchema {
         }
     }
 
+    public static final class LearningObjectiveTable {
+        public static final String NAME = "learningObjectives";
+
+        public static final class Cols {
+            public static final String ID = "_id";
+            public static final String TOPIC_ID = "topic_id";
+            public static final String TITLE = "title";
+            public static final String DETAIL = "detail";
+        }
+    }
+
 }

@@ -48,7 +48,7 @@ public class AddLearningObjectiveFragment extends Fragment {
                 String detail = mDetailEditText.getText().toString();
                 LearningObjective learningObjective =
                         new LearningObjective(topicId, title, detail);
-                mDbHelper.saveLearningObjective(learningObjective);
+//                mDbHelper.saveLearningObjective(learningObjective);
             }
         });
 
