@@ -5,6 +5,7 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
+import com.example.user.lessontracker.database.LessonTrackerSchema.LearningObjectiveTable;
 import com.example.user.lessontracker.database.LessonTrackerSchema.SubjectTable;
 import com.example.user.lessontracker.database.LessonTrackerSchema.TopicTable;
 import com.example.user.lessontracker.models.Subject;
@@ -24,8 +25,16 @@ public class LessonTrackerDbHelper extends SQLiteOpenHelper {
 
     private static final String CREATE_TABLE_TOPIC = "create table "
             + TopicTable.NAME + "( " + TopicTable.Cols.ID + " integer primary key autoincrement, "
-            + TopicTable.Cols.SUBJECT_ID + " integer, " + TopicTable.Cols.TITLE + " text, "
+            + TopicTable.Cols.SUBJECT_ID + " integer references " + SubjectTable.NAME + "("
+            + SubjectTable.Cols.ID + ") on delete cascade, " + TopicTable.Cols.TITLE + " text, "
             + TopicTable.Cols.DETAIL + " text )";
+
+    private static final String CREATE_TABLE_LEARNING_OBJECTIVE = "create table"
+            + LearningObjectiveTable.NAME + "( " + LearningObjectiveTable.Cols.ID +
+            " integer primary key autoincrement, " + LearningObjectiveTable.Cols.TOPIC_ID +
+            " integer references " + TopicTable.NAME + "(" + TopicTable.Cols.ID +
+            ") on delete cascade, " + LearningObjectiveTable.Cols.TITLE + " text, "
+            + LearningObjectiveTable.Cols.DETAIL + " text )";
 
     public LessonTrackerDbHelper(Context context) {
         super(context, DATABASE_NAME, null, VERSION);
@@ -35,6 +44,7 @@ public class LessonTrackerDbHelper extends SQLiteOpenHelper {
     public void onCreate(SQLiteDatabase db) {
         db.execSQL(CREATE_TABLE_SUBJECT);
         db.execSQL(CREATE_TABLE_TOPIC);
+        db.execSQL(CREATE_TABLE_LEARNING_OBJECTIVE);
     }
 
     @Override
