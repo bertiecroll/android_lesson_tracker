@@ -37,4 +37,12 @@ public class LearningObjective {
     public void setDetail(String newDetail) {
         mDetail = newDetail;
     }
+
+    public long getTopicId() {
+        return mTopicId;
+    }
+
+    public void setTopicId(long newTopicId) {
+        mTopicId = newTopicId;
+    }
 }

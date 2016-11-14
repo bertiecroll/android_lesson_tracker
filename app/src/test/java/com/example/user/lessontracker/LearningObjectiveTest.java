@@ -41,4 +41,16 @@ public class LearningObjectiveTest {
         learningObjective.setDetail(newDetail);
         assertEquals(newDetail, learningObjective.getDetail());
     }
+
+    @Test
+    public void getLearningObjectiveTopicId() {
+        assertEquals(1, learningObjective.getTopicId());
+    }
+
+    @Test
+    public void setLearningObjectiveTopicId() {
+        long newTopicId = 2;
+        learningObjective.setTopicId(newTopicId);
+        assertEquals(2, learningObjective.getTopicId());
+    }
 }
