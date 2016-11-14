@@ -11,10 +11,6 @@ import com.example.user.lessontracker.R;
 import com.example.user.lessontracker.database.LessonTrackerDbHelper;
 import com.example.user.lessontracker.models.Topic;
 
-/**
- * Created by user on 13/11/2016.
- */
-
 public class TopicFragment extends Fragment {
 
     LessonTrackerDbHelper mDbHelper;
