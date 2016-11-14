@@ -6,7 +6,7 @@ import com.example.user.lessontracker.Teachable;
 import com.example.user.lessontracker.database.LessonTrackerSchema;
 import com.example.user.lessontracker.database.LessonTrackerSchema.LearningObjectiveTable;
 
-public class LearningObjective {
+public class LearningObjective implements Teachable {
 
     long mId;
     long mTopicId;
