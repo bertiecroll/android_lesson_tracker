@@ -15,4 +15,6 @@
     <string name="learning_objective_title_hint">Enter Learning Objective Title</string>
     <string name="learning_objective_detail_hint">Enter details of new learning objective</string>
     <string name="learning_objective_add_button">Add Topic</string>
+
+    <string name="menu_item_lessons">Lessons</string>
 </resources>
