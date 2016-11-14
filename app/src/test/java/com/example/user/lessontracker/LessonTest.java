@@ -29,4 +29,15 @@ public class LessonTest {
         lesson.setCohortId(newCohortId);
         assertEquals(8, lesson.getCohortId());
     }
+
+    @Test
+    public void getTopicId() {
+        assertEquals(1, lesson.getTopicId());
+    }
+
+    @Test
+    public void setTopicId() {
+        lesson.setTopicId(5);
+        assertEquals(5, lesson.getTopicId());
+    }
 }

@@ -29,4 +29,12 @@ public class Lesson {
     public void setCohortId(long newCohortId) {
         mCohortId =newCohortId;
     }
+
+    public long getTopicId() {
+        return mTopicId;
+    }
+
+    public void setTopicId(long newTopicId) {
+        mTopicId =newTopicId;
+    }
 }
