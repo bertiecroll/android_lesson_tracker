@@ -5,6 +5,8 @@ import com.example.user.lessontracker.models.Lesson;
 import org.junit.Before;
 import org.junit.Test;
 
+import java.util.Date;
+
 import static org.junit.Assert.*;
 
 public class LessonTest {
@@ -40,4 +42,12 @@ public class LessonTest {
         lesson.setTopicId(5);
         assertEquals(5, lesson.getTopicId());
     }
+
+    @Test
+    public void getDate() {
+        Date testDate = new Date();
+        assertEquals(testDate.getTime(), lesson.getDate().getTime(), 0.001);
+    }
+
+
 }

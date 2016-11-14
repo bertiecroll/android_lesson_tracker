@@ -37,4 +37,8 @@ public class Lesson {
     public void setTopicId(long newTopicId) {
         mTopicId =newTopicId;
     }
+
+    public Date getDate() {
+        return mDate;
+    }
 }
