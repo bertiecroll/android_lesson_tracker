@@ -8,6 +8,7 @@ import android.database.sqlite.SQLiteOpenHelper;
 import com.example.user.lessontracker.database.LessonTrackerSchema.LearningObjectiveTable;
 import com.example.user.lessontracker.database.LessonTrackerSchema.SubjectTable;
 import com.example.user.lessontracker.database.LessonTrackerSchema.TopicTable;
+import com.example.user.lessontracker.models.LearningObjective;
 import com.example.user.lessontracker.models.Subject;
 import com.example.user.lessontracker.models.Topic;
 
@@ -51,6 +52,8 @@ public class LessonTrackerDbHelper extends SQLiteOpenHelper {
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
 
     }
+
+    // SUBJECT CRUD ACTIONS
 
     public void saveSubject(Subject subject) {
         SQLiteDatabase database = getDatabase();
@@ -96,6 +99,8 @@ public class LessonTrackerDbHelper extends SQLiteOpenHelper {
 
         return subjects;
     }
+
+    // TOPIC CRUD ACTIONS
 
     public void saveTopic(Topic topic) {
         SQLiteDatabase database = getDatabase();
@@ -159,6 +164,8 @@ public class LessonTrackerDbHelper extends SQLiteOpenHelper {
 
         return topics;
     }
+
+    // LEARNING OBJECTIVE CRUD ACTIONS
 
     private SQLiteDatabase getDatabase() {
         return this.getWritableDatabase();
