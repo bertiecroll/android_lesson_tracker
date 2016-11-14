@@ -17,6 +17,7 @@
         android:hint="@string/lesson_cohort_hint"/>
 
     <Button
+        android:id="@+id/lesson_date_picker_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/lesson_date_picker"

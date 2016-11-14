@@ -2,6 +2,7 @@ package com.example.user.lessontracker.fragments;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentTransaction;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -30,6 +31,11 @@ public class LessonListFragment extends Fragment {
             @Override
             public void onClick(View view) {
                 Log.d("LessonTracker", "new lesson button clicked");
+                FragmentTransaction transaction = getFragmentManager().beginTransaction();
+                AddLessonFragment addLessonFragment = new AddLessonFragment();
+                transaction.replace(R.id.fragment_container, addLessonFragment);
+                transaction.addToBackStack(null);
+                transaction.commit();
             }
         });
 
