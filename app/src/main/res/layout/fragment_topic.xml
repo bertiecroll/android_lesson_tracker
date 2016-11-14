@@ -22,4 +22,10 @@
         android:layout_height="wrap_content"
         android:text="" />
 
+    <Button
+        android:id="@+id/topic_new_learning_objective_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/topic_new_learning_objective_button"/>
+
 </LinearLayout>
