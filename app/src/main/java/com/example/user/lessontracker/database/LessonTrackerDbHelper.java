@@ -275,6 +275,24 @@ public class LessonTrackerDbHelper extends SQLiteOpenHelper {
         }
     }
 
+    public List<Lesson> allLessons() {
+        List<Lesson> lessons = new ArrayList<>();
+
+        LessonTrackerCursorWrapper cursor = query(LessonTable.NAME, null, null);
+
+        try {
+            cursor.moveToFirst();
+            while (!cursor.isAfterLast()) {
+                lessons.add(cursor.getLesson());
+                cursor.moveToNext();
+            }
+        } finally {
+            cursor.close();
+        }
+
+        return lessons;
+    }
+
     // PRIVATE HELPERS
 
     private SQLiteDatabase getDatabase() {
