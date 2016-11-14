@@ -41,4 +41,12 @@ public class Lesson {
     public Date getDate() {
         return mDate;
     }
+
+    public long getId() {
+        return mId;
+    }
+
+    public void setId(long newId) {
+        mId =newId;
+    }
 }

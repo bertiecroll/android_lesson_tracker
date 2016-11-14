@@ -12,12 +12,14 @@ import static org.junit.Assert.*;
 public class LessonTest {
 
     Lesson lesson;
+    Lesson lessonWithId;
 
     @Before
     public void before() {
         long cohortId = 7;
         long topicId = 1;
         lesson = new Lesson(cohortId, topicId);
+        lessonWithId = new Lesson(1, cohortId, topicId);
     }
 
     @Test
@@ -47,6 +49,17 @@ public class LessonTest {
     public void getDate() {
         Date testDate = new Date();
         assertEquals(testDate.getTime(), lesson.getDate().getTime(), 0.001);
+    }
+
+    @Test
+    public void getId() {
+        assertEquals(1, lessonWithId.getId());
+    }
+
+    @Test
+    public void setId() {
+        lessonWithId.setId(2);
+        assertEquals(2, lessonWithId.getId());
     }
 
 
