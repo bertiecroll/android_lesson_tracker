@@ -5,18 +5,18 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
 import com.example.user.lessontracker.R;
-import com.example.user.lessontracker.database.LessonTrackerCursorWrapper;
-import com.example.user.lessontracker.database.LessonTrackerDbHelper;
 
 public class AddLearningObjectiveFragment extends Fragment {
 
     TextView mTopicText;
     EditText mTitleEditText;
     EditText mDetailEditText;
+    Button mAddButton;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -33,6 +33,14 @@ public class AddLearningObjectiveFragment extends Fragment {
 
         mTitleEditText = (EditText) view.findViewById(R.id.learning_objective_title_edit);
         mDetailEditText = (EditText) view.findViewById(R.id.learning_objective_detail_edit);
+
+        mAddButton = (Button) view.findViewById(R.id.learning_objective_add_button);
+        mAddButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                // add learningObjective to Db
+            }
+        });
 
         return view;
     }

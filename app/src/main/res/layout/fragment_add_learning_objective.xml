@@ -25,4 +25,12 @@
         android:layout_marginTop="16dp"
         android:hint="@string/learning_objective_detail_hint"/>
 
+    <Button
+        android:id="@+id/learning_objective_add_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="16dp"
+        android:layout_marginTop="16dp"
+        android:text="@string/learning_objective_add_button"/>
+
 </LinearLayout>
