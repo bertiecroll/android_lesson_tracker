@@ -10,9 +10,12 @@ import android.widget.EditText;
 import android.widget.TextView;
 
 import com.example.user.lessontracker.R;
+import com.example.user.lessontracker.database.LessonTrackerDbHelper;
+import com.example.user.lessontracker.models.LearningObjective;
 
 public class AddLearningObjectiveFragment extends Fragment {
 
+    LessonTrackerDbHelper mDbHelper;
     TextView mTopicText;
     EditText mTitleEditText;
     EditText mDetailEditText;
@@ -27,6 +30,8 @@ public class AddLearningObjectiveFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_add_learning_objective, container, false);
 
+        mDbHelper = new LessonTrackerDbHelper(getActivity());
+
         String topicTitle = getArguments().getString("topicTitle");
         mTopicText = (TextView) view.findViewById(R.id.learning_objective_topic_text);
         mTopicText.setText(topicTitle);
@@ -38,7 +43,12 @@ public class AddLearningObjectiveFragment extends Fragment {
         mAddButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                // add learningObjective to Db
+                long topicId = getArguments().getLong("topicId");
+                String title = mTitleEditText.getText().toString();
+                String detail = mDetailEditText.getText().toString();
+                LearningObjective learningObjective =
+                        new LearningObjective(topicId, title, detail);
+                mDbHelper.saveLearningObjective(learningObjective);
             }
         });
 
