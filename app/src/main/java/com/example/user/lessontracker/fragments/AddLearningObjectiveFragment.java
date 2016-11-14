@@ -2,6 +2,8 @@ package com.example.user.lessontracker.fragments;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentTransaction;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -43,12 +45,24 @@ public class AddLearningObjectiveFragment extends Fragment {
         mAddButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                Log.d("LessonTracker", "AddLearningObjective button clicked");
                 long topicId = getArguments().getLong("topicId");
                 String title = mTitleEditText.getText().toString();
                 String detail = mDetailEditText.getText().toString();
                 LearningObjective learningObjective =
                         new LearningObjective(topicId, title, detail);
-//                mDbHelper.saveLearningObjective(learningObjective);
+                mDbHelper.saveLearningObjective(learningObjective);
+
+                FragmentTransaction transaction = getFragmentManager().beginTransaction();
+                TopicFragment topicFragment = new TopicFragment();
+
+                Bundle args = new Bundle();
+                args.putLong("topicId", topicId);
+                topicFragment.setArguments(args);
+
+                transaction.replace(R.id.fragment_container, topicFragment);
+                transaction.addToBackStack(null);
+                transaction.commit();
             }
         });
 
