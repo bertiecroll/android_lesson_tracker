@@ -20,11 +20,11 @@ public class Lesson {
         mDate = new Date();
     }
 
-    public Lesson(long id, long cohortId, long topicId) {
+    public Lesson(long id, long cohortId, long topicId, long date) {
         mId = id;
         mCohortId = cohortId;
         mTopicId = topicId;
-        mDate = new Date();
+        mDate = new Date(date);
     }
 
     public long getCohortId() {
@@ -45,6 +45,10 @@ public class Lesson {
 
     public Date getDate() {
         return mDate;
+    }
+
+    public void setDate(long julianDate) {
+        mDate = new Date(julianDate);
     }
 
     public long getId() {
