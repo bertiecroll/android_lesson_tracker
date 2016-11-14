@@ -75,13 +75,13 @@ public class SubjectFragment extends Fragment {
                 @Override
                 public void onClick(View view) {
                     FragmentTransaction transaction = getFragmentManager().beginTransaction();
-                    AddTopicFragment AddTopicFrag = new AddTopicFragment();
+                    AddTopicFragment addTopicFragment = new AddTopicFragment();
 
                     Bundle args = new Bundle();
                     args.putLong("subjectId", mSubject.getId());
                     args.putString("subjectTitle", mSubject.getTitle());
-                    AddTopicFrag.setArguments(args);
-                    transaction.replace(R.id.fragment_container, AddTopicFrag);
+                    addTopicFragment.setArguments(args);
+                    transaction.replace(R.id.fragment_container, addTopicFragment);
                     transaction.addToBackStack(null);
                     transaction.commit();
                 }

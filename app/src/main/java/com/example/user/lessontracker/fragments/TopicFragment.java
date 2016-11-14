@@ -50,7 +50,18 @@ public class TopicFragment extends Fragment {
         mNewLearningObjectiveButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                // goto addLearningObjective page
+                FragmentTransaction transaction = getFragmentManager().beginTransaction();
+                AddLearningObjectiveFragment addLearningObjectiveFragment =
+                        new AddLearningObjectiveFragment();
+
+                Bundle args = new Bundle();
+                args.putLong("topicId", mTopic.getId());
+                args.putString("topicTitle", mTopic.getTitle());
+                addLearningObjectiveFragment.setArguments(args);
+
+                transaction.replace(R.id.fragment_container, addLearningObjectiveFragment);
+                transaction.addToBackStack(null);
+                transaction.commit();
             }
         });
 
