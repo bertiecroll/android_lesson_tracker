@@ -4,9 +4,11 @@ import android.database.Cursor;
 import android.database.CursorWrapper;
 
 import com.example.user.lessontracker.database.LessonTrackerSchema.LearningObjectiveTable;
+import com.example.user.lessontracker.database.LessonTrackerSchema.LessonTable;
 import com.example.user.lessontracker.database.LessonTrackerSchema.SubjectTable;
 import com.example.user.lessontracker.database.LessonTrackerSchema.TopicTable;
 import com.example.user.lessontracker.models.LearningObjective;
+import com.example.user.lessontracker.models.Lesson;
 import com.example.user.lessontracker.models.Subject;
 import com.example.user.lessontracker.models.Topic;
 
@@ -47,5 +49,15 @@ public class LessonTrackerCursorWrapper extends CursorWrapper {
 
         LearningObjective learningObjective = new LearningObjective(id, topicId, title, detail);
         return learningObjective;
+    }
+
+    public Lesson getLesson() {
+        long id = getLong(getColumnIndex(LessonTable.Cols.ID));
+        long cohortId = getLong(getColumnIndex(LessonTable.Cols.COHORT_ID));
+        long topicId = getLong(getColumnIndex(LessonTable.Cols.TOPIC_ID));
+        long date = getLong(getColumnIndex(LessonTable.Cols.DATE));
+
+        Lesson lesson = new Lesson(id, cohortId, topicId);
+        return lesson;
     }
 }
