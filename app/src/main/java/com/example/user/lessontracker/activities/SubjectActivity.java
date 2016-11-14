@@ -7,6 +7,7 @@ import android.support.v4.app.FragmentManager;
 
 import com.example.user.lessontracker.R;
 import com.example.user.lessontracker.fragments.SubjectFragment;
+import com.example.user.lessontracker.fragments.SubjectListFragment;
 
 public class SubjectActivity extends FragmentActivity {
 
@@ -21,7 +22,7 @@ public class SubjectActivity extends FragmentActivity {
         Fragment fragment = fm.findFragmentById(R.id.fragment_container);
 
         if (fragment == null) {
-            fragment = new SubjectFragment();
+            fragment = new SubjectListFragment();
             fm.beginTransaction().add(R.id.fragment_container, fragment).commit();
         }
     }

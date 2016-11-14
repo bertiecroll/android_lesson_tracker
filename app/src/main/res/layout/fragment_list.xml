@@ -4,6 +4,12 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
+    <Button
+        android:id="@+id/subject_list_new_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/subject_list_new_button"/>
+
     <ListView
         android:id="@+id/teachable_list"
         android:layout_width="match_parent"

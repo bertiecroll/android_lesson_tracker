@@ -4,8 +4,8 @@
     <string name="subject_title_hint">Enter subject Title</string>
     <string name="subject_detail_hint">Enter details of new subject</string>
     <string name="subject_add_button">Add Subject</string>
-    <string name="subject_new_subject_button">Add New Subject</string>
     <string name="subject_new_topic_button">Add New Topic</string>
+    <string name="subject_list_new_button">Add New Subject</string>
 
     <string name="topic_title_hint">Enter Topic Title</string>
     <string name="topic_detail_hint">Enter details of new topic</string>

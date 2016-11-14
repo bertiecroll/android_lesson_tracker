@@ -26,7 +26,6 @@ public class SubjectFragment extends Fragment {
     LessonTrackerDbHelper mDbHelper;
     TextView mTitleTextView;
     TextView mDetailTextView;
-    Button mNewSubjectButton;
     Button mNewTopicButton;
     ListView mTopicList;
     Subject mSubject;
@@ -44,18 +43,6 @@ public class SubjectFragment extends Fragment {
 
         mTitleTextView = (TextView) view.findViewById(R.id.subject_title);
         mDetailTextView = (TextView) view.findViewById(R.id.subject_detail);
-
-        mNewSubjectButton = (Button) view.findViewById(R.id.subject_new_subject_button);
-        mNewSubjectButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                FragmentTransaction transaction = getFragmentManager().beginTransaction();
-                AddSubjectFragment AddSubjectFrag = new AddSubjectFragment();
-                transaction.replace(R.id.fragment_container, AddSubjectFrag);
-                transaction.addToBackStack(null);
-                transaction.commit();
-            }
-        });
 
         mNewTopicButton = (Button) view.findViewById(R.id.subject_new_topic_button);
         mTopicList = (ListView) view.findViewById(R.id.subject_topics_list);
@@ -102,7 +89,7 @@ public class SubjectFragment extends Fragment {
                     TopicFragment topicFrag = new TopicFragment();
 
                     Bundle args = new Bundle();
-                    args.putLong("topicId", mSubject.getId());
+                    args.putLong("topicId", selectedTopic.getId());
                     args.putString("subjectTitle", mSubject.getTitle());
                     topicFrag.setArguments(args);
                     transaction.replace(R.id.fragment_container, topicFrag);
