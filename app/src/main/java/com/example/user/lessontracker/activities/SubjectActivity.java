@@ -4,6 +4,10 @@ import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentManager;
+import android.util.Log;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 
 import com.example.user.lessontracker.R;
 import com.example.user.lessontracker.fragments.SubjectFragment;
@@ -25,5 +29,22 @@ public class SubjectActivity extends FragmentActivity {
             fragment = new SubjectListFragment();
             fm.beginTransaction().add(R.id.fragment_container, fragment).commit();
         }
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater menuInflater = getMenuInflater();
+        menuInflater.inflate(R.menu.activity_fragment, menu);
+
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        if (item.getItemId() == R.id.menu_item_lessons) {
+            Log.d("LessonTracker", "lessons menu item selected");
+            return true;
+        }
+        return super.onOptionsItemSelected(item);
     }
 }
