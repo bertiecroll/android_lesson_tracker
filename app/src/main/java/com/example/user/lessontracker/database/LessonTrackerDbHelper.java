@@ -195,6 +195,25 @@ public class LessonTrackerDbHelper extends SQLiteOpenHelper {
         }
     }
 
+    public List<LearningObjective> findLearningObjectivesByTopic(long topicId) {
+        List<LearningObjective> learningObjectives = new ArrayList<>();
+
+        LessonTrackerCursorWrapper cursor = query(LearningObjectiveTable.NAME,
+                LearningObjectiveTable.Cols.TOPIC_ID + " = ?", new String[] {Long.toString(topicId)});
+
+        try {
+            cursor.moveToFirst();
+            while (!cursor.isAfterLast()) {
+                learningObjectives.add(cursor.getLearningObjective());
+                cursor.moveToNext();
+            }
+        } finally {
+            cursor.close();
+        }
+
+        return learningObjectives;
+    }
+
     public List<LearningObjective> allLearningObjectives() {
         List<LearningObjective> learningObjectives = new ArrayList<>();
 
@@ -212,8 +231,6 @@ public class LessonTrackerDbHelper extends SQLiteOpenHelper {
 
         return learningObjectives;
     }
-
-
 
     private SQLiteDatabase getDatabase() {
         return this.getWritableDatabase();
