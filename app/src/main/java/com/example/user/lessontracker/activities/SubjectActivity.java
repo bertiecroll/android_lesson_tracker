@@ -3,14 +3,15 @@ package com.example.user.lessontracker.activities;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 
 import com.example.user.lessontracker.R;
+import com.example.user.lessontracker.fragments.LessonListFragment;
 import com.example.user.lessontracker.fragments.SubjectListFragment;
 
 public class SubjectActivity extends AppCompatActivity {
@@ -43,7 +44,12 @@ public class SubjectActivity extends AppCompatActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
         if (item.getItemId() == R.id.menu_item_lessons) {
             Log.d("LessonTracker", "lessons menu item selected");
+            FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
+            LessonListFragment lessonListFragment = new LessonListFragment();
 
+            transaction.replace(R.id.fragment_container, lessonListFragment);
+            transaction.addToBackStack(null);
+            transaction.commit();
             return true;
         }
         return super.onOptionsItemSelected(item);

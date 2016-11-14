@@ -38,7 +38,8 @@ public class SubjectListFragment extends Fragment {
 
         mDbHelper = new LessonTrackerDbHelper(activity);
 
-        mNewSubjectButton = (Button) view.findViewById(R.id.subject_list_new_button);
+        mNewSubjectButton = (Button) view.findViewById(R.id.list_new_button);
+        mNewSubjectButton.setText(R.string.list_new_subject_button);
         mNewSubjectButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
