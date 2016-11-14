@@ -3,8 +3,10 @@ package com.example.user.lessontracker.database;
 import android.database.Cursor;
 import android.database.CursorWrapper;
 
+import com.example.user.lessontracker.database.LessonTrackerSchema.LearningObjectiveTable;
 import com.example.user.lessontracker.database.LessonTrackerSchema.SubjectTable;
 import com.example.user.lessontracker.database.LessonTrackerSchema.TopicTable;
+import com.example.user.lessontracker.models.LearningObjective;
 import com.example.user.lessontracker.models.Subject;
 import com.example.user.lessontracker.models.Topic;
 
@@ -29,11 +31,21 @@ public class LessonTrackerCursorWrapper extends CursorWrapper {
 
     public Topic getTopic() {
         long id = getLong(getColumnIndex(TopicTable.Cols.ID));
-        long subject_id = getLong(getColumnIndex(TopicTable.Cols.SUBJECT_ID));
+        long subjectId = getLong(getColumnIndex(TopicTable.Cols.SUBJECT_ID));
         String title = getString(getColumnIndex(TopicTable.Cols.TITLE));
         String detail = getString(getColumnIndex(TopicTable.Cols.DETAIL));
 
-        Topic topic = new Topic(id, subject_id, title, detail);
+        Topic topic = new Topic(id, subjectId, title, detail);
         return topic;
+    }
+
+    public LearningObjective getLearningObjective() {
+        long id = getLong(getColumnIndex(LearningObjectiveTable.Cols.ID));
+        long topicId = getLong(getColumnIndex(LearningObjectiveTable.Cols.TOPIC_ID));
+        String title = getString(getColumnIndex(LearningObjectiveTable.Cols.TITLE));
+        String detail = getString(getColumnIndex(LearningObjectiveTable.Cols.DETAIL));
+
+        LearningObjective learningObjective = new LearningObjective(id, topicId, title, detail);
+        return learningObjective;
     }
 }
