@@ -1,5 +1,10 @@
 package com.example.user.lessontracker.models;
 
+import android.content.ContentValues;
+
+import com.example.user.lessontracker.database.LessonTrackerSchema;
+import com.example.user.lessontracker.database.LessonTrackerSchema.LessonTable;
+
 import java.util.Date;
 
 public class Lesson {
@@ -48,5 +53,14 @@ public class Lesson {
 
     public void setId(long newId) {
         mId =newId;
+    }
+
+    public ContentValues getContentValues() {
+        ContentValues values = new ContentValues();
+        values.put(LessonTable.Cols.COHORT_ID, mCohortId);
+        values.put(LessonTable.Cols.TOPIC_ID, mTopicId);
+        values.put(LessonTable.Cols.DATE, mDate.getTime());
+
+        return values;
     }
 }
