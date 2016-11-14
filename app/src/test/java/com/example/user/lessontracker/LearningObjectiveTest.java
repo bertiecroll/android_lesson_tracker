@@ -10,12 +10,14 @@ import static org.junit.Assert.*;
 public class LearningObjectiveTest {
 
     LearningObjective learningObjective;
+    LearningObjective learningObjectiveWithId;
     String title = "Iterating an Array";
     String detail = "Learning how to iterate through an array";
 
     @Before
     public void before() {
         learningObjective = new LearningObjective(1, title , detail);
+        learningObjectiveWithId = new LearningObjective(10, 1, title, detail);
     }
 
     @Test
@@ -52,5 +54,17 @@ public class LearningObjectiveTest {
         long newTopicId = 2;
         learningObjective.setTopicId(newTopicId);
         assertEquals(2, learningObjective.getTopicId());
+    }
+
+    @Test
+    public void getLearningObjectiveId() {
+        assertEquals(10, learningObjectiveWithId.getId());
+    }
+
+    @Test
+    public void setLearningObjectiveId() {
+        long newId = 20;
+        learningObjectiveWithId.setId(newId);
+        assertEquals(20, learningObjectiveWithId.getId());
     }
 }

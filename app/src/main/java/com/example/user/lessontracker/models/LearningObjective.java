@@ -45,4 +45,12 @@ public class LearningObjective {
     public void setTopicId(long newTopicId) {
         mTopicId = newTopicId;
     }
+
+    public long getId() {
+        return mId;
+    }
+
+    public void setId(long newId) {
+        mId = newId;
+    }
 }
