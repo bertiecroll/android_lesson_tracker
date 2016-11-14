@@ -185,9 +185,10 @@ public class LessonTrackerDbHelper extends SQLiteOpenHelper {
 
     public void updateLearningObjective(LearningObjective learningObjective) {
         SQLiteDatabase database = getDatabase();
+        long id = learningObjective.getId();
         database.update(LearningObjectiveTable.NAME, learningObjective.getContentValues(),
                 LearningObjectiveTable.Cols.ID + " = ?",
-                new String[] { String.valueOf(learningObjective.getId())});
+                new String[] { String.valueOf(id)});
     }
 
     public LearningObjective findLearningObjective(long id) {
@@ -248,6 +249,15 @@ public class LessonTrackerDbHelper extends SQLiteOpenHelper {
         SQLiteDatabase database = getDatabase();
         long id = database.insert(LessonTable.NAME, null, lesson.getContentValues());
         lesson.setId(id);
+    }
+
+    public void updateLesson(Lesson lesson) {
+        SQLiteDatabase database = getDatabase();
+        long id = lesson.getId();
+        database.update(LessonTable.NAME, lesson.getContentValues(),
+                LessonTable.Cols.ID + " = ?",
+                new String[] { String.valueOf(id)});
+
     }
 
     // PRIVATE HELPERS
