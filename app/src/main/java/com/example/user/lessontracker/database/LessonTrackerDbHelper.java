@@ -173,6 +173,13 @@ public class LessonTrackerDbHelper extends SQLiteOpenHelper {
         learningObjective.setId(id);
     }
 
+    public void updateLearningObjective(LearningObjective learningObjective) {
+        SQLiteDatabase database = getDatabase();
+        database.update(LearningObjectiveTable.NAME, learningObjective.getContentValues(),
+                LearningObjectiveTable.Cols.ID + " = ?",
+                new String[] { String.valueOf(learningObjective.getId())});
+    }
+
 
 
     private SQLiteDatabase getDatabase() {
