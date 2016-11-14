@@ -180,6 +180,21 @@ public class LessonTrackerDbHelper extends SQLiteOpenHelper {
                 new String[] { String.valueOf(learningObjective.getId())});
     }
 
+    public LearningObjective findLearningObjective(long id) {
+        LessonTrackerCursorWrapper cursor = query(LearningObjectiveTable.NAME,
+                LearningObjectiveTable.Cols.ID + " = ?", new String[] { Long.toString(id)} );
+
+        try {
+            if (cursor.getCount() == 0) {
+                return null;
+            }
+            cursor.moveToFirst();
+            return cursor.getLearningObjective();
+        } finally {
+            cursor.close();
+        }
+    }
+
 
 
     private SQLiteDatabase getDatabase() {
