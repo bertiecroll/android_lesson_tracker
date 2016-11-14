@@ -28,4 +28,9 @@
         android:layout_height="wrap_content"
         android:text="@string/topic_new_learning_objective_button"/>
 
+    <ListView
+        android:id="@+id/topic_learning_objectives_list"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+
 </LinearLayout>

@@ -3,15 +3,14 @@ package com.example.user.lessontracker.models;
 import android.content.ContentValues;
 
 import com.example.user.lessontracker.Teachable;
-import com.example.user.lessontracker.database.LessonTrackerSchema;
 import com.example.user.lessontracker.database.LessonTrackerSchema.LearningObjectiveTable;
 
 public class LearningObjective implements Teachable {
 
-    long mId;
-    long mTopicId;
-    String mTitle;
-    String mDetail;
+    private long mId;
+    private long mTopicId;
+    private String mTitle;
+    private String mDetail;
 
     public LearningObjective(long topicId, String title, String detail) {
         mTopicId = topicId;

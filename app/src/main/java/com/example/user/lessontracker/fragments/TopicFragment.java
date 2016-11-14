@@ -3,15 +3,23 @@ package com.example.user.lessontracker.fragments;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.ListView;
 import android.widget.TextView;
 
 import com.example.user.lessontracker.R;
 import com.example.user.lessontracker.database.LessonTrackerDbHelper;
+import com.example.user.lessontracker.models.LearningObjective;
 import com.example.user.lessontracker.models.Topic;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class TopicFragment extends Fragment {
 
@@ -21,6 +29,7 @@ public class TopicFragment extends Fragment {
     TextView mTitleTextView;
     TextView mDetailTextView;
     Button mNewLearningObjectiveButton;
+    ListView mLearningObjectiveList;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -62,6 +71,22 @@ public class TopicFragment extends Fragment {
                 transaction.replace(R.id.fragment_container, addLearningObjectiveFragment);
                 transaction.addToBackStack(null);
                 transaction.commit();
+            }
+        });
+
+        mLearningObjectiveList = (ListView) view.findViewById(R.id.topic_learning_objectives_list);
+        List<LearningObjective> learningObjectives =
+                new ArrayList<>(mDbHelper.findLearningObjectivesByTopic(topicId));
+        ArrayAdapter<LearningObjective> adapter =
+        new ArrayAdapter<>(getActivity(), android.R.layout.simple_list_item_1, learningObjectives);
+        mLearningObjectiveList.setAdapter(adapter);
+
+        mLearningObjectiveList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                LearningObjective selectedLearningObjective =
+                        (LearningObjective) mLearningObjectiveList.getItemAtPosition(position);
+                Log.d("LessonTracker", selectedLearningObjective + " selected");
             }
         });
 

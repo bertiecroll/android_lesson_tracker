@@ -31,8 +31,6 @@
     <ListView
         android:id="@+id/subject_topics_list"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-
-    </ListView>
+        android:layout_height="wrap_content"/>
 
 </LinearLayout>
