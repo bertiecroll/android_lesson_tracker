@@ -6,6 +6,7 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
 import com.example.user.lessontracker.database.LessonTrackerSchema.LearningObjectiveTable;
+import com.example.user.lessontracker.database.LessonTrackerSchema.LessonTable;
 import com.example.user.lessontracker.database.LessonTrackerSchema.SubjectTable;
 import com.example.user.lessontracker.database.LessonTrackerSchema.TopicTable;
 import com.example.user.lessontracker.models.LearningObjective;
@@ -37,6 +38,13 @@ public class LessonTrackerDbHelper extends SQLiteOpenHelper {
             ") on delete cascade, " + LearningObjectiveTable.Cols.TITLE + " text, "
             + LearningObjectiveTable.Cols.DETAIL + " text )";
 
+    private static final String CREATE_TABLE_LESSON = "create table "
+            + LessonTable.NAME + "(" + LessonTable.Cols.ID + " integer primary key autoincrement, "
+            + LessonTable.Cols.COHORT_ID + " integer, " + LessonTable.Cols.TOPIC_ID +
+            " integer references " + TopicTable.NAME + "(" + TopicTable.Cols.ID +
+            ") on delete cascade, " + LessonTable.Cols.DATE + " integer )";
+
+
     public LessonTrackerDbHelper(Context context) {
         super(context, DATABASE_NAME, null, VERSION);
     }
@@ -46,6 +54,7 @@ public class LessonTrackerDbHelper extends SQLiteOpenHelper {
         db.execSQL(CREATE_TABLE_SUBJECT);
         db.execSQL(CREATE_TABLE_TOPIC);
         db.execSQL(CREATE_TABLE_LEARNING_OBJECTIVE);
+        db.execSQL(CREATE_TABLE_LESSON);
     }
 
     @Override
