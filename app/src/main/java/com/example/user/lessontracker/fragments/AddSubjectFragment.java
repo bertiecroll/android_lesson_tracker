@@ -50,12 +50,6 @@ public class AddSubjectFragment extends Fragment {
             }
         });
 
-
-
-
-
-
-
         return view;
     }
 }
