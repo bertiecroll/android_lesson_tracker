@@ -260,6 +260,21 @@ public class LessonTrackerDbHelper extends SQLiteOpenHelper {
 
     }
 
+    public Lesson findLesson(long id) {
+        LessonTrackerCursorWrapper cursor = query(LessonTable.NAME,
+                LessonTable.Cols.ID + " = ?", new String[] { Long.toString(id)} );
+
+        try {
+            if (cursor.getCount() == 0) {
+                return null;
+            }
+            cursor.moveToFirst();
+            return cursor.getLesson();
+        } finally {
+            cursor.close();
+        }
+    }
+
     // PRIVATE HELPERS
 
     private SQLiteDatabase getDatabase() {
