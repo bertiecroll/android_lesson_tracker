@@ -18,7 +18,8 @@ public class LessonTest {
     public void before() {
         long cohortId = 7;
         long topicId = 1;
-        lesson = new Lesson(cohortId, topicId);
+        Date date = new Date();
+        lesson = new Lesson(cohortId, topicId, date.getTime());
         lessonWithId = new Lesson(1, cohortId, topicId);
     }
 

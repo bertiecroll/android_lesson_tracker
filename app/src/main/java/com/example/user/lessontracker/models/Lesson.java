@@ -14,10 +14,10 @@ public class Lesson {
     private long mTopicId;
     private Date mDate;
 
-    public Lesson(long cohortId, long topicId) {
+    public Lesson(long cohortId, long topicId, long date) {
         mCohortId = cohortId;
         mTopicId = topicId;
-        mDate = new Date();
+        mDate = new Date(date);
     }
 
     public Lesson(long id, long cohortId, long topicId, long date) {
