@@ -244,6 +244,11 @@ public class LessonTrackerDbHelper extends SQLiteOpenHelper {
 
     // LESSON CRUD ACTIONS
 
+    public void saveLesson(Lesson lesson) {
+        SQLiteDatabase database = getDatabase();
+        long id = database.insert(LessonTable.NAME, null, lesson.getContentValues());
+        lesson.setId(id);
+    }
 
     // PRIVATE HELPERS
 
