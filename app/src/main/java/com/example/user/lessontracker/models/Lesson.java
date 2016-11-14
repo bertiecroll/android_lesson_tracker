@@ -21,4 +21,12 @@ public class Lesson {
         mTopicId = topicId;
         mDate = new Date();
     }
+
+    public long getCohortId() {
+        return mCohortId;
+    }
+
+    public void setCohortId(long newCohortId) {
+        mCohortId =newCohortId;
+    }
 }

@@ -17,4 +17,16 @@ public class LessonTest {
         long topicId = 1;
         lesson = new Lesson(cohortId, topicId);
     }
+
+    @Test
+    public void getCohortId() {
+        assertEquals(7, lesson.getCohortId());
+    }
+
+    @Test
+    public void setCohortId() {
+        long newCohortId = 8;
+        lesson.setCohortId(newCohortId);
+        assertEquals(8, lesson.getCohortId());
+    }
 }
