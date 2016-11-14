@@ -40,17 +40,7 @@ public class AddSubjectFragment extends Fragment {
                 String detail = mDetailEditText.getText().toString();
                 Subject subject = new Subject(title, detail);
                 mDbHelper.saveSubject(subject);
-                long id = subject.getId();
-
-                FragmentTransaction transaction = getFragmentManager().beginTransaction();
-                SubjectFragment fragment = new SubjectFragment();
-                Bundle args = new Bundle();
-                args.putLong("subjectId", id);
-                fragment.setArguments(args);
-
-                transaction.replace(R.id.fragment_container, fragment);
-                transaction.addToBackStack(null);
-                transaction.commit();
+                getFragmentManager().popBackStack();
             }
         });
 

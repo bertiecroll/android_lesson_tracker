@@ -52,17 +52,7 @@ public class AddLearningObjectiveFragment extends Fragment {
                 LearningObjective learningObjective =
                         new LearningObjective(topicId, title, detail);
                 mDbHelper.saveLearningObjective(learningObjective);
-
-                FragmentTransaction transaction = getFragmentManager().beginTransaction();
-                TopicFragment topicFragment = new TopicFragment();
-
-                Bundle args = new Bundle();
-                args.putLong("topicId", topicId);
-                topicFragment.setArguments(args);
-
-                transaction.replace(R.id.fragment_container, topicFragment);
-                transaction.addToBackStack(null);
-                transaction.commit();
+                getFragmentManager().popBackStack();
             }
         });
 
