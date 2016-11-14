@@ -1,19 +1,19 @@
 <resources>
     <string name="app_name">LessonTracker</string>
 
-    <string name="subject_title_hint">Enter subject Title</string>
-    <string name="subject_detail_hint">Enter details of new subject</string>
+    <string name="subject_title_hint">Enter Subject Title</string>
+    <string name="subject_detail_hint">Enter Subject Details</string>
     <string name="subject_add_button">Add Subject</string>
     <string name="subject_new_topic_button">Add New Topic</string>
 
     <string name="topic_title_hint">Enter Topic Title</string>
-    <string name="topic_detail_hint">Enter details of new topic</string>
+    <string name="topic_detail_hint">Enter Topic Details</string>
     <string name="topic_add_button">Add Topic</string>
     <string name="topic_new_learning_objective_button">Add New Learning Objective</string>
 
     <string name="learning_objective_title_hint">Enter Learning Objective Title</string>
-    <string name="learning_objective_detail_hint">Enter details of new learning objective</string>
-    <string name="learning_objective_add_button">Add Topic</string>
+    <string name="learning_objective_detail_hint">Enter Learning Objective Details</string>
+    <string name="learning_objective_add_button">Add Learning Objective</string>
 
     <string name="menu_item_lessons">Lessons</string>
 

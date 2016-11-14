@@ -5,31 +5,31 @@
     android:layout_height="match_parent">
 
     <TextView
-        android:id="@+id/topic_subject_title"
+        android:id="@+id/teachable_parent_title"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="" />
 
     <TextView
-        android:id="@+id/topic_title"
+        android:id="@+id/teachable_title"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="" />
 
     <TextView
-        android:id="@+id/topic_detail"
+        android:id="@+id/teachable_detail"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="" />
 
     <Button
-        android:id="@+id/topic_new_learning_objective_button"
+        android:id="@+id/teachable_child_new_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/topic_new_learning_objective_button"/>
 
     <ListView
-        android:id="@+id/topic_learning_objectives_list"
+        android:id="@+id/teachable_child_list"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"/>
 

@@ -38,7 +38,7 @@ public class TopicFragment extends Fragment {
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_topic, container, false);
+        View view = inflater.inflate(R.layout.fragment_teachable, container, false);
 
         mDbHelper = new LessonTrackerDbHelper(getActivity());
         Bundle arguments = getArguments();
@@ -46,16 +46,17 @@ public class TopicFragment extends Fragment {
         String subjectTitle = arguments.getString("subjectTitle");
         mTopic = mDbHelper.findTopic(topicId);
 
-        mSubjectTitleTextView = (TextView) view.findViewById(R.id.topic_subject_title);
+        mSubjectTitleTextView = (TextView) view.findViewById(R.id.teachable_parent_title);
         mSubjectTitleTextView.setText(subjectTitle);
 
-        mTitleTextView = (TextView) view.findViewById(R.id.topic_title);
+        mTitleTextView = (TextView) view.findViewById(R.id.teachable_title);
         mTitleTextView.setText(mTopic.getTitle());
 
-        mDetailTextView = (TextView) view.findViewById(R.id.topic_detail);
+        mDetailTextView = (TextView) view.findViewById(R.id.teachable_detail);
         mDetailTextView.setText(mTopic.getDetail());
 
-        mNewLearningObjectiveButton = (Button) view.findViewById(R.id.topic_new_learning_objective_button);
+        mNewLearningObjectiveButton = (Button) view.findViewById(R.id.teachable_child_new_button);
+        mNewLearningObjectiveButton.setText(R.string.topic_new_learning_objective_button);
         mNewLearningObjectiveButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -74,7 +75,7 @@ public class TopicFragment extends Fragment {
             }
         });
 
-        mLearningObjectiveList = (ListView) view.findViewById(R.id.topic_learning_objectives_list);
+        mLearningObjectiveList = (ListView) view.findViewById(R.id.teachable_child_list);
         List<LearningObjective> learningObjectives =
                 new ArrayList<>(mDbHelper.findLearningObjectivesByTopic(topicId));
         ArrayAdapter<LearningObjective> adapter =

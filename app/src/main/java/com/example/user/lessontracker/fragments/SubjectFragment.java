@@ -37,15 +37,18 @@ public class SubjectFragment extends Fragment {
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_subject, container, false);
+        View view = inflater.inflate(R.layout.fragment_teachable, container, false);
 
         mDbHelper = new LessonTrackerDbHelper(getActivity());
 
-        mTitleTextView = (TextView) view.findViewById(R.id.subject_title);
-        mDetailTextView = (TextView) view.findViewById(R.id.subject_detail);
+        mTitleTextView = (TextView) view.findViewById(R.id.teachable_title);
 
-        mNewTopicButton = (Button) view.findViewById(R.id.subject_new_topic_button);
-        mTopicList = (ListView) view.findViewById(R.id.subject_topics_list);
+        mDetailTextView = (TextView) view.findViewById(R.id.teachable_detail);
+
+        mNewTopicButton = (Button) view.findViewById(R.id.teachable_child_new_button);
+        mNewTopicButton.setText(R.string.subject_new_topic_button);
+
+        mTopicList = (ListView) view.findViewById(R.id.teachable_child_list);
 
         Bundle arguments = getArguments();
         if (arguments != null && arguments.containsKey("subjectId")) {

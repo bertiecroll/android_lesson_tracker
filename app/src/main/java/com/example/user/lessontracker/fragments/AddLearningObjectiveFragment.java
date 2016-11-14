@@ -2,7 +2,6 @@ package com.example.user.lessontracker.fragments;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentTransaction;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -30,18 +29,22 @@ public class AddLearningObjectiveFragment extends Fragment {
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_add_learning_objective, container, false);
+        View view = inflater.inflate(R.layout.fragment_add_teachable, container, false);
 
         mDbHelper = new LessonTrackerDbHelper(getActivity());
 
         String topicTitle = getArguments().getString("topicTitle");
-        mTopicText = (TextView) view.findViewById(R.id.learning_objective_topic_text);
+        mTopicText = (TextView) view.findViewById(R.id.add_parent_title_text);
         mTopicText.setText(topicTitle);
 
-        mTitleEditText = (EditText) view.findViewById(R.id.learning_objective_title_edit);
-        mDetailEditText = (EditText) view.findViewById(R.id.learning_objective_detail_edit);
+        mTitleEditText = (EditText) view.findViewById(R.id.add_title_edit);
+        mTitleEditText.setHint(R.string.learning_objective_title_hint);
 
-        mAddButton = (Button) view.findViewById(R.id.learning_objective_add_button);
+        mDetailEditText = (EditText) view.findViewById(R.id.add_detail_edit);
+        mDetailEditText.setHint(R.string.learning_objective_detail_hint);
+
+        mAddButton = (Button) view.findViewById(R.id.add_button);
+        mAddButton.setText(R.string.learning_objective_add_button);
         mAddButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
