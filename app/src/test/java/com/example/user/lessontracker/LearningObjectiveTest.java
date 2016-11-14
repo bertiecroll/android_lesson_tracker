@@ -67,4 +67,9 @@ public class LearningObjectiveTest {
         learningObjectiveWithId.setId(newId);
         assertEquals(20, learningObjectiveWithId.getId());
     }
+
+    @Test
+    public void getLearningObjectiveToString() {
+        assertEquals(title, learningObjective.toString());
+    }
 }

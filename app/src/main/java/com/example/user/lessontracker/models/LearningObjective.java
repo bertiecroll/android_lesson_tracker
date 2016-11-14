@@ -22,6 +22,11 @@ public class LearningObjective {
         mDetail = detail;
     }
 
+    @Override
+    public String toString() {
+        return mTitle;
+    }
+
     public String getTitle() {
         return mTitle;
     }
