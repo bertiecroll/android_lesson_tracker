@@ -19,8 +19,8 @@ public class LessonTest {
         long cohortId = 7;
         long topicId = 1;
         Date date = new Date();
-        lesson = new Lesson(cohortId, topicId, date.getTime());
-        lessonWithId = new Lesson(1, cohortId, topicId);
+        lesson = new Lesson(cohortId, topicId, date.getTime(), 0);
+        lessonWithId = new Lesson(1, cohortId, topicId, date.getTime(), 1);
     }
 
     @Test
@@ -61,6 +61,17 @@ public class LessonTest {
     public void setId() {
         lessonWithId.setId(2);
         assertEquals(2, lessonWithId.getId());
+    }
+
+    @Test
+    public void hasLessonBeenTaught() {
+        assertEquals(false, lesson.hasBeenTaught());
+    }
+
+    @Test
+    public void canTeachLesson() {
+        lesson.teach();
+        assertEquals(true, lesson.hasBeenTaught());
     }
 
 

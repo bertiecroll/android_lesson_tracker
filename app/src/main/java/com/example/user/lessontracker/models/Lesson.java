@@ -13,18 +13,21 @@ public class Lesson {
     private long mCohortId;
     private long mTopicId;
     private Date mDate;
+    private boolean mTaught;
 
-    public Lesson(long cohortId, long topicId, long date) {
+    public Lesson(long cohortId, long topicId, long date, int taught) {
         mCohortId = cohortId;
         mTopicId = topicId;
         mDate = new Date(date);
+        mTaught = (taught == 1);
     }
 
-    public Lesson(long id, long cohortId, long topicId, long date) {
+    public Lesson(long id, long cohortId, long topicId, long date, int taught) {
         mId = id;
         mCohortId = cohortId;
         mTopicId = topicId;
         mDate = new Date(date);
+        mTaught = (taught == 1);
     }
 
     public long getCohortId() {
@@ -59,11 +62,24 @@ public class Lesson {
         mId =newId;
     }
 
+    public boolean hasBeenTaught() {
+        return mTaught;
+    }
+
+    public void teach() {
+        mTaught = true;
+    }
+
+    private int taughtAsInt() {
+        return (mTaught)? 1 : 0;
+    }
+
     public ContentValues getContentValues() {
         ContentValues values = new ContentValues();
         values.put(LessonTable.Cols.COHORT_ID, mCohortId);
         values.put(LessonTable.Cols.TOPIC_ID, mTopicId);
         values.put(LessonTable.Cols.DATE, mDate.getTime());
+        values.put(LessonTable.Cols.TAUGHT, taughtAsInt());
 
         return values;
     }

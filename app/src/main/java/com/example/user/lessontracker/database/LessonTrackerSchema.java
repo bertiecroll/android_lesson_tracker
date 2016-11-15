@@ -42,6 +42,7 @@ public class LessonTrackerSchema {
             public static final String COHORT_ID = "cohort_id";
             public static final String TOPIC_ID = "topic_id";
             public static final String DATE = "date";
+            public static final String TAUGHT = "taught";
         }
     }
 

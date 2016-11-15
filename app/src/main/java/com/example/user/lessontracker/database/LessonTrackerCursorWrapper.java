@@ -56,8 +56,9 @@ public class LessonTrackerCursorWrapper extends CursorWrapper {
         long cohortId = getLong(getColumnIndex(LessonTable.Cols.COHORT_ID));
         long topicId = getLong(getColumnIndex(LessonTable.Cols.TOPIC_ID));
         long date = getLong(getColumnIndex(LessonTable.Cols.DATE));
+        int taught = getInt(getColumnIndex(LessonTable.Cols.TAUGHT));
 
-        Lesson lesson = new Lesson(id, cohortId, topicId, date);
+        Lesson lesson = new Lesson(id, cohortId, topicId, date, taught);
         return lesson;
     }
 }

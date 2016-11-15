@@ -23,5 +23,7 @@
     <string name="lesson_cohort_hint">Enter Cohort ID</string>
     <string name="lesson_date_picker">Select Lesson Date</string>
     <string name="lesson_add_button">Add Lesson</string>
+    <string name="lesson_teach_now">Teach Lesson Now?</string>
+    <string name="lesson_toast_add_success">New Lesson Has Been Added!</string>
 
 </resources>

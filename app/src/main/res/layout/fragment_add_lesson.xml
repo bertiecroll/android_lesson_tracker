@@ -30,6 +30,12 @@
         android:calendarViewShown="false">
     </DatePicker>
 
+    <CheckBox
+        android:id="@+id/lesson_teach_check_box"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/lesson_teach_now" />
+
     <Button
         android:id="@+id/lesson_add_button"
         android:layout_width="wrap_content"

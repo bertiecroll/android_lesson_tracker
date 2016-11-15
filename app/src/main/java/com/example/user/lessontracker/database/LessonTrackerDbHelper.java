@@ -19,7 +19,7 @@ import java.util.List;
 
 public class LessonTrackerDbHelper extends SQLiteOpenHelper {
 
-    private static final int VERSION = 1;
+    private static final int VERSION = 2;
     private static final String DATABASE_NAME = "lessonTracker.db";
 
     private static final String CREATE_TABLE_SUBJECT = "create table "
@@ -43,7 +43,8 @@ public class LessonTrackerDbHelper extends SQLiteOpenHelper {
             + LessonTable.NAME + "(" + LessonTable.Cols.ID + " integer primary key autoincrement, "
             + LessonTable.Cols.COHORT_ID + " integer, " + LessonTable.Cols.TOPIC_ID +
             " integer references " + TopicTable.NAME + "(" + TopicTable.Cols.ID +
-            ") on delete cascade, " + LessonTable.Cols.DATE + " integer )";
+            ") on delete cascade, " + LessonTable.Cols.TAUGHT + " integer, "
+            + LessonTable.Cols.DATE + " integer )";
 
 
     public LessonTrackerDbHelper(Context context) {
@@ -60,7 +61,15 @@ public class LessonTrackerDbHelper extends SQLiteOpenHelper {
 
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
+        db.execSQL("DROP TABLE IF EXISTS " + SubjectTable.NAME);
+        db.execSQL("DROP TABLE IF EXISTS " + TopicTable.NAME);
+        db.execSQL("DROP TABLE IF EXISTS " + LearningObjectiveTable.NAME);
+        db.execSQL("DROP TABLE IF EXISTS " + LessonTable.NAME);
 
+        db.execSQL(CREATE_TABLE_SUBJECT);
+        db.execSQL(CREATE_TABLE_TOPIC);
+        db.execSQL(CREATE_TABLE_LEARNING_OBJECTIVE);
+        db.execSQL(CREATE_TABLE_LESSON);
     }
 
     // SUBJECT CRUD ACTIONS
