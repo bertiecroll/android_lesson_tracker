@@ -20,7 +20,7 @@ import java.util.List;
 
 public class TakeLessonFragment extends Fragment {
 
-    LessonTrackerDbHelper mDbhelper;
+    LessonTrackerDbHelper mDbHelper;
     Lesson mLesson;
     Topic mTopic;
     List<Outcome> mOutcomes;
@@ -37,11 +37,11 @@ public class TakeLessonFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_take_lesson, container, false);
 
-        mDbhelper = new LessonTrackerDbHelper(getActivity());
+        mDbHelper = new LessonTrackerDbHelper(getActivity());
         Bundle arguments = getArguments();
         long lessonId = arguments.getLong("lessonId");
-        mLesson = mDbhelper.findLesson(lessonId);
-        mTopic = mDbhelper.findTopic(mLesson.getTopicId());
+        mLesson = mDbHelper.findLesson(lessonId);
+        mTopic = mDbHelper.findTopic(mLesson.getTopicId());
 
         mDetailsTextView = (TextView) view.findViewById(R.id.take_lesson_details);
         mDetailsTextView.setText(mLesson.toString());
@@ -50,6 +50,7 @@ public class TakeLessonFragment extends Fragment {
         mTopicTitleTextView.setText(mTopic.getTitle());
 
         mLearningObjectiveList = (ListView) view.findViewById(R.id.take_lesson_learning_objectives);
+        List<Outcome> outcomes = new ArrayList<>(mDbHelper.findOutcomesByLesson(lessonId));
 
 
 

@@ -76,12 +76,14 @@ public class TopicFragment extends Fragment {
         });
 
         mLearningObjectiveList = (ListView) view.findViewById(R.id.teachable_child_list);
+
         List<LearningObjective> learningObjectives =
                 new ArrayList<>(mDbHelper.findLearningObjectivesByTopic(topicId));
+
         ArrayAdapter<LearningObjective> adapter =
         new ArrayAdapter<>(getActivity(), android.R.layout.simple_list_item_1, learningObjectives);
-        mLearningObjectiveList.setAdapter(adapter);
 
+        mLearningObjectiveList.setAdapter(adapter);
         mLearningObjectiveList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
