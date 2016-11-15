@@ -17,6 +17,30 @@ public class Tagging {
         mOutcomeId = outcomeId;
     }
 
+    public long getTagId() {
+        return mTagId;
+    }
+
+    public void setTagId(long newTagId) {
+        mTagId = newTagId;
+    }
+
+    public long getOutcomeId() {
+        return mOutcomeId;
+    }
+
+    public void setOutcomeId(long newOutcomeId) {
+        mOutcomeId = newOutcomeId;
+    }
+
+    public long getId() {
+        return mId;
+    }
+
+    public void setId(long newId) {
+        mId = newId;
+    }
+
 
 
 }
