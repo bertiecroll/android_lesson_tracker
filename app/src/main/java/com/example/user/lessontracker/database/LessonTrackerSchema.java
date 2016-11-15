@@ -46,4 +46,14 @@ public class LessonTrackerSchema {
         }
     }
 
+    public static final class OutcomeTable {
+        public static final String NAME = "Outcomes";
+
+        public static final class Cols {
+            public static final String ID = "_id";
+            public static final String LESSON_ID = "lesson_id";
+            public static final String LEARNING_OBJECTIVE_ID = "learning_objective_id";
+        }
+    }
+
 }
