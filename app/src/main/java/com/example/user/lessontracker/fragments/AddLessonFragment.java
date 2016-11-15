@@ -7,6 +7,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.DatePicker;
@@ -49,10 +50,24 @@ public class AddLessonFragment extends Fragment {
         mSubjectSpinner.setAdapter(subjectAdapter);
 
         mTopicSpinner = (Spinner) view.findViewById(R.id.lesson_topic_spinner);
-        List<Topic> topics = new ArrayList<>(mDbHelper.allTopics());
-        ArrayAdapter<Topic> topicAdapter =
-                new ArrayAdapter<>(activity, android.R.layout.simple_spinner_item, topics);
-        mTopicSpinner.setAdapter(topicAdapter);
+
+        mSubjectSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                Subject selectedSubject = (Subject) mSubjectSpinner.getItemAtPosition(position);
+                long subjectId = selectedSubject.getId();
+
+                List<Topic> topics = new ArrayList<>(mDbHelper.findTopicsBySubject(subjectId));
+                ArrayAdapter<Topic> topicAdapter =
+                        new ArrayAdapter<>(getActivity(), android.R.layout.simple_spinner_item, topics);
+                mTopicSpinner.setAdapter(topicAdapter);
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
 
         mCohortEditText = (EditText) view.findViewById(R.id.lesson_cohort_edit);
         mDatePicker = (DatePicker) view.findViewById(R.id.lesson_date_picker);
