@@ -8,12 +8,20 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ListView;
 
 import com.example.user.lessontracker.R;
+import com.example.user.lessontracker.database.LessonTrackerDbHelper;
+import com.example.user.lessontracker.models.Lesson;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class LessonListFragment extends Fragment {
 
+    LessonTrackerDbHelper mDbHelper;
     Button mNewLessonButton;
+    ListView mPendingLessonList;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -23,6 +31,8 @@ public class LessonListFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_list, container, false);
+
+        mDbHelper = new LessonTrackerDbHelper(getActivity());
 
         mNewLessonButton = (Button) view.findViewById(R.id.list_new_button);
         mNewLessonButton.setText(R.string.list_new_lesson_button);
@@ -38,6 +48,11 @@ public class LessonListFragment extends Fragment {
                 transaction.commit();
             }
         });
+
+        mPendingLessonList = (ListView) view.findViewById(R.id.teachable_list);
+        List<Lesson> lessons = new ArrayList<>(mDbHelper.allLessons());
+
+
 
         return view;
     }
