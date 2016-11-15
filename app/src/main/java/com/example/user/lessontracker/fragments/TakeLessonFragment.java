@@ -62,6 +62,14 @@ public class TakeLessonFragment extends Fragment {
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 FragmentTransaction transaction = getFragmentManager().beginTransaction();
                 TaggingDialogFragment taggingDialog = new TaggingDialogFragment();
+
+                Outcome selectedOutcome = (Outcome) mOutcomeList.getItemAtPosition(position);
+                long learningObjectiveId = selectedOutcome.getLearningObjectiveId();
+                LearningObjective learningObjective = mDbHelper.findLearningObjective(learningObjectiveId);
+                String learningObjectiveTitle = learningObjective.getTitle();
+                Bundle args = new Bundle();
+                args.putString("learningObjectiveTitle", learningObjectiveTitle);
+                taggingDialog.setArguments(args);
                 transaction.add(taggingDialog, null);
                 transaction.commit();
             }
