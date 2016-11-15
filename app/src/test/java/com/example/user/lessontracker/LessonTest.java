@@ -49,7 +49,7 @@ public class LessonTest {
     @Test
     public void getDate() {
         Date testDate = new Date();
-        assertEquals(testDate.getTime(), lesson.getDate().getTime(), 0.001);
+        assertEquals(testDate.getTime(), lesson.getDate().getTime(), 0.01);
     }
 
     @Test
@@ -72,6 +72,11 @@ public class LessonTest {
     public void canTeachLesson() {
         lesson.teach();
         assertEquals(true, lesson.hasBeenTaught());
+    }
+
+    @Test
+    public void canGetDateAsString() {
+        assertEquals("15/11/2016", lesson.printDate());
     }
 
 

@@ -5,6 +5,7 @@ import android.content.ContentValues;
 import com.example.user.lessontracker.database.LessonTrackerSchema;
 import com.example.user.lessontracker.database.LessonTrackerSchema.LessonTable;
 
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
 public class Lesson {
@@ -28,6 +29,15 @@ public class Lesson {
         mTopicId = topicId;
         mDate = new Date(date);
         mTaught = (taught == 1);
+    }
+
+    public String toString() {
+        return "Cohort: " + mCohortId + ", Lesson Date: " + printDate();
+    }
+
+    public String printDate() {
+        String date = new SimpleDateFormat("dd/MM/yyyy").format(mDate);
+        return date;
     }
 
     public long getCohortId() {
