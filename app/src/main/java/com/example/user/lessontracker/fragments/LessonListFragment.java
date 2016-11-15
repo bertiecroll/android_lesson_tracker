@@ -7,6 +7,8 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListView;
 
@@ -50,7 +52,18 @@ public class LessonListFragment extends Fragment {
         });
 
         mPendingLessonList = (ListView) view.findViewById(R.id.teachable_list);
-        List<Lesson> lessons = new ArrayList<>(mDbHelper.allLessons());
+        List<Lesson> lessons = new ArrayList<>(mDbHelper.findPendingLessons());
+        ArrayAdapter<Lesson> lessonAdapter =
+                new ArrayAdapter<>(getActivity(), android.R.layout.simple_list_item_1, lessons);
+        mPendingLessonList.setAdapter(lessonAdapter);
+
+        mPendingLessonList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+
+                Log.d("LessonTracker", "Pending lesson item selected");
+            }
+        });
 
 
 
