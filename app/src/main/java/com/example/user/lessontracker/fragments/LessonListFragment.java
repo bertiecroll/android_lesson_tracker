@@ -13,6 +13,7 @@ import android.widget.Button;
 import android.widget.ListView;
 
 import com.example.user.lessontracker.R;
+import com.example.user.lessontracker.adapters.LessonAdapter;
 import com.example.user.lessontracker.database.LessonTrackerDbHelper;
 import com.example.user.lessontracker.models.Lesson;
 
@@ -53,8 +54,8 @@ public class LessonListFragment extends Fragment {
 
         mPendingLessonList = (ListView) view.findViewById(R.id.teachable_list);
         List<Lesson> lessons = new ArrayList<>(mDbHelper.findPendingLessons());
-        ArrayAdapter<Lesson> lessonAdapter =
-                new ArrayAdapter<>(getActivity(), android.R.layout.simple_list_item_1, lessons);
+        LessonAdapter lessonAdapter =
+                new LessonAdapter(getActivity(), lessons);
         mPendingLessonList.setAdapter(lessonAdapter);
 
         mPendingLessonList.setOnItemClickListener(new AdapterView.OnItemClickListener() {

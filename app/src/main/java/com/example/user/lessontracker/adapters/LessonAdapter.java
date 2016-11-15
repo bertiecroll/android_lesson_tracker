@@ -13,6 +13,7 @@ import com.example.user.lessontracker.models.Lesson;
 import com.example.user.lessontracker.models.Topic;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class LessonAdapter extends ArrayAdapter<Lesson> {
 
@@ -23,7 +24,7 @@ public class LessonAdapter extends ArrayAdapter<Lesson> {
 
     LessonTrackerDbHelper mDbHelper;
 
-    public LessonAdapter(Context context, ArrayList<Lesson> lessons) {
+    public LessonAdapter(Context context, List<Lesson> lessons) {
         super(context, R.layout.item_lesson, lessons);
         mDbHelper = new LessonTrackerDbHelper(getContext());
     }
