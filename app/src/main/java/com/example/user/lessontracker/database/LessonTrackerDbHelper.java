@@ -348,6 +348,24 @@ public class LessonTrackerDbHelper extends SQLiteOpenHelper {
                 new String[] { String.valueOf(id)});
     }
 
+    public Outcome findOutcome(long id) {
+        LessonTrackerCursorWrapper cursor = query(OutcomeTable.NAME,
+                OutcomeTable.Cols.ID + " = ?", new String[] { Long.toString(id)} );
+
+        try {
+            if (cursor.getCount() == 0) {
+                return null;
+            }
+            cursor.moveToFirst();
+            return cursor.getOutcome();
+
+        } finally {
+            cursor.close();
+        }
+    }
+
+
+
     // PRIVATE HELPERS
 
     private SQLiteDatabase getDatabase() {
