@@ -10,12 +10,14 @@ import com.example.user.lessontracker.database.LessonTrackerSchema.LessonTable;
 import com.example.user.lessontracker.database.LessonTrackerSchema.OutcomeTable;
 import com.example.user.lessontracker.database.LessonTrackerSchema.SubjectTable;
 import com.example.user.lessontracker.database.LessonTrackerSchema.TagTable;
+import com.example.user.lessontracker.database.LessonTrackerSchema.TaggingTable;
 import com.example.user.lessontracker.database.LessonTrackerSchema.TopicTable;
 import com.example.user.lessontracker.models.LearningObjective;
 import com.example.user.lessontracker.models.Lesson;
 import com.example.user.lessontracker.models.Outcome;
 import com.example.user.lessontracker.models.Subject;
 import com.example.user.lessontracker.models.Tag;
+import com.example.user.lessontracker.models.Tagging;
 import com.example.user.lessontracker.models.Topic;
 
 import java.util.ArrayList;
@@ -61,6 +63,13 @@ public class LessonTrackerDbHelper extends SQLiteOpenHelper {
             + TagTable.NAME + "(" + TagTable.Cols.ID + " integer primary key autoincrement, "
             + TagTable.Cols.TITLE + " text )";
 
+    private static final String CREATE_TABLE_TAGGING = "create table "
+            + TaggingTable.NAME + "(" + TaggingTable.Cols.ID + " integer primary key autoincrement, "
+            + TaggingTable.Cols.TAG_ID + " integer references " + TagTable.NAME + "("
+            + TagTable.Cols.ID + ") on delete cascade, " + TaggingTable.Cols.OUTCOME_ID
+            + " integer references " + OutcomeTable.NAME + "(" + OutcomeTable.Cols.ID
+            + ") on delete cascade )";
+
 
     public LessonTrackerDbHelper(Context context) {
         super(context, DATABASE_NAME, null, VERSION);
@@ -74,10 +83,12 @@ public class LessonTrackerDbHelper extends SQLiteOpenHelper {
         db.execSQL(CREATE_TABLE_LESSON);
         db.execSQL(CREATE_TABLE_OUTCOME);
         db.execSQL(CREATE_TABLE_TAG);
+        db.execSQL(CREATE_TABLE_TAGGING);
     }
 
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
+        db.execSQL("DROP TABLE IF EXISTS " + TaggingTable.NAME);
         db.execSQL("DROP TABLE IF EXISTS " + OutcomeTable.NAME);
         db.execSQL("DROP TABLE IF EXISTS " + TagTable.NAME);
         db.execSQL("DROP TABLE IF EXISTS " + LessonTable.NAME);
@@ -91,6 +102,7 @@ public class LessonTrackerDbHelper extends SQLiteOpenHelper {
         db.execSQL(CREATE_TABLE_LESSON);
         db.execSQL(CREATE_TABLE_OUTCOME);
         db.execSQL(CREATE_TABLE_TAG);
+        db.execSQL(CREATE_TABLE_TAGGING);
     }
 
     // SUBJECT CRUD ACTIONS
