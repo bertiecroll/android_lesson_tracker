@@ -5,15 +5,18 @@
     <string name="subject_detail_hint">Enter Subject Details</string>
     <string name="subject_add_button">Add Subject</string>
     <string name="subject_new_topic_button">Add New Topic</string>
+    <string name="subject_toast_add_success">New Subject Has Been Added!</string>
 
     <string name="topic_title_hint">Enter Topic Title</string>
     <string name="topic_detail_hint">Enter Topic Details</string>
     <string name="topic_add_button">Add Topic</string>
     <string name="topic_new_learning_objective_button">Add New Learning Objective</string>
+    <string name="topic_toast_add_success">New Topic Has Been Added!</string>
 
     <string name="learning_objective_title_hint">Enter Learning Objective Title</string>
     <string name="learning_objective_detail_hint">Enter Learning Objective Details</string>
     <string name="learning_objective_add_button">Add Learning Objective</string>
+    <string name="learning_objective_toast_add_success">New Learning Objective Has Been Added!</string>
 
     <string name="menu_item_lessons">Lessons</string>
 

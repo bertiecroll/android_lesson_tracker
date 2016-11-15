@@ -9,6 +9,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.user.lessontracker.R;
 import com.example.user.lessontracker.database.LessonTrackerDbHelper;
@@ -54,6 +55,7 @@ public class AddTopicFragment extends Fragment {
                 Topic topic = new Topic(subjectId, title, detail);
                 mDbHelper.saveTopic(topic);
                 getFragmentManager().popBackStack();
+                Toast.makeText(getActivity(), R.string.topic_toast_add_success, Toast.LENGTH_SHORT).show();
             }
         });
 
