@@ -7,6 +7,7 @@ import android.database.sqlite.SQLiteOpenHelper;
 
 import com.example.user.lessontracker.database.LessonTrackerSchema.LearningObjectiveTable;
 import com.example.user.lessontracker.database.LessonTrackerSchema.LessonTable;
+import com.example.user.lessontracker.database.LessonTrackerSchema.OutcomeTable;
 import com.example.user.lessontracker.database.LessonTrackerSchema.SubjectTable;
 import com.example.user.lessontracker.database.LessonTrackerSchema.TopicTable;
 import com.example.user.lessontracker.models.LearningObjective;
@@ -46,6 +47,13 @@ public class LessonTrackerDbHelper extends SQLiteOpenHelper {
             ") on delete cascade, " + LessonTable.Cols.TAUGHT + " integer, "
             + LessonTable.Cols.DATE + " integer )";
 
+    private static final String CREATE_TABLE_OUTCOME = "create table "
+            + OutcomeTable.NAME + "(" + OutcomeTable.Cols.ID + " integer primary key autoincrement, "
+            + OutcomeTable.Cols.LESSON_ID + " integer references " + LessonTable.NAME + "("
+            + LessonTable.Cols.ID + ") on delete cascade, " + OutcomeTable.Cols.LEARNING_OBJECTIVE_ID
+            + " integer references " + LearningObjectiveTable.NAME + "(" + LearningObjectiveTable.Cols.ID
+            + ") on delete cascade )";
+
 
     public LessonTrackerDbHelper(Context context) {
         super(context, DATABASE_NAME, null, VERSION);
@@ -57,19 +65,22 @@ public class LessonTrackerDbHelper extends SQLiteOpenHelper {
         db.execSQL(CREATE_TABLE_TOPIC);
         db.execSQL(CREATE_TABLE_LEARNING_OBJECTIVE);
         db.execSQL(CREATE_TABLE_LESSON);
+        db.execSQL(CREATE_TABLE_OUTCOME);
     }
 
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
-        db.execSQL("DROP TABLE IF EXISTS " + SubjectTable.NAME);
-        db.execSQL("DROP TABLE IF EXISTS " + TopicTable.NAME);
-        db.execSQL("DROP TABLE IF EXISTS " + LearningObjectiveTable.NAME);
+        db.execSQL("DROP TABLE IF EXISTS " + OutcomeTable.NAME);
         db.execSQL("DROP TABLE IF EXISTS " + LessonTable.NAME);
+        db.execSQL("DROP TABLE IF EXISTS " + LearningObjectiveTable.NAME);
+        db.execSQL("DROP TABLE IF EXISTS " + TopicTable.NAME);
+        db.execSQL("DROP TABLE IF EXISTS " + SubjectTable.NAME);
 
         db.execSQL(CREATE_TABLE_SUBJECT);
         db.execSQL(CREATE_TABLE_TOPIC);
         db.execSQL(CREATE_TABLE_LEARNING_OBJECTIVE);
         db.execSQL(CREATE_TABLE_LESSON);
+        db.execSQL(CREATE_TABLE_OUTCOME);
     }
 
     // SUBJECT CRUD ACTIONS
