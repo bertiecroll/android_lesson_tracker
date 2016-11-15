@@ -2,9 +2,11 @@ package com.example.user.lessontracker.fragments;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentTransaction;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.TextView;
 
@@ -26,7 +28,7 @@ public class TakeLessonFragment extends Fragment {
     Topic mTopic;
     TextView mDetailsTextView;
     TextView mTopicTitleTextView;
-    ListView mLearningObjectiveList;
+    ListView mOutcomeList;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -49,11 +51,21 @@ public class TakeLessonFragment extends Fragment {
         mTopicTitleTextView = (TextView) view.findViewById(R.id.take_lesson_topic_title);
         mTopicTitleTextView.setText(mTopic.getTitle());
 
-        mLearningObjectiveList = (ListView) view.findViewById(R.id.take_lesson_learning_objectives);
+        mOutcomeList = (ListView) view.findViewById(R.id.take_lesson_learning_objectives);
         List<Outcome> outcomes = new ArrayList<>(mDbHelper.findOutcomesByLesson(lessonId));
         OutcomeAdapter outcomeAdapter =
                 new OutcomeAdapter(getActivity(), outcomes);
-        mLearningObjectiveList.setAdapter(outcomeAdapter);
+        mOutcomeList.setAdapter(outcomeAdapter);
+
+        mOutcomeList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                FragmentTransaction transaction = getFragmentManager().beginTransaction();
+                TaggingDialogFragment taggingDialog = new TaggingDialogFragment();
+                transaction.add(taggingDialog, null);
+                transaction.commit();
+            }
+        });
 
         return view;
     }
