@@ -29,4 +29,16 @@ public class OutcomeTest {
         outcome.setLessonId(newLessonId);
         assertEquals(5, outcome.getLessonId());
     }
+
+    @Test
+    public void getLearningObjectiveId() {
+        assertEquals(2, outcome.getLearningObjectiveId());
+    }
+
+    @Test
+    public void setLearningObjectiveId() {
+        long newLearningObjectiveId = 3;
+        outcome.setLearningObjectiveId(newLearningObjectiveId);
+        assertEquals(3, outcome.getLearningObjectiveId());
+    }
 }

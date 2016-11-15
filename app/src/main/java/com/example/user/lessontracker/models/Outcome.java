@@ -24,4 +24,12 @@ public class Outcome {
     public void setLessonId(long newLessonId) {
         mLessonId = newLessonId;
     }
+
+    public long getLearningObjectiveId() {
+        return mLearningObjectiveId;
+    }
+
+    public void setLearningObjectiveId(long newLearningObjectiveId) {
+        mLearningObjectiveId = newLearningObjectiveId;
+    }
 }
