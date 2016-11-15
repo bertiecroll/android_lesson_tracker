@@ -9,6 +9,12 @@
         android:layout_height="wrap_content"
         android:text=""/>
 
+    <TextView
+        android:id="@+id/take_lesson_topic_title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text=""/>
+
     <ListView
         android:id="@+id/take_lesson_learning_objectives"
         android:layout_width="match_parent"

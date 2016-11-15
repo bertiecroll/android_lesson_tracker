@@ -10,11 +10,16 @@ import android.widget.TextView;
 
 import com.example.user.lessontracker.R;
 import com.example.user.lessontracker.database.LessonTrackerDbHelper;
+import com.example.user.lessontracker.models.Lesson;
+import com.example.user.lessontracker.models.Topic;
 
 public class TakeLessonFragment extends Fragment {
 
     LessonTrackerDbHelper mDbhelper;
+    Lesson mLesson;
+    Topic mTopic;
     TextView mDetailsTextView;
+    TextView mTopicTitleTextView;
     ListView mLearningObjectiveList;
 
     @Override
@@ -27,8 +32,17 @@ public class TakeLessonFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_take_lesson, container, false);
 
         mDbhelper = new LessonTrackerDbHelper(getActivity());
+        Bundle arguments = getArguments();
+        long lessonId = arguments.getLong("lessonId");
+        mLesson = mDbhelper.findLesson(lessonId);
+        mTopic = mDbhelper.findTopic(mLesson.getTopicId());
 
         mDetailsTextView = (TextView) view.findViewById(R.id.take_lesson_details);
+        mDetailsTextView.setText(mLesson.toString());
+
+        mTopicTitleTextView = (TextView) view.findViewById(R.id.take_lesson_topic_title);
+        mTopicTitleTextView.setText(mTopic.getTitle());
+
         mLearningObjectiveList = (ListView) view.findViewById(R.id.take_lesson_learning_objectives);
 
         return view;

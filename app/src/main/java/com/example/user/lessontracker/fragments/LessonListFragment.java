@@ -68,7 +68,7 @@ public class LessonListFragment extends Fragment {
                 TakeLessonFragment takeLessonFragment = new TakeLessonFragment();
 
                 Bundle args = new Bundle();
-                args.putLong("topicId", selectedLesson.getTopicId());
+                args.putLong("lessonId", selectedLesson.getId());
                 takeLessonFragment.setArguments(args);
                 transaction.replace(R.id.fragment_container, takeLessonFragment);
                 transaction.addToBackStack(null);
