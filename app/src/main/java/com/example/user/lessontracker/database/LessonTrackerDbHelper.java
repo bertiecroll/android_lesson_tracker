@@ -483,9 +483,6 @@ public class LessonTrackerDbHelper extends SQLiteOpenHelper {
         return tags;
     }
 
-
-
-
     // PRIVATE HELPERS
 
     private SQLiteDatabase getDatabase() {
