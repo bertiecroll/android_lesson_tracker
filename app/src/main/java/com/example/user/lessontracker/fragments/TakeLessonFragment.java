@@ -51,11 +51,7 @@ public class TakeLessonFragment extends Fragment {
 
         mLearningObjectiveList = (ListView) view.findViewById(R.id.take_lesson_learning_objectives);
 
-        List<LearningObjective> learningObjectives =
-                new ArrayList<>(mDbhelper.findLearningObjectivesByTopic(mTopic.getId()));
-        for (LearningObjective learningObjective : learningObjectives) {
-            mOutcomes.add( new Outcome(lessonId, learningObjective.getId()));
-        }
+
 
         return view;
     }

@@ -18,7 +18,9 @@ import android.widget.Toast;
 
 import com.example.user.lessontracker.R;
 import com.example.user.lessontracker.database.LessonTrackerDbHelper;
+import com.example.user.lessontracker.models.LearningObjective;
 import com.example.user.lessontracker.models.Lesson;
+import com.example.user.lessontracker.models.Outcome;
 import com.example.user.lessontracker.models.Subject;
 import com.example.user.lessontracker.models.Topic;
 
@@ -107,14 +109,19 @@ public class AddLessonFragment extends Fragment {
                 int taught = mTeachNowCheckBox.isChecked() ? 1 : 0;
 
                 Lesson lesson = new Lesson(cohortID, topicId, dateAsLong, taught);
-                mDbHelper.saveLesson(lesson);
+                long lessonId = mDbHelper.saveLesson(lesson);
+
+                List<LearningObjective> learningObjectives =
+                        new ArrayList<>(mDbHelper.findLearningObjectivesByTopic(topicId));
+                for (LearningObjective learningObjective : learningObjectives) {
+                    Outcome outcome = new Outcome(lessonId, learningObjective.getId());
+                    mDbHelper.saveOutcome(outcome);
+                }
+
                 getFragmentManager().popBackStack();
                 Toast.makeText(getActivity(), R.string.lesson_toast_add_success, Toast.LENGTH_SHORT).show();
             }
         });
-
-
-
 
         return view;
     }
