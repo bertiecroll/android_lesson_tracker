@@ -24,7 +24,6 @@ public class TakeLessonFragment extends Fragment {
     LessonTrackerDbHelper mDbHelper;
     Lesson mLesson;
     Topic mTopic;
-    List<Outcome> mOutcomes;
     TextView mDetailsTextView;
     TextView mTopicTitleTextView;
     ListView mLearningObjectiveList;
