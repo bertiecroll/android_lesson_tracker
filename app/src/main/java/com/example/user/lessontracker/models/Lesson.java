@@ -32,11 +32,11 @@ public class Lesson {
     }
 
     public String toString() {
-        return "Cohort: " + mCohortId + ", Lesson Date: " + printDate();
+        return "Cohort: " + mCohortId + ". Date: " + printDate();
     }
 
     public String printDate() {
-        String date = new SimpleDateFormat("dd/MM/yyyy").format(mDate);
+        String date = new SimpleDateFormat("dd/MM/yy").format(mDate);
         return date;
     }
 

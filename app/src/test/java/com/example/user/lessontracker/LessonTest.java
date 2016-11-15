@@ -76,7 +76,7 @@ public class LessonTest {
 
     @Test
     public void canGetDateAsString() {
-        assertEquals("15/11/2016", lesson.printDate());
+        assertEquals("15/11/16", lesson.printDate());
     }
 
 
