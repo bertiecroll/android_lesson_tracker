@@ -65,4 +65,14 @@ public class LessonTrackerSchema {
         }
     }
 
+    public static final class TaggingTable {
+        public static final String NAME = "taggings";
+
+        public static final class Cols {
+            public static final String ID = "_id";
+            public static final String TAG_ID = "tag_id";
+            public static final String OUTCOME_ID = "outcome_id";
+        }
+    }
+
 }
