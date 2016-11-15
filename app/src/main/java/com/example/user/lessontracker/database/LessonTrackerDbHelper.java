@@ -364,6 +364,24 @@ public class LessonTrackerDbHelper extends SQLiteOpenHelper {
         }
     }
 
+    public List<Outcome> allOutcomes() {
+        List<Outcome> outcomes = new ArrayList<>();
+
+        LessonTrackerCursorWrapper cursor = query(LessonTable.NAME, null, null);
+
+        try {
+            cursor.moveToFirst();
+            while (!cursor.isAfterLast()) {
+                outcomes.add(cursor.getOutcome());
+                cursor.moveToNext();
+            }
+        } finally {
+            cursor.close();
+        }
+
+        return outcomes;
+    }
+
 
 
     // PRIVATE HELPERS
