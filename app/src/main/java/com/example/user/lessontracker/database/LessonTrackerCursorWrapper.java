@@ -7,11 +7,13 @@ import com.example.user.lessontracker.database.LessonTrackerSchema.LearningObjec
 import com.example.user.lessontracker.database.LessonTrackerSchema.LessonTable;
 import com.example.user.lessontracker.database.LessonTrackerSchema.OutcomeTable;
 import com.example.user.lessontracker.database.LessonTrackerSchema.SubjectTable;
+import com.example.user.lessontracker.database.LessonTrackerSchema.TagTable;
 import com.example.user.lessontracker.database.LessonTrackerSchema.TopicTable;
 import com.example.user.lessontracker.models.LearningObjective;
 import com.example.user.lessontracker.models.Lesson;
 import com.example.user.lessontracker.models.Outcome;
 import com.example.user.lessontracker.models.Subject;
+import com.example.user.lessontracker.models.Tag;
 import com.example.user.lessontracker.models.Topic;
 
 /**
@@ -71,5 +73,13 @@ public class LessonTrackerCursorWrapper extends CursorWrapper {
 
         Outcome outcome = new Outcome(id, lessonId, learningObjectiveId);
         return outcome;
+    }
+
+    public Tag getTag() {
+        long id = getLong(getColumnIndex(TagTable.Cols.ID));
+        String name = getString(getColumnIndex(TagTable.Cols.NAME));
+
+        Tag tag = new Tag(id, name);
+        return tag;
     }
 }
