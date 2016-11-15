@@ -26,7 +26,7 @@ public class LessonAdapter extends ArrayAdapter<Lesson> {
 
     public LessonAdapter(Context context, List<Lesson> lessons) {
         super(context, R.layout.item_lesson, lessons);
-        mDbHelper = new LessonTrackerDbHelper(getContext());
+        mDbHelper = new LessonTrackerDbHelper(context);
     }
 
     @Override
