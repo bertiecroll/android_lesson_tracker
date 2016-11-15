@@ -7,23 +7,23 @@ package com.example.user.lessontracker.models;
 public class Tag {
 
     private long mId;
-    private String mName;
+    private String mTitle;
 
-    public Tag(String name) {
-        mName = name;
+    public Tag(String title) {
+        mTitle = title;
     }
 
-    public Tag(long id, String name) {
+    public Tag(long id, String title) {
         mId = id;
-        mName = name;
+        mTitle = title;
     }
 
-    public String getName() {
-        return mName;
+    public String getTitle() {
+        return mTitle;
     }
 
-    public void setName(String newName) {
-        mName = newName;
+    public void setTitle(String newTitle) {
+        mTitle = newTitle;
     }
 
     public long getId() {

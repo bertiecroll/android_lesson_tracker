@@ -61,7 +61,7 @@ public class LessonTrackerSchema {
 
         public static final class Cols {
             public static final String ID = "_id";
-            public static final String NAME = "name";
+            public static final String TITLE = "title";
         }
     }
 

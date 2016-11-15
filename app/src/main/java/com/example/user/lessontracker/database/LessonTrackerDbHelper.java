@@ -9,6 +9,7 @@ import com.example.user.lessontracker.database.LessonTrackerSchema.LearningObjec
 import com.example.user.lessontracker.database.LessonTrackerSchema.LessonTable;
 import com.example.user.lessontracker.database.LessonTrackerSchema.OutcomeTable;
 import com.example.user.lessontracker.database.LessonTrackerSchema.SubjectTable;
+import com.example.user.lessontracker.database.LessonTrackerSchema.TagTable;
 import com.example.user.lessontracker.database.LessonTrackerSchema.TopicTable;
 import com.example.user.lessontracker.models.LearningObjective;
 import com.example.user.lessontracker.models.Lesson;
@@ -55,6 +56,10 @@ public class LessonTrackerDbHelper extends SQLiteOpenHelper {
             + " integer references " + LearningObjectiveTable.NAME + "(" + LearningObjectiveTable.Cols.ID
             + ") on delete cascade )";
 
+    private static final String CREATE_TABLE_TAG = "create table "
+            + TagTable.NAME + "(" + TagTable.Cols.ID + " integer primary key autoincrement, "
+            + TagTable.Cols.TITLE + " text )";
+
 
     public LessonTrackerDbHelper(Context context) {
         super(context, DATABASE_NAME, null, VERSION);
@@ -67,11 +72,13 @@ public class LessonTrackerDbHelper extends SQLiteOpenHelper {
         db.execSQL(CREATE_TABLE_LEARNING_OBJECTIVE);
         db.execSQL(CREATE_TABLE_LESSON);
         db.execSQL(CREATE_TABLE_OUTCOME);
+        db.execSQL(CREATE_TABLE_TAG);
     }
 
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
         db.execSQL("DROP TABLE IF EXISTS " + OutcomeTable.NAME);
+        db.execSQL("DROP TABLE IF EXISTS " + TagTable.NAME);
         db.execSQL("DROP TABLE IF EXISTS " + LessonTable.NAME);
         db.execSQL("DROP TABLE IF EXISTS " + LearningObjectiveTable.NAME);
         db.execSQL("DROP TABLE IF EXISTS " + TopicTable.NAME);
@@ -82,6 +89,7 @@ public class LessonTrackerDbHelper extends SQLiteOpenHelper {
         db.execSQL(CREATE_TABLE_LEARNING_OBJECTIVE);
         db.execSQL(CREATE_TABLE_LESSON);
         db.execSQL(CREATE_TABLE_OUTCOME);
+        db.execSQL(CREATE_TABLE_TAG);
     }
 
     // SUBJECT CRUD ACTIONS

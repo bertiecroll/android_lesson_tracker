@@ -77,9 +77,9 @@ public class LessonTrackerCursorWrapper extends CursorWrapper {
 
     public Tag getTag() {
         long id = getLong(getColumnIndex(TagTable.Cols.ID));
-        String name = getString(getColumnIndex(TagTable.Cols.NAME));
+        String title = getString(getColumnIndex(TagTable.Cols.TITLE));
 
-        Tag tag = new Tag(id, name);
+        Tag tag = new Tag(id, title);
         return tag;
     }
 }
