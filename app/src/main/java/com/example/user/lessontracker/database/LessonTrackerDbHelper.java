@@ -495,6 +495,57 @@ public class LessonTrackerDbHelper extends SQLiteOpenHelper {
         return tags;
     }
 
+    // TAGGING CRUD ACTIONS
+
+    public long saveTagging(Tagging tagging) {
+        SQLiteDatabase database = getDatabase();
+        long id = database.insert(TaggingTable.NAME, null, tagging.getContentValues());
+        tagging.setId(id);
+        return id;
+    }
+
+    public void updateTagging(Tagging tagging) {
+        SQLiteDatabase database = getDatabase();
+        long id = tagging.getId();
+        database.update(TaggingTable.NAME, tagging.getContentValues(),
+                TaggingTable.Cols.ID + " = ?",
+                new String[] { String.valueOf(id)});
+    }
+
+    public Tagging findTagging(long id) {
+        LessonTrackerCursorWrapper cursor = query(TaggingTable.NAME,
+                TaggingTable.Cols.ID + " = ?", new String[] { Long.toString(id)} );
+
+        try {
+            if (cursor.getCount() == 0) {
+                return null;
+            }
+            cursor.moveToFirst();
+            return cursor.getTagging();
+
+        } finally {
+            cursor.close();
+        }
+    }
+
+    public List<Tagging> allTagging() {
+        List<Tagging> taggings = new ArrayList<>();
+
+        LessonTrackerCursorWrapper cursor = query(TaggingTable.NAME, null, null);
+
+        try {
+            cursor.moveToFirst();
+            while (!cursor.isAfterLast()) {
+                taggings.add(cursor.getTagging());
+                cursor.moveToNext();
+            }
+        } finally {
+            cursor.close();
+        }
+
+        return taggings;
+    }
+
     // PRIVATE HELPERS
 
     private SQLiteDatabase getDatabase() {
