@@ -10,14 +10,20 @@ import android.widget.TextView;
 
 import com.example.user.lessontracker.R;
 import com.example.user.lessontracker.database.LessonTrackerDbHelper;
+import com.example.user.lessontracker.models.LearningObjective;
 import com.example.user.lessontracker.models.Lesson;
+import com.example.user.lessontracker.models.Outcome;
 import com.example.user.lessontracker.models.Topic;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class TakeLessonFragment extends Fragment {
 
     LessonTrackerDbHelper mDbhelper;
     Lesson mLesson;
     Topic mTopic;
+    List<Outcome> mOutcomes;
     TextView mDetailsTextView;
     TextView mTopicTitleTextView;
     ListView mLearningObjectiveList;
@@ -44,6 +50,12 @@ public class TakeLessonFragment extends Fragment {
         mTopicTitleTextView.setText(mTopic.getTitle());
 
         mLearningObjectiveList = (ListView) view.findViewById(R.id.take_lesson_learning_objectives);
+
+        List<LearningObjective> learningObjectives =
+                new ArrayList<>(mDbhelper.findLearningObjectivesByTopic(mTopic.getId()));
+        for (LearningObjective learningObjective : learningObjectives) {
+            mOutcomes.add( new Outcome(lessonId, learningObjective.getId()));
+        }
 
         return view;
     }
