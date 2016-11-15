@@ -29,4 +29,6 @@
     <string name="lesson_teach_now">Teach Lesson Now?</string>
     <string name="lesson_toast_add_success">New Lesson Has Been Added!</string>
 
+    <string name="tagging_title">Click Tag To Add</string>
+
 </resources>
