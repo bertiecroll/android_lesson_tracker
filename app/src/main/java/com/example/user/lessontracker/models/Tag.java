@@ -18,5 +18,21 @@ public class Tag {
         mName = name;
     }
 
+    public String getName() {
+        return mName;
+    }
+
+    public void setName(String newName) {
+        mName = newName;
+    }
+
+    public long getId() {
+        return mId;
+    }
+
+    public void setId(long newId) {
+        mId = newId;
+    }
+
 
 }
