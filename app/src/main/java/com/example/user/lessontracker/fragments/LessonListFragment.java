@@ -61,8 +61,18 @@ public class LessonListFragment extends Fragment {
         mPendingLessonList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-
                 Log.d("LessonTracker", "Pending lesson item selected");
+                Lesson selectedLesson = (Lesson) mPendingLessonList.getItemAtPosition(position);
+
+                FragmentTransaction transaction = getFragmentManager().beginTransaction();
+                TakeLessonFragment takeLessonFragment = new TakeLessonFragment();
+
+                Bundle args = new Bundle();
+                args.putLong("topicId", selectedLesson.getTopicId());
+                takeLessonFragment.setArguments(args);
+                transaction.replace(R.id.fragment_container, takeLessonFragment);
+                transaction.addToBackStack(null);
+                transaction.commit();
             }
         });
 
