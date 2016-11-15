@@ -401,6 +401,26 @@ public class LessonTrackerDbHelper extends SQLiteOpenHelper {
         return outcomes;
     }
 
+    public List<Outcome> findOutcomesByLearningObjective(long learningObjectiveId) {
+        List<Outcome> outcomes = new ArrayList<>();
+
+        LessonTrackerCursorWrapper cursor = query(OutcomeTable.NAME,
+                OutcomeTable.Cols.LEARNING_OBJECTIVE_ID + " = ?",
+                new String[] {Long.toString(learningObjectiveId)});
+
+        try {
+            cursor.moveToFirst();
+            while (!cursor.isAfterLast()) {
+                outcomes.add(cursor.getOutcome());
+                cursor.moveToNext();
+            }
+        } finally {
+            cursor.close();
+        }
+
+        return outcomes;
+    }
+
 
 
     // PRIVATE HELPERS
