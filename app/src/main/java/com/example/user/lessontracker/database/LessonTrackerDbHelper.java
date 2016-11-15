@@ -15,6 +15,7 @@ import com.example.user.lessontracker.models.LearningObjective;
 import com.example.user.lessontracker.models.Lesson;
 import com.example.user.lessontracker.models.Outcome;
 import com.example.user.lessontracker.models.Subject;
+import com.example.user.lessontracker.models.Tag;
 import com.example.user.lessontracker.models.Topic;
 
 import java.util.ArrayList;
@@ -429,6 +430,9 @@ public class LessonTrackerDbHelper extends SQLiteOpenHelper {
 
         return outcomes;
     }
+
+    // TAG CRUD ACTIONS
+
 
 
 

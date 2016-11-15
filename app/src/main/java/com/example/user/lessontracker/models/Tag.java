@@ -1,5 +1,10 @@
 package com.example.user.lessontracker.models;
 
+import android.content.ContentValues;
+
+import com.example.user.lessontracker.database.LessonTrackerSchema;
+import com.example.user.lessontracker.database.LessonTrackerSchema.TagTable;
+
 /**
  * Created by user on 15/11/2016.
  */
@@ -34,5 +39,12 @@ public class Tag {
         mId = newId;
     }
 
+    public ContentValues getContentValues() {
+        ContentValues values = new ContentValues();
+        values.put(TagTable.Cols.ID, mId);
+        values.put(TagTable.Cols.TITLE, mTitle);
+
+        return values;
+    }
 
 }
