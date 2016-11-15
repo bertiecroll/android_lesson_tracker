@@ -2,9 +2,9 @@ package com.example.user.lessontracker.models;
 
 public class Outcome {
 
-    long mId;
-    long mLessonId;
-    long mLearningObjectiveId;
+    private long mId;
+    private long mLessonId;
+    private long mLearningObjectiveId;
 
     public Outcome(long lessonId, long learningObjectiveId) {
         mLessonId = lessonId;
@@ -15,5 +15,13 @@ public class Outcome {
         mId = id;
         mLessonId = lessonId;
         mLearningObjectiveId  = learningObjectiveId;
+    }
+
+    public long getLessonId() {
+        return mLessonId;
+    }
+
+    public void setLessonId(long newLessonId) {
+        mLessonId = newLessonId;
     }
 }
