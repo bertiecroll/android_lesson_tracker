@@ -70,6 +70,11 @@ public class LessonTrackerDbHelper extends SQLiteOpenHelper {
             + " integer references " + OutcomeTable.NAME + "(" + OutcomeTable.Cols.ID
             + ") on delete cascade )";
 
+    private static final String ADD_DEFAULT_PASS_TAG = "insert into " + TagTable.NAME + "("
+    + TagTable.Cols.TITLE + ") values ( 'Objective Met' )";
+    private static final String ADD_DEFAULT_FAIL_TAG = "insert into " + TagTable.NAME + "("
+            + TagTable.Cols.TITLE + ") values ( 'Unable to Meet Objective' )";
+
 
     public LessonTrackerDbHelper(Context context) {
         super(context, DATABASE_NAME, null, VERSION);
@@ -84,6 +89,8 @@ public class LessonTrackerDbHelper extends SQLiteOpenHelper {
         db.execSQL(CREATE_TABLE_OUTCOME);
         db.execSQL(CREATE_TABLE_TAG);
         db.execSQL(CREATE_TABLE_TAGGING);
+        db.execSQL(ADD_DEFAULT_PASS_TAG);
+        db.execSQL(ADD_DEFAULT_FAIL_TAG);
     }
 
     @Override
@@ -103,6 +110,8 @@ public class LessonTrackerDbHelper extends SQLiteOpenHelper {
         db.execSQL(CREATE_TABLE_OUTCOME);
         db.execSQL(CREATE_TABLE_TAG);
         db.execSQL(CREATE_TABLE_TAGGING);
+        db.execSQL(ADD_DEFAULT_PASS_TAG);
+        db.execSQL(ADD_DEFAULT_FAIL_TAG);
     }
 
     // SUBJECT CRUD ACTIONS
@@ -558,6 +567,4 @@ public class LessonTrackerDbHelper extends SQLiteOpenHelper {
             tableName, null, whereClause, whereArgs, null, null, null);
         return new LessonTrackerCursorWrapper(cursor);
     }
-
-
 }
