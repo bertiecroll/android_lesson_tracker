@@ -10,12 +10,14 @@ import static org.junit.Assert.*;
 public class OutcomeTest {
 
     Outcome outcome;
+    Outcome outcomeWithId;
 
     @Before
     public void before() {
         long lessonId = 1;
         long learningObjectiveId = 2;
         outcome = new Outcome(lessonId, learningObjectiveId);
+        outcomeWithId = new Outcome(1, lessonId, learningObjectiveId);
     }
 
     @Test
@@ -40,5 +42,17 @@ public class OutcomeTest {
         long newLearningObjectiveId = 3;
         outcome.setLearningObjectiveId(newLearningObjectiveId);
         assertEquals(3, outcome.getLearningObjectiveId());
+    }
+
+    @Test
+    public void getId() {
+        assertEquals(1, outcomeWithId.getId());
+    }
+
+    @Test
+    public void setId() {
+        long newId = 10;
+        outcomeWithId.setId(newId);
+        assertEquals(10, outcomeWithId.getId());
     }
 }
