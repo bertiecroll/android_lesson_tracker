@@ -377,7 +377,7 @@ public class LessonTrackerDbHelper extends SQLiteOpenHelper {
     public List<Outcome> allOutcomes() {
         List<Outcome> outcomes = new ArrayList<>();
 
-        LessonTrackerCursorWrapper cursor = query(LessonTable.NAME, null, null);
+        LessonTrackerCursorWrapper cursor = query(OutcomeTable.NAME, null, null);
 
         try {
             cursor.moveToFirst();
@@ -444,9 +444,43 @@ public class LessonTrackerDbHelper extends SQLiteOpenHelper {
     public void updateTag(Tag tag) {
         SQLiteDatabase database = getDatabase();
         long id = tag.getId();
-        database.update(OutcomeTable.NAME, tag.getContentValues(),
+        database.update(TagTable.NAME, tag.getContentValues(),
                 LessonTable.Cols.ID + " = ?",
                 new String[] { String.valueOf(id)});
+    }
+
+    public Tag findTag(long id) {
+        LessonTrackerCursorWrapper cursor = query(TagTable.NAME,
+                TagTable.Cols.ID + " = ?", new String[] { Long.toString(id)} );
+
+        try {
+            if (cursor.getCount() == 0) {
+                return null;
+            }
+            cursor.moveToFirst();
+            return cursor.getTag();
+
+        } finally {
+            cursor.close();
+        }
+    }
+
+    public List<Tag> allTags() {
+        List<Tag> tags = new ArrayList<>();
+
+        LessonTrackerCursorWrapper cursor = query(TagTable.NAME, null, null);
+
+        try {
+            cursor.moveToFirst();
+            while (!cursor.isAfterLast()) {
+                tags.add(cursor.getTag());
+                cursor.moveToNext();
+            }
+        } finally {
+            cursor.close();
+        }
+
+        return tags;
     }
 
 
