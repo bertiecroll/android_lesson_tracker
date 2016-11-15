@@ -340,6 +340,14 @@ public class LessonTrackerDbHelper extends SQLiteOpenHelper {
         outcome.setId(id);
     }
 
+    public void updateOutcome(Outcome outcome) {
+        SQLiteDatabase database = getDatabase();
+        long id = outcome.getId();
+        database.update(OutcomeTable.NAME, outcome.getContentValues(),
+                LessonTable.Cols.ID + " = ?",
+                new String[] { String.valueOf(id)});
+    }
+
     // PRIVATE HELPERS
 
     private SQLiteDatabase getDatabase() {
