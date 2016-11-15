@@ -8,12 +8,14 @@ import com.example.user.lessontracker.database.LessonTrackerSchema.LessonTable;
 import com.example.user.lessontracker.database.LessonTrackerSchema.OutcomeTable;
 import com.example.user.lessontracker.database.LessonTrackerSchema.SubjectTable;
 import com.example.user.lessontracker.database.LessonTrackerSchema.TagTable;
+import com.example.user.lessontracker.database.LessonTrackerSchema.TaggingTable;
 import com.example.user.lessontracker.database.LessonTrackerSchema.TopicTable;
 import com.example.user.lessontracker.models.LearningObjective;
 import com.example.user.lessontracker.models.Lesson;
 import com.example.user.lessontracker.models.Outcome;
 import com.example.user.lessontracker.models.Subject;
 import com.example.user.lessontracker.models.Tag;
+import com.example.user.lessontracker.models.Tagging;
 import com.example.user.lessontracker.models.Topic;
 
 /**
@@ -81,5 +83,14 @@ public class LessonTrackerCursorWrapper extends CursorWrapper {
 
         Tag tag = new Tag(id, title);
         return tag;
+    }
+
+    public Tagging getTagging() {
+        long id = getLong(getColumnIndex(TaggingTable.Cols.ID));
+        long tagId = getLong(getColumnIndex(TaggingTable.Cols.TAG_ID));
+        long outcomeId = getLong(getColumnIndex(TaggingTable.Cols.OUTCOME_ID));
+
+        Tagging tagging = new Tagging(id, tagId, outcomeId);
+        return tagging;
     }
 }
