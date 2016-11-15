@@ -441,6 +441,16 @@ public class LessonTrackerDbHelper extends SQLiteOpenHelper {
         return id;
     }
 
+    public void updateTag(Tag tag) {
+        SQLiteDatabase database = getDatabase();
+        long id = tag.getId();
+        database.update(OutcomeTable.NAME, tag.getContentValues(),
+                LessonTable.Cols.ID + " = ?",
+                new String[] { String.valueOf(id)});
+    }
+
+
+
 
     // PRIVATE HELPERS
 
