@@ -334,6 +334,12 @@ public class LessonTrackerDbHelper extends SQLiteOpenHelper {
 
     // OUTCOME CRUD ACTIONS
 
+    public void saveOutcome(Outcome outcome) {
+        SQLiteDatabase database = getDatabase();
+        long id = database.insert(OutcomeTable.NAME, null, outcome.getContentValues());
+        outcome.setId(id);
+    }
+
     // PRIVATE HELPERS
 
     private SQLiteDatabase getDatabase() {
