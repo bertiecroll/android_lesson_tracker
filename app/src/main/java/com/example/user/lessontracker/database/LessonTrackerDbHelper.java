@@ -433,7 +433,13 @@ public class LessonTrackerDbHelper extends SQLiteOpenHelper {
 
     // TAG CRUD ACTIONS
 
+    public long saveTag(Tag tag) {
+        SQLiteDatabase database = getDatabase();
+        long id = database.insert(TagTable.NAME, null, tag.getContentValues());
+        tag.setId(id);
 
+        return id;
+    }
 
 
     // PRIVATE HELPERS
