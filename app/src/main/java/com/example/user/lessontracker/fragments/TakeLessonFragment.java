@@ -10,6 +10,7 @@ import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.user.lessontracker.R;
 import com.example.user.lessontracker.adapters.OutcomeAdapter;
@@ -81,6 +82,15 @@ public class TakeLessonFragment extends Fragment {
         });
 
         mCompleteButton = (Button) view.findViewById(R.id.take_lesson_complete_button);
+        mCompleteButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                mLesson.teach();
+                mDbHelper.updateLesson(mLesson);
+                getFragmentManager().popBackStack();
+                Toast.makeText(getActivity(), R.string.take_lesson_toast_taught_success, Toast.LENGTH_SHORT).show();
+            }
+        });
 
 
         return view;
