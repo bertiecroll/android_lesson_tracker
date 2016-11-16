@@ -7,6 +7,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.LinearLayout.LayoutParams;
@@ -74,7 +75,9 @@ public class TaggingDialogFragment extends DialogFragment {
         mLearningObjectiveTitle = (TextView) view.findViewById(R.id.tagging_learning_objective_title);
         mLearningObjectiveTitle.setText(learningObjectiveTitle);
 
-
+        Button completeButton = new Button(getActivity());
+        completeButton.setText(R.string.tagging_complete_button);
+        linearLayout.addView(completeButton, new LayoutParams(LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT));
 
         return view;
     }
