@@ -3,6 +3,7 @@ package com.example.user.lessontracker.fragments;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v4.app.DialogFragment;
+import android.support.v4.app.FragmentTransaction;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -35,7 +36,8 @@ public class TaggingDialogFragment extends DialogFragment {
         mDbHelper = new LessonTrackerDbHelper(getActivity());
         Bundle arguments = getArguments();
         String learningObjectiveTitle = arguments.getString("learningObjectiveTitle");
-        final long outcomeId = arguments.getLong("OutcomeId");
+        final long outcomeId = arguments.getLong("outcomeId");
+        final long lessonId = arguments.getLong("lessonId");
 
 
         List<Tag> tags = new ArrayList<>(mDbHelper.allTags());
@@ -78,6 +80,21 @@ public class TaggingDialogFragment extends DialogFragment {
         Button completeButton = new Button(getActivity());
         completeButton.setText(R.string.tagging_complete_button);
         linearLayout.addView(completeButton, new LayoutParams(LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT));
+
+        completeButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Log.d("LessonTracker", "Complete button click");
+                FragmentTransaction transaction = getFragmentManager().beginTransaction();
+                TakeLessonFragment takeLessonFragment = new TakeLessonFragment();
+                Bundle args = new Bundle();
+                args.putLong("lessonId", lessonId);
+                takeLessonFragment.setArguments(args);
+                transaction.replace(R.id.fragment_container, takeLessonFragment);
+                getDialog().dismiss();
+//                Toast.makeText(getActivity(), R.string.tagging_toast_complete, Toast.LENGTH_SHORT).show();
+            }
+        });
 
         return view;
     }

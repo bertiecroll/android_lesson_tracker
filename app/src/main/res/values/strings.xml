@@ -31,5 +31,6 @@
 
     <string name="tagging_title">Click Tag To Add</string>
     <string name="tagging_complete_button">Done</string>
+    <string name="tagging_toast_complete">Tags Added!</string>
 
 </resources>

@@ -41,7 +41,7 @@ public class TakeLessonFragment extends Fragment {
 
         mDbHelper = new LessonTrackerDbHelper(getActivity());
         Bundle arguments = getArguments();
-        long lessonId = arguments.getLong("lessonId");
+        final long lessonId = arguments.getLong("lessonId");
         mLesson = mDbHelper.findLesson(lessonId);
         mTopic = mDbHelper.findTopic(mLesson.getTopicId());
 
@@ -69,7 +69,8 @@ public class TakeLessonFragment extends Fragment {
                 String learningObjectiveTitle = learningObjective.getTitle();
                 Bundle args = new Bundle();
                 args.putString("learningObjectiveTitle", learningObjectiveTitle);
-                args.putLong("OutcomeId", selectedOutcome.getId());
+                args.putLong("outcomeId", selectedOutcome.getId());
+                args.putLong("lessonId", lessonId);
 
                 taggingDialog.setArguments(args);
                 transaction.add(taggingDialog, null);
