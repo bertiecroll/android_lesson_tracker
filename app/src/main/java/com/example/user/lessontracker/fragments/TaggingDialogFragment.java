@@ -16,6 +16,7 @@ import android.widget.Toast;
 import com.example.user.lessontracker.R;
 import com.example.user.lessontracker.database.LessonTrackerDbHelper;
 import com.example.user.lessontracker.models.Tag;
+import com.example.user.lessontracker.models.Tagging;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -31,13 +32,18 @@ public class TaggingDialogFragment extends DialogFragment {
         View view = inflater.inflate(R.layout.fragment_dialog_tagging, container, false);
 
         mDbHelper = new LessonTrackerDbHelper(getActivity());
+        Bundle arguments = getArguments();
+        String learningObjectiveTitle = arguments.getString("learningObjectiveTitle");
+        final long outcomeId = arguments.getLong("OutcomeId");
+
+
         List<Tag> tags = new ArrayList<>(mDbHelper.allTags());
         LinearLayout linearLayout = (LinearLayout) view.findViewById(R.id.tagging_dialog_fragment);
         LinearLayout buttonLayout = new LinearLayout(getActivity());
         buttonLayout.setOrientation(LinearLayout.HORIZONTAL);
         linearLayout.addView(buttonLayout);
         for (final Tag tag : tags) {
-            ImageButton tagButton = new ImageButton(getActivity());
+            final ImageButton tagButton = new ImageButton(getActivity());
             int ResId = tag.getIconResourceId();
             tagButton.setImageResource(ResId);
             tagButton.setBackgroundColor(Color.TRANSPARENT);
@@ -47,6 +53,9 @@ public class TaggingDialogFragment extends DialogFragment {
                 @Override
                 public void onClick(View view) {
                     Log.d("LessonTracker", tag.getTitle() + "Tag button normal click");
+                    Tagging tagging = new Tagging(tag.getId(), outcomeId);
+                    mDbHelper.saveTagging(tagging);
+                    tagButton.setVisibility(View.INVISIBLE);
                 }
             });
 
@@ -60,10 +69,6 @@ public class TaggingDialogFragment extends DialogFragment {
             });
 
         }
-
-
-        Bundle arguments = getArguments();
-        String learningObjectiveTitle = arguments.getString("learningObjectiveTitle");
 
         mTaggingTitle = (TextView) view.findViewById(R.id.tagging_title);
         mLearningObjectiveTitle = (TextView) view.findViewById(R.id.tagging_learning_objective_title);

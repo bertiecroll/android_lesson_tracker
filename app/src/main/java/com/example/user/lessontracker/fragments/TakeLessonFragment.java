@@ -69,6 +69,8 @@ public class TakeLessonFragment extends Fragment {
                 String learningObjectiveTitle = learningObjective.getTitle();
                 Bundle args = new Bundle();
                 args.putString("learningObjectiveTitle", learningObjectiveTitle);
+                args.putLong("OutcomeId", selectedOutcome.getId());
+
                 taggingDialog.setArguments(args);
                 transaction.add(taggingDialog, null);
                 transaction.commit();
