@@ -60,7 +60,8 @@ public class OutcomeAdapter extends ArrayAdapter<Outcome> {
                 tagView.setImageResource(ResId);
                 tagView.setBackgroundColor(Color.TRANSPARENT);
                 viewHolder.mTagLayout.addView(tagView,
-                        new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT));
+                        new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT,
+                                LinearLayout.LayoutParams.WRAP_CONTENT));
             }
         } else {
             viewHolder = (OutcomeAdapter.ViewHolder) view.getTag();

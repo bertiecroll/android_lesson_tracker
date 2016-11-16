@@ -16,7 +16,8 @@
             android:id="@+id/outcome_list_item_outcome"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text=""/>
+            android:text=""
+            android:layout_marginRight="32dp" />
 
     </LinearLayout>
 

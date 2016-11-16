@@ -40,36 +40,40 @@ public class TaggingDialogFragment extends DialogFragment {
         final long lessonId = arguments.getLong("lessonId");
 
 
-        List<Tag> tags = new ArrayList<>(mDbHelper.allTags());
+        List<Tag> allTags = new ArrayList<>(mDbHelper.allTags());
+        List<Long> usedTagIds = new ArrayList<>(mDbHelper.findOutcomeTagIds(outcomeId));
+
         LinearLayout linearLayout = (LinearLayout) view.findViewById(R.id.tagging_dialog_fragment);
         LinearLayout buttonLayout = new LinearLayout(getActivity());
         buttonLayout.setOrientation(LinearLayout.HORIZONTAL);
         linearLayout.addView(buttonLayout);
-        for (final Tag tag : tags) {
-            final ImageButton tagButton = new ImageButton(getActivity());
-            int ResId = tag.getIconResourceId();
-            tagButton.setImageResource(ResId);
-            tagButton.setBackgroundColor(Color.TRANSPARENT);
-            buttonLayout.addView(tagButton,
-                    new LayoutParams(LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT));
-            tagButton.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    Log.d("LessonTracker", tag.getTitle() + "Tag button normal click");
-                    Tagging tagging = new Tagging(tag.getId(), outcomeId);
-                    mDbHelper.saveTagging(tagging);
-                    tagButton.setVisibility(View.INVISIBLE);
-                }
-            });
+        for (final Tag tag : allTags) {
+            if (!usedTagIds.contains(tag.getId())) {
+                final ImageButton tagButton = new ImageButton(getActivity());
+                int ResId = tag.getIconResourceId();
+                tagButton.setImageResource(ResId);
+                tagButton.setBackgroundColor(Color.TRANSPARENT);
+                buttonLayout.addView(tagButton,
+                        new LayoutParams(LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT));
+                tagButton.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        Log.d("LessonTracker", tag.getTitle() + "Tag button normal click");
+                        Tagging tagging = new Tagging(tag.getId(), outcomeId);
+                        mDbHelper.saveTagging(tagging);
+                        tagButton.setVisibility(View.INVISIBLE);
+                    }
+                });
 
-            tagButton.setOnLongClickListener(new View.OnLongClickListener() {
-                @Override
-                public boolean onLongClick(View view) {
-                    Log.d("LessonTracker", tag.getTitle() + "Tag button long click");
-                    Toast.makeText(getActivity(), tag.getTitle(), Toast.LENGTH_SHORT).show();
-                    return true;
-                }
-            });
+                tagButton.setOnLongClickListener(new View.OnLongClickListener() {
+                    @Override
+                    public boolean onLongClick(View view) {
+                        Log.d("LessonTracker", tag.getTitle() + "Tag button long click");
+                        Toast.makeText(getActivity(), tag.getTitle(), Toast.LENGTH_SHORT).show();
+                        return true;
+                    }
+                });
+            }
 
         }
 
