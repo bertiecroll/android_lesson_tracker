@@ -540,7 +540,8 @@ public class LessonTrackerDbHelper extends SQLiteOpenHelper {
         String[] tableColumns = new String[] {
                 TagTable.NAME + "." + TagTable.Cols.ID,
                 TagTable.NAME + "." + TagTable.Cols.ICON_RESOURCE_ID,
-                TagTable.NAME + "." + TagTable.Cols.TITLE
+                TagTable.NAME + "." + TagTable.Cols.TITLE,
+                TagTable.NAME + "." + TagTable.Cols.TYPE
         };
 
         String whereClause = TaggingTable.Cols.OUTCOME_ID + " = ?";

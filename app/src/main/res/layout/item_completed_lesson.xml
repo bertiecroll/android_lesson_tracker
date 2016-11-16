@@ -17,4 +17,10 @@
         android:layout_below="@+id/completed_lesson_list_item_lesson"
         android:text=""/>
 
+    <TextView
+        android:id="@+id/completed_lesson_outcome_review"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"/>
+
 </RelativeLayout>
