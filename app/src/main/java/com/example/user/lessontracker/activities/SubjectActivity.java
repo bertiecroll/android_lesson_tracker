@@ -12,12 +12,12 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.LinearLayout;
+import android.widget.Toast;
 
 import com.example.user.lessontracker.R;
 import com.example.user.lessontracker.fragments.LessonHistoryListFragment;
 import com.example.user.lessontracker.fragments.LessonListFragment;
 import com.example.user.lessontracker.fragments.SubjectListFragment;
-import com.example.user.lessontracker.fragments.TakeLessonFragment;
 
 public class SubjectActivity extends AppCompatActivity {
 
@@ -25,6 +25,7 @@ public class SubjectActivity extends AppCompatActivity {
     Button mCompletedLessonsButton;
     Button mPendingLessonsButton;
     Button mSubjectsButton;
+    Button mTagsButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,7 +36,7 @@ public class SubjectActivity extends AppCompatActivity {
         Fragment fragment = fm.findFragmentById(R.id.fragment_container);
 
         if (fragment == null) {
-            fragment = new SubjectListFragment();
+            fragment = new LessonListFragment();
             fm.beginTransaction().add(R.id.fragment_container, fragment).commit();
         }
 
@@ -76,28 +77,13 @@ public class SubjectActivity extends AppCompatActivity {
                 transaction.commit();
             }
         });
-    }
 
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        MenuInflater menuInflater = getMenuInflater();
-        menuInflater.inflate(R.menu.activity_fragment, menu);
-
-        return true;
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        if (item.getItemId() == R.id.menu_item_lessons) {
-            Log.d("LessonTracker", "lessons menu item selected");
-            FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
-            LessonListFragment lessonListFragment = new LessonListFragment();
-
-            transaction.replace(R.id.fragment_container, lessonListFragment);
-            transaction.addToBackStack(null);
-            transaction.commit();
-            return true;
-        }
-        return super.onOptionsItemSelected(item);
+        mTagsButton = (Button) findViewById(R.id.lesson_tracker_footer_tags_button);
+        mTagsButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Toast.makeText(SubjectActivity.this, "Custom Tags Coming Soon!", Toast.LENGTH_SHORT).show();
+            }
+        });
     }
 }

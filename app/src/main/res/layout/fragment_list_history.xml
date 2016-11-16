@@ -8,7 +8,9 @@
         android:id="@+id/lesson_history_spinner_layout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal">
+        android:orientation="horizontal"
+        android:layout_marginBottom="32dp"
+        android:elevation="4dp">
 
         <Spinner
             android:id="@+id/lesson_history_subject_spinner"
@@ -20,11 +22,19 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"/>
 
+        <Button
+            android:id="@+id/lesson_history_filter_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/lesson_history_filter_button"/>
+
     </LinearLayout>
 
     <ListView
         android:id="@+id/lesson_history_list"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"/>
+        android:layout_height="match_parent"
+        android:layout_marginLeft="16dp"
+        android:layout_marginRight="16dp" />
 
 </LinearLayout>

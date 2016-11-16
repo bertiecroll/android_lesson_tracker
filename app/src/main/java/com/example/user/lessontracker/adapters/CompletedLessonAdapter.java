@@ -46,8 +46,8 @@ public class CompletedLessonAdapter extends ArrayAdapter<Lesson> {
             viewHolder = new CompletedLessonAdapter.ViewHolder();
             LayoutInflater inflater = LayoutInflater.from(getContext());
             view = inflater.inflate(R.layout.item_completed_lesson, parent, false);
-            viewHolder.lessonDetailsTextView = (TextView) view.findViewById(R.id.completed_lesson_list_item_lesson);
             viewHolder.topicTitleTextView = (TextView) view.findViewById(R.id.completed_lesson_list_item_topic);
+            viewHolder.lessonDetailsTextView = (TextView) view.findViewById(R.id.completed_lesson_list_item_lesson);
             viewHolder.outcomeReviewLayout = (LinearLayout) view.findViewById(R.id.completed_lesson_outcome_review_layout);
             viewHolder.outcomePositiveText = (TextView) view.findViewById(R.id.completed_lesson_outcome_positive);
             viewHolder.outcomeNegativeText = (TextView) view.findViewById(R.id.completed_lesson_outcome_negative);
@@ -57,10 +57,10 @@ public class CompletedLessonAdapter extends ArrayAdapter<Lesson> {
             viewHolder = (CompletedLessonAdapter.ViewHolder) view.getTag();
         }
 
-        viewHolder.lessonDetailsTextView.setText(completedLesson.toString());
-
         Topic topic = mDbHelper.findTopic(completedLesson.getTopicId());
         viewHolder.topicTitleTextView.setText(topic.getTitle());
+
+        viewHolder.lessonDetailsTextView.setText(completedLesson.toString());
 
         List<Outcome> lessonOutcomes = mDbHelper.findOutcomesByLesson(completedLesson.getId());
         HashMap<String, Integer> tagTypeCount = new HashMap<>();

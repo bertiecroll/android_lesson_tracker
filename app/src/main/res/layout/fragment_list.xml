@@ -4,15 +4,39 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <Button
-        android:id="@+id/list_new_button"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text=""/>
+    <RelativeLayout
+        android:id="@+id/list_fragment_header_layout"
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:id="@+id/list_fragment_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:paddingTop="16dp"
+            android:layout_marginLeft="16dp"
+            android:textSize="16dp"
+            android:textAllCaps="true"/>
+
+        <Button
+            android:id="@+id/list_new_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text=""
+            android:layout_marginBottom="32dp"
+            android:layout_marginRight="16dp"
+            android:layout_alignParentRight="true"/>
+
+    </RelativeLayout>
+
 
     <ListView
         android:id="@+id/teachable_list"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"/>
+        android:layout_height="match_parent"
+        android:layout_marginLeft="16dp"
+        android:layout_marginRight="16dp" />
 
 </LinearLayout>

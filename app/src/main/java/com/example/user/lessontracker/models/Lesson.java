@@ -15,20 +15,23 @@ public class Lesson {
     private long mTopicId;
     private Date mDate;
     private boolean mTaught;
+    private String mNotes;
 
     public Lesson(long cohortId, long topicId, long date, int taught) {
         mCohortId = cohortId;
         mTopicId = topicId;
         mDate = new Date(date);
         mTaught = (taught == 1);
+        mNotes = "";
     }
 
-    public Lesson(long id, long cohortId, long topicId, long date, int taught) {
+    public Lesson(long id, long cohortId, long topicId, long date, int taught, String notes) {
         mId = id;
         mCohortId = cohortId;
         mTopicId = topicId;
         mDate = new Date(date);
         mTaught = (taught == 1);
+        mNotes = notes;
     }
 
     public String toString() {
@@ -84,12 +87,21 @@ public class Lesson {
         return (mTaught)? 1 : 0;
     }
 
+    public String getNotes() {
+        return mNotes;
+    }
+
+    public String setNotes(String newNotes) {
+        mNotes = newNotes;
+    }
+
     public ContentValues getContentValues() {
         ContentValues values = new ContentValues();
         values.put(LessonTable.Cols.COHORT_ID, mCohortId);
         values.put(LessonTable.Cols.TOPIC_ID, mTopicId);
         values.put(LessonTable.Cols.DATE, mDate.getTime());
         values.put(LessonTable.Cols.TAUGHT, taughtAsInt());
+        values.put(LessonTable.Cols.NOTES, mNotes);
 
         return values;
     }

@@ -11,7 +11,10 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.LinearLayout;
 import android.widget.ListView;
+import android.widget.RelativeLayout;
+import android.widget.TextView;
 
 import com.example.user.lessontracker.R;
 import com.example.user.lessontracker.database.LessonTrackerDbHelper;
@@ -23,6 +26,8 @@ import java.util.List;
 public class SubjectListFragment extends Fragment {
 
     LessonTrackerDbHelper mDbHelper;
+    RelativeLayout mHeaderLayout;
+    TextView mHeaderTitle;
     ListView mSubjectList;
     Button mNewSubjectButton;
 
@@ -37,6 +42,10 @@ public class SubjectListFragment extends Fragment {
         Activity activity = getActivity();
 
         mDbHelper = new LessonTrackerDbHelper(activity);
+
+        mHeaderLayout = (RelativeLayout) view.findViewById(R.id.list_fragment_header_layout);
+        mHeaderTitle = (TextView) view.findViewById(R.id.list_fragment_title);
+        mHeaderTitle.setText("Subjects");
 
         mNewSubjectButton = (Button) view.findViewById(R.id.list_new_button);
         mNewSubjectButton.setText(R.string.list_new_subject_button);

@@ -10,7 +10,10 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.LinearLayout;
 import android.widget.ListView;
+import android.widget.RelativeLayout;
+import android.widget.TextView;
 
 import com.example.user.lessontracker.R;
 import com.example.user.lessontracker.adapters.LessonAdapter;
@@ -23,6 +26,8 @@ import java.util.List;
 public class LessonListFragment extends Fragment {
 
     LessonTrackerDbHelper mDbHelper;
+    RelativeLayout mHeaderLayout;
+    TextView mHeaderTitle;
     Button mNewLessonButton;
     ListView mPendingLessonList;
 
@@ -36,6 +41,11 @@ public class LessonListFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_list, container, false);
 
         mDbHelper = new LessonTrackerDbHelper(getActivity());
+
+        mHeaderLayout = (RelativeLayout) view.findViewById(R.id.list_fragment_header_layout);
+        mHeaderTitle = (TextView) view.findViewById(R.id.list_fragment_title);
+        mHeaderTitle.setText("Pending Lessons");
+
 
         mNewLessonButton = (Button) view.findViewById(R.id.list_new_button);
         mNewLessonButton.setText(R.string.list_new_lesson_button);
