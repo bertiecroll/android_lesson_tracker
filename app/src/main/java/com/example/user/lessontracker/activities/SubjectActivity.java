@@ -9,6 +9,10 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.widget.Button;
+import android.widget.ImageButton;
+import android.widget.LinearLayout;
+import android.widget.TextView;
 
 import com.example.user.lessontracker.R;
 import com.example.user.lessontracker.fragments.LessonListFragment;
@@ -16,7 +20,8 @@ import com.example.user.lessontracker.fragments.SubjectListFragment;
 
 public class SubjectActivity extends AppCompatActivity {
 
-
+    LinearLayout mLessonTrackerFooter;
+    Button mCompletedLessonsButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,6 +35,9 @@ public class SubjectActivity extends AppCompatActivity {
             fragment = new SubjectListFragment();
             fm.beginTransaction().add(R.id.fragment_container, fragment).commit();
         }
+
+        mLessonTrackerFooter = (LinearLayout) findViewById(R.id.lesson_tracker_footer_menu);
+        mCompletedLessonsButton = (Button) findViewById(R.id.lesson_tracker_footer_completed_lessons_button);
     }
 
     @Override

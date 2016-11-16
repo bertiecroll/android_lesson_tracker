@@ -8,6 +8,7 @@ import android.view.ViewGroup;
 import android.widget.ListView;
 
 import com.example.user.lessontracker.R;
+import com.example.user.lessontracker.adapters.CompletedLessonAdapter;
 import com.example.user.lessontracker.database.LessonTrackerDbHelper;
 import com.example.user.lessontracker.models.Lesson;
 
@@ -32,6 +33,9 @@ public class LessonHistoryListFragment extends Fragment {
 
         mCompletedLessonList = (ListView) view.findViewById(R.id.teachable_list);
         List<Lesson> lessons = new ArrayList<>(mDbHelper.findCompletedLessons());
+        CompletedLessonAdapter completedLessonAdapter =
+                new CompletedLessonAdapter(getActivity(), lessons);
+
 
 
         return view;
