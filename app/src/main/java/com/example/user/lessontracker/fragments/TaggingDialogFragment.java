@@ -38,7 +38,7 @@ public class TaggingDialogFragment extends DialogFragment {
         linearLayout.addView(buttonLayout);
         for (final Tag tag : tags) {
             ImageButton tagButton = new ImageButton(getActivity());
-            int ResId = android.R.drawable.ic_menu_recent_history;
+            int ResId = tag.getIconResourceId();
             tagButton.setImageResource(ResId);
             tagButton.setBackgroundColor(Color.TRANSPARENT);
             buttonLayout.addView(tagButton,
@@ -46,14 +46,14 @@ public class TaggingDialogFragment extends DialogFragment {
             tagButton.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    Log.d("LessonTracker", "Tag button normal click");
+                    Log.d("LessonTracker", tag.getTitle() + "Tag button normal click");
                 }
             });
 
             tagButton.setOnLongClickListener(new View.OnLongClickListener() {
                 @Override
                 public boolean onLongClick(View view) {
-                    Log.d("LessonTracker", "Tag button long click");
+                    Log.d("LessonTracker", tag.getTitle() + "Tag button long click");
                     Toast.makeText(getActivity(), tag.getTitle(), Toast.LENGTH_SHORT).show();
                     return true;
                 }

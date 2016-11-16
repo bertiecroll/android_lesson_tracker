@@ -70,10 +70,17 @@ public class LessonTrackerDbHelper extends SQLiteOpenHelper {
             + " integer references " + OutcomeTable.NAME + "(" + OutcomeTable.Cols.ID
             + ") on delete cascade )";
 
+    private static final String ADD_DEFAULT_NO_TIME_TAG = "insert into " + TagTable.NAME + "("
+            + TagTable.Cols.ICON_RESOURCE_ID + ", " + TagTable.Cols.TITLE
+            + ") values ( 17301578, 'Not Enough Time' )";
+
     private static final String ADD_DEFAULT_PASS_TAG = "insert into " + TagTable.NAME + "("
-    + TagTable.Cols.ICON_RESOURCE_ID + ", " + TagTable.Cols.TITLE + ") values ( 17301578, 'Objective Met' )";
-//    private static final String ADD_DEFAULT_FAIL_TAG = "insert into " + TagTable.NAME + "("
-//            + TagTable.Cols.TITLE + ") values ( 'Unable to Meet Objective' )";
+            + TagTable.Cols.ICON_RESOURCE_ID + ", " + TagTable.Cols.TITLE
+            + ") values ( 17301515, 'Objective Met' )";
+
+    private static final String ADD_DEFAULT_FAIL_TAG = "insert into " + TagTable.NAME + "("
+            + TagTable.Cols.ICON_RESOURCE_ID + ", " + TagTable.Cols.TITLE
+            + ") values ( 17301564, 'Unable to Meet Objective' )";
 
 
     public LessonTrackerDbHelper(Context context) {
@@ -90,6 +97,8 @@ public class LessonTrackerDbHelper extends SQLiteOpenHelper {
         db.execSQL(CREATE_TABLE_TAG);
         db.execSQL(CREATE_TABLE_TAGGING);
         db.execSQL(ADD_DEFAULT_PASS_TAG);
+        db.execSQL(ADD_DEFAULT_FAIL_TAG);
+        db.execSQL(ADD_DEFAULT_NO_TIME_TAG);
     }
 
     @Override
