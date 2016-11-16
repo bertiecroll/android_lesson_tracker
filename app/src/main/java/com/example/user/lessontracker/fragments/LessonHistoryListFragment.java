@@ -31,7 +31,8 @@ public class LessonHistoryListFragment extends Fragment {
         mDbHelper = new LessonTrackerDbHelper(getActivity());
 
         mCompletedLessonList = (ListView) view.findViewById(R.id.teachable_list);
-        List<Lesson> lessons = new ArrayList<>(mDbHelper);
+        List<Lesson> lessons = new ArrayList<>(mDbHelper.findCompletedLessons());
+
 
         return view;
     }
