@@ -60,6 +60,14 @@ public class OutcomeAdapter extends ArrayAdapter<Outcome> {
                 tagView.setImageResource(ResId);
                 tagView.setBackgroundColor(Color.TRANSPARENT);
                 viewHolder.mTagLayout.addView(tagView, params);
+
+                tagView.setOnLongClickListener(new View.OnLongClickListener() {
+                    @Override
+                    public boolean onLongClick(View view) {
+                        Toast.makeText(getContext(), tag.getTitle(), Toast.LENGTH_SHORT).show();
+                        return false;
+                    }
+                });
             }
         } else {
             viewHolder = (OutcomeAdapter.ViewHolder) view.getTag();
