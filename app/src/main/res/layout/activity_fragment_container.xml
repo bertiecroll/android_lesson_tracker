@@ -19,11 +19,29 @@
         android:layout_alignParentBottom="true">
 
         <Button
+            android:id="@+id/lesson_tracker_footer_take_lesson_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:drawableTop="@android:drawable/ic_menu_add"
+            android:text="Take&#10;Lesson"
+            android:textSize="8sp"
+            android:textScaleX="0.8" />
+
+        <Button
             android:id="@+id/lesson_tracker_footer_completed_lessons_button"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:drawableTop="@android:drawable/ic_menu_gallery"
-            android:text="Lessons"
+            android:text="Lesson&#10;History"
+            android:textSize="8sp"
+            android:textScaleX="0.8" />
+
+        <Button
+            android:id="@+id/lesson_tracker_footer_subjects_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:drawableTop="@android:drawable/ic_menu_info_details"
+            android:text="View&#10;Subjects"
             android:textSize="8sp"
             android:textScaleX="0.8" />
 

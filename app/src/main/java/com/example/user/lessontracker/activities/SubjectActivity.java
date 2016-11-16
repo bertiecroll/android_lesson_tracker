@@ -17,11 +17,14 @@ import com.example.user.lessontracker.R;
 import com.example.user.lessontracker.fragments.LessonHistoryListFragment;
 import com.example.user.lessontracker.fragments.LessonListFragment;
 import com.example.user.lessontracker.fragments.SubjectListFragment;
+import com.example.user.lessontracker.fragments.TakeLessonFragment;
 
 public class SubjectActivity extends AppCompatActivity {
 
     LinearLayout mLessonTrackerFooter;
     Button mCompletedLessonsButton;
+    Button mPendingLessonsButton;
+    Button mSubjectsButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,6 +48,30 @@ public class SubjectActivity extends AppCompatActivity {
                 LessonHistoryListFragment lessonHistoryListFragment =
                         new LessonHistoryListFragment();
                 transaction.replace(R.id.fragment_container, lessonHistoryListFragment, null);
+                transaction.addToBackStack(null);
+                transaction.commit();
+            }
+        });
+        mPendingLessonsButton = (Button) findViewById(R.id.lesson_tracker_footer_take_lesson_button);
+        mPendingLessonsButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
+                LessonListFragment lessonListFragment =
+                        new LessonListFragment();
+                transaction.replace(R.id.fragment_container, lessonListFragment, null);
+                transaction.addToBackStack(null);
+                transaction.commit();
+            }
+        });
+        mSubjectsButton = (Button) findViewById(R.id.lesson_tracker_footer_subjects_button);
+        mSubjectsButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
+                SubjectListFragment subjectListFragment =
+                        new SubjectListFragment();
+                transaction.replace(R.id.fragment_container, subjectListFragment, null);
                 transaction.addToBackStack(null);
                 transaction.commit();
             }

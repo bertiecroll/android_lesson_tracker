@@ -35,6 +35,7 @@ public class LessonHistoryListFragment extends Fragment {
         List<Lesson> lessons = new ArrayList<>(mDbHelper.findCompletedLessons());
         CompletedLessonAdapter completedLessonAdapter =
                 new CompletedLessonAdapter(getActivity(), lessons);
+        mCompletedLessonList.setAdapter(completedLessonAdapter);
 
 
 
