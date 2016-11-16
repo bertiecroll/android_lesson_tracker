@@ -63,6 +63,7 @@ public class LessonTrackerSchema {
             public static final String ID = "_id";
             public static final String ICON_RESOURCE_ID = "icon_resource_id";
             public static final String TITLE = "title";
+            public static final String TYPE = "type";
         }
     }
 

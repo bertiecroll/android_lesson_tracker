@@ -61,7 +61,8 @@ public class LessonTrackerDbHelper extends SQLiteOpenHelper {
 
     private static final String CREATE_TABLE_TAG = "create table "
             + TagTable.NAME + "(" + TagTable.Cols.ID + " integer primary key autoincrement, "
-            + TagTable.Cols.ICON_RESOURCE_ID + " integer, " + TagTable.Cols.TITLE + " text )";
+            + TagTable.Cols.ICON_RESOURCE_ID + " integer, " + TagTable.Cols.TITLE + " text, "
+            + TagTable.Cols.TYPE + " text)";
 
     private static final String CREATE_TABLE_TAGGING = "create table "
             + TaggingTable.NAME + "(" + TaggingTable.Cols.ID + " integer primary key autoincrement, "
@@ -71,16 +72,16 @@ public class LessonTrackerDbHelper extends SQLiteOpenHelper {
             + ") on delete cascade )";
 
     private static final String ADD_DEFAULT_NO_TIME_TAG = "insert into " + TagTable.NAME + "("
-            + TagTable.Cols.ICON_RESOURCE_ID + ", " + TagTable.Cols.TITLE
-            + ") values ( 17301578, 'Not Enough Time' )";
+            + TagTable.Cols.ICON_RESOURCE_ID + ", " + TagTable.Cols.TITLE + ", " + TagTable.Cols.TYPE
+            + ") values ( 17301578, 'Not Enough Time', 'improvement' )";
 
     private static final String ADD_DEFAULT_PASS_TAG = "insert into " + TagTable.NAME + "("
-            + TagTable.Cols.ICON_RESOURCE_ID + ", " + TagTable.Cols.TITLE
-            + ") values ( 17301515, 'Objective Met' )";
+            + TagTable.Cols.ICON_RESOURCE_ID + ", " + TagTable.Cols.TITLE + ", " + TagTable.Cols.TYPE
+            + ") values ( 17301515, 'Objective Met', 'positive' )";
 
     private static final String ADD_DEFAULT_FAIL_TAG = "insert into " + TagTable.NAME + "("
-            + TagTable.Cols.ICON_RESOURCE_ID + ", " + TagTable.Cols.TITLE
-            + ") values ( 17301564, 'Unable to Meet Objective' )";
+            + TagTable.Cols.ICON_RESOURCE_ID + ", " + TagTable.Cols.TITLE + ", " + TagTable.Cols.TYPE
+            + ") values ( 17301564, 'Unable to Meet Objective', 'negative' )";
 
 
     public LessonTrackerDbHelper(Context context) {

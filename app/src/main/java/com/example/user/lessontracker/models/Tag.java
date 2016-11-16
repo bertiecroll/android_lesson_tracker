@@ -10,19 +10,19 @@ public class Tag {
     private long mId;
     private int mIconResourceId;
     private String mTitle;
-    private boolean mType;
+    private String mType;
 
-    public Tag(int iconResourceId, String title, int type) {
+    public Tag(int iconResourceId, String title, String type) {
         mIconResourceId = iconResourceId;
         mTitle = title;
-        mType = (type == 1);
+        mType = type;
     }
 
-    public Tag(long id, int iconResourceId, String title, int type) {
+    public Tag(long id, int iconResourceId, String title, String type) {
         mId = id;
         mIconResourceId = iconResourceId;
         mTitle = title;
-        mType = (type == 1);
+        mType = type;
     }
 
     public String getTitle() {
@@ -49,16 +49,12 @@ public class Tag {
         mId = newId;
     }
 
-    public boolean isPositive() {
+    public String getType() {
         return mType;
     }
 
-    private int typeAsInt() {
-        return (mType)? 1 : 0;
-    }
-
-    private String typeAsString() {
-        return (mType)? "positive" : "negative";
+    private void setType(String newType) {
+        mType = newType;
     }
 
     public ContentValues getContentValues() {
@@ -66,6 +62,7 @@ public class Tag {
         values.put(TagTable.Cols.ID, mId);
         values.put(TagTable.Cols.ICON_RESOURCE_ID, mIconResourceId);
         values.put(TagTable.Cols.TITLE, mTitle);
+        values.put(TagTable.Cols.TYPE, mType);
 
         return values;
     }
