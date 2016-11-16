@@ -11,6 +11,8 @@ import java.util.List;
 
 public class CompletedLessonAdapter extends ArrayAdapter {
 
+
+
     LessonTrackerDbHelper mDbHelper;
 
     public CompletedLessonAdapter(Context context, List<Lesson> lessons) {
