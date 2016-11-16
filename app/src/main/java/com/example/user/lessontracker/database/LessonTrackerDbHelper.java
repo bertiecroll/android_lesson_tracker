@@ -518,7 +518,12 @@ public class LessonTrackerDbHelper extends SQLiteOpenHelper {
         String tableName = TagTable.NAME + " inner join " + TaggingTable.NAME + " on "
                 + TagTable.NAME + "." + TagTable.Cols.ID + " = " + TaggingTable.NAME + "."
                 + TaggingTable.Cols.TAG_ID;
-        String[] tableColumns = new String[] { "*." + TagTable.NAME };
+        String[] tableColumns = new String[] {
+                TagTable.NAME + "." + TagTable.Cols.ID,
+                TagTable.NAME + "." + TagTable.Cols.ICON_RESOURCE_ID,
+                TagTable.NAME + "." + TagTable.Cols.TITLE
+        };
+
         String whereClause = TaggingTable.Cols.OUTCOME_ID + " = ?";
 
         Cursor cursor = database.query(
