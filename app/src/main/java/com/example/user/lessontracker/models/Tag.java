@@ -12,14 +12,17 @@ import com.example.user.lessontracker.database.LessonTrackerSchema.TagTable;
 public class Tag {
 
     private long mId;
+    private int mIconResourceId;
     private String mTitle;
 
-    public Tag(String title) {
+    public Tag(int iconResourceId, String title) {
+        mIconResourceId = iconResourceId;
         mTitle = title;
     }
 
-    public Tag(long id, String title) {
+    public Tag(long id, int iconResourceId, String title) {
         mId = id;
+        mIconResourceId = iconResourceId;
         mTitle = title;
     }
 
@@ -29,6 +32,14 @@ public class Tag {
 
     public void setTitle(String newTitle) {
         mTitle = newTitle;
+    }
+
+    public int getIconResourceId() {
+        return mIconResourceId;
+    }
+
+    public void setIconResourceId(int newIconResourceId) {
+        mIconResourceId = newIconResourceId;
     }
 
     public long getId() {
@@ -42,6 +53,7 @@ public class Tag {
     public ContentValues getContentValues() {
         ContentValues values = new ContentValues();
         values.put(TagTable.Cols.ID, mId);
+        values.put(TagTable.Cols.ICON_RESOURCE_ID, mIconResourceId);
         values.put(TagTable.Cols.TITLE, mTitle);
 
         return values;

@@ -1,14 +1,17 @@
 package com.example.user.lessontracker.fragments;
 
+import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v4.app.DialogFragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.LinearLayout.LayoutParams;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.user.lessontracker.R;
 import com.example.user.lessontracker.database.LessonTrackerDbHelper;
@@ -30,11 +33,32 @@ public class TaggingDialogFragment extends DialogFragment {
         mDbHelper = new LessonTrackerDbHelper(getActivity());
         List<Tag> tags = new ArrayList<>(mDbHelper.allTags());
         LinearLayout linearLayout = (LinearLayout) view.findViewById(R.id.tagging_dialog_fragment);
-        for (Tag tag : tags) {
-            Button tagButton = new Button(getActivity());
-            tagButton.setText(tag.getTitle());
-            linearLayout.addView(tagButton,
+        LinearLayout buttonLayout = new LinearLayout(getActivity());
+        buttonLayout.setOrientation(LinearLayout.HORIZONTAL);
+        linearLayout.addView(buttonLayout);
+        for (final Tag tag : tags) {
+            ImageButton tagButton = new ImageButton(getActivity());
+            int ResId = android.R.drawable.ic_menu_recent_history;
+            tagButton.setImageResource(ResId);
+            tagButton.setBackgroundColor(Color.TRANSPARENT);
+            buttonLayout.addView(tagButton,
                     new LayoutParams(LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT));
+            tagButton.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    Log.d("LessonTracker", "Tag button normal click");
+                }
+            });
+
+            tagButton.setOnLongClickListener(new View.OnLongClickListener() {
+                @Override
+                public boolean onLongClick(View view) {
+                    Log.d("LessonTracker", "Tag button long click");
+                    Toast.makeText(getActivity(), tag.getTitle(), Toast.LENGTH_SHORT).show();
+                    return true;
+                }
+            });
+
         }
 
 

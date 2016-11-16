@@ -61,7 +61,7 @@ public class LessonTrackerDbHelper extends SQLiteOpenHelper {
 
     private static final String CREATE_TABLE_TAG = "create table "
             + TagTable.NAME + "(" + TagTable.Cols.ID + " integer primary key autoincrement, "
-            + TagTable.Cols.TITLE + " text )";
+            + TagTable.Cols.ICON_RESOURCE_ID + " integer, " + TagTable.Cols.TITLE + " text )";
 
     private static final String CREATE_TABLE_TAGGING = "create table "
             + TaggingTable.NAME + "(" + TaggingTable.Cols.ID + " integer primary key autoincrement, "
@@ -71,9 +71,9 @@ public class LessonTrackerDbHelper extends SQLiteOpenHelper {
             + ") on delete cascade )";
 
     private static final String ADD_DEFAULT_PASS_TAG = "insert into " + TagTable.NAME + "("
-    + TagTable.Cols.TITLE + ") values ( 'Objective Met' )";
-    private static final String ADD_DEFAULT_FAIL_TAG = "insert into " + TagTable.NAME + "("
-            + TagTable.Cols.TITLE + ") values ( 'Unable to Meet Objective' )";
+    + TagTable.Cols.ICON_RESOURCE_ID + ", " + TagTable.Cols.TITLE + ") values ( 17301578, 'Objective Met' )";
+//    private static final String ADD_DEFAULT_FAIL_TAG = "insert into " + TagTable.NAME + "("
+//            + TagTable.Cols.TITLE + ") values ( 'Unable to Meet Objective' )";
 
 
     public LessonTrackerDbHelper(Context context) {
@@ -90,7 +90,6 @@ public class LessonTrackerDbHelper extends SQLiteOpenHelper {
         db.execSQL(CREATE_TABLE_TAG);
         db.execSQL(CREATE_TABLE_TAGGING);
         db.execSQL(ADD_DEFAULT_PASS_TAG);
-        db.execSQL(ADD_DEFAULT_FAIL_TAG);
     }
 
     @Override
@@ -111,7 +110,6 @@ public class LessonTrackerDbHelper extends SQLiteOpenHelper {
         db.execSQL(CREATE_TABLE_TAG);
         db.execSQL(CREATE_TABLE_TAGGING);
         db.execSQL(ADD_DEFAULT_PASS_TAG);
-        db.execSQL(ADD_DEFAULT_FAIL_TAG);
     }
 
     // SUBJECT CRUD ACTIONS
