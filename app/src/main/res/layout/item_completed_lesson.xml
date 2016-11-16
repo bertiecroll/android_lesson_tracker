@@ -18,31 +18,4 @@
         android:layout_below="@+id/completed_lesson_list_item_topic"
         android:text=""/>
 
-    <LinearLayout
-        android:id="@+id/completed_lesson_outcome_review_layout"
-        android:orientation="vertical"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentRight="true"
-        android:layout_marginTop="16dp"
-        android:layout_marginBottom="16dp">
-
-        <TextView
-            android:id="@+id/completed_lesson_outcome_positive"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text=""/>
-        <TextView
-            android:id="@+id/completed_lesson_outcome_negative"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text=""/>
-        <TextView
-            android:id="@+id/completed_lesson_outcome_improvement"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text=""/>
-
-    </LinearLayout>
-
 </RelativeLayout>

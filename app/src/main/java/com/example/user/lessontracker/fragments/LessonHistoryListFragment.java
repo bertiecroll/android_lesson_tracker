@@ -2,6 +2,8 @@ package com.example.user.lessontracker.fragments;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentTransaction;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -86,6 +88,23 @@ public class LessonHistoryListFragment extends Fragment {
         CompletedLessonAdapter completedLessonAdapter =
                 new CompletedLessonAdapter(getActivity(), lessons);
         mCompletedLessonList.setAdapter(completedLessonAdapter);
+
+        mCompletedLessonList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                Log.d("LessonTracker", "Completed lesson item selected");
+                Lesson selectedLesson = (Lesson) mCompletedLessonList.getItemAtPosition(position);
+
+                FragmentTransaction transaction = getFragmentManager().beginTransaction();
+                OutcomeDialogFragment outcomeDialogFragment = new OutcomeDialogFragment();
+
+                Bundle args = new Bundle();
+                args.putLong("lessonId", selectedLesson.getId());
+                outcomeDialogFragment.setArguments(args);
+                transaction.add(R.id.fragment_container, outcomeDialogFragment);
+                transaction.commit();
+            }
+        });
 
         mLessonFilterButton = (Button) view.findViewById(R.id.lesson_history_filter_button);
         mLessonFilterButton.setOnClickListener(new View.OnClickListener() {

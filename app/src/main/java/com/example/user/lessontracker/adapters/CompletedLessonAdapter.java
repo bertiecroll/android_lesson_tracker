@@ -24,10 +24,6 @@ public class CompletedLessonAdapter extends ArrayAdapter<Lesson> {
     private static class ViewHolder {
         TextView lessonDetailsTextView;
         TextView topicTitleTextView;
-        LinearLayout outcomeReviewLayout;
-        TextView outcomePositiveText;
-        TextView outcomeNegativeText;
-        TextView outcomeImprovementText;
     }
 
     LessonTrackerDbHelper mDbHelper;
@@ -48,10 +44,6 @@ public class CompletedLessonAdapter extends ArrayAdapter<Lesson> {
             view = inflater.inflate(R.layout.item_completed_lesson, parent, false);
             viewHolder.topicTitleTextView = (TextView) view.findViewById(R.id.completed_lesson_list_item_topic);
             viewHolder.lessonDetailsTextView = (TextView) view.findViewById(R.id.completed_lesson_list_item_lesson);
-            viewHolder.outcomeReviewLayout = (LinearLayout) view.findViewById(R.id.completed_lesson_outcome_review_layout);
-            viewHolder.outcomePositiveText = (TextView) view.findViewById(R.id.completed_lesson_outcome_positive);
-            viewHolder.outcomeNegativeText = (TextView) view.findViewById(R.id.completed_lesson_outcome_negative);
-            viewHolder.outcomeImprovementText = (TextView) view.findViewById(R.id.completed_lesson_outcome_improvement);
             view.setTag(viewHolder);
         } else {
             viewHolder = (CompletedLessonAdapter.ViewHolder) view.getTag();
@@ -61,27 +53,6 @@ public class CompletedLessonAdapter extends ArrayAdapter<Lesson> {
         viewHolder.topicTitleTextView.setText(topic.getTitle());
 
         viewHolder.lessonDetailsTextView.setText(completedLesson.toString());
-
-        List<Outcome> lessonOutcomes = mDbHelper.findOutcomesByLesson(completedLesson.getId());
-        HashMap<String, Integer> tagTypeCount = new HashMap<>();
-        tagTypeCount.put("positive", 0);
-        tagTypeCount.put("negative", 0);
-        tagTypeCount.put("improvement", 0);
-
-        for (Outcome outcome : lessonOutcomes) {
-            List<Tag> outcomeTags = mDbHelper.findOutcomeTags(outcome.getId());
-            for (Tag tag : outcomeTags) {
-                String tagType = tag.getType();
-                tagTypeCount.put(tagType, tagTypeCount.get(tagType) + 1);
-            }
-        }
-
-        String positives = "Objectives Met: " + tagTypeCount.get("positive");
-        viewHolder.outcomePositiveText.setText(positives);
-        String negatives = "Objectives Not Met: " + tagTypeCount.get("negative");
-        viewHolder.outcomeNegativeText.setText(negatives);
-        String improvements = "Improvements: " + tagTypeCount.get("improvement");
-        viewHolder.outcomeImprovementText.setText(improvements);
 
         return view;
     }
