@@ -7,6 +7,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
+import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
 
@@ -29,6 +30,7 @@ public class TakeLessonFragment extends Fragment {
     TextView mDetailsTextView;
     TextView mTopicTitleTextView;
     ListView mOutcomeList;
+    Button mCompleteButton;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -77,6 +79,9 @@ public class TakeLessonFragment extends Fragment {
                 transaction.commit();
             }
         });
+
+        mCompleteButton = (Button) view.findViewById(R.id.take_lesson_complete_button);
+
 
         return view;
     }

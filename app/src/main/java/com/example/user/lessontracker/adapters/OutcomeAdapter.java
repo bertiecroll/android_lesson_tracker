@@ -2,14 +2,13 @@ package com.example.user.lessontracker.adapters;
 
 import android.content.Context;
 import android.graphics.Color;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
-import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.LinearLayout.LayoutParams;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -18,7 +17,6 @@ import com.example.user.lessontracker.database.LessonTrackerDbHelper;
 import com.example.user.lessontracker.models.LearningObjective;
 import com.example.user.lessontracker.models.Outcome;
 import com.example.user.lessontracker.models.Tag;
-import com.example.user.lessontracker.models.Tagging;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -53,15 +51,15 @@ public class OutcomeAdapter extends ArrayAdapter<Outcome> {
             viewHolder.mTagLayout = (LinearLayout) view.findViewById(R.id.outcome_tag_layout);
             view.setTag(viewHolder);
             List<Tag> outcomeTags = new ArrayList<>(mDbhelper.findOutcomeTags(mOutcome.getId()));
+            LayoutParams params = new LayoutParams(
+                    LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT);
 
             for (final Tag tag : outcomeTags) {
                 final ImageView tagView = new ImageView(getContext());
                 int ResId = tag.getIconResourceId();
                 tagView.setImageResource(ResId);
                 tagView.setBackgroundColor(Color.TRANSPARENT);
-                viewHolder.mTagLayout.addView(tagView,
-                        new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT,
-                                LinearLayout.LayoutParams.WRAP_CONTENT));
+                viewHolder.mTagLayout.addView(tagView, params);
             }
         } else {
             viewHolder = (OutcomeAdapter.ViewHolder) view.getTag();

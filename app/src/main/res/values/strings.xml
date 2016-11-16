@@ -33,4 +33,6 @@
     <string name="tagging_complete_button">Done</string>
     <string name="tagging_toast_complete">Tags Added!</string>
 
+    <string name="take_lesson_complete_button">Complete Lesson</string>
+
 </resources>
