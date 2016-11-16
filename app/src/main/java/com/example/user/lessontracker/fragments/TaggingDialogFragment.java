@@ -89,12 +89,15 @@ public class TaggingDialogFragment extends DialogFragment {
             @Override
             public void onClick(View view) {
                 Log.d("LessonTracker", "Complete button click");
-//                FragmentTransaction transaction = getFragmentManager().beginTransaction();
-//                TakeLessonFragment takeLessonFragment = new TakeLessonFragment();
-//                Bundle args = new Bundle();
-//                args.putLong("lessonId", lessonId);
-//                takeLessonFragment.setArguments(args);
-//                transaction.replace(R.id.fragment_container, takeLessonFragment);
+                getFragmentManager().popBackStack();
+                FragmentTransaction transaction = getFragmentManager().beginTransaction();
+                TakeLessonFragment takeLessonFragment = new TakeLessonFragment();
+                Bundle args = new Bundle();
+                args.putLong("lessonId", lessonId);
+                takeLessonFragment.setArguments(args);
+                transaction.replace(R.id.fragment_container, takeLessonFragment);
+                transaction.addToBackStack(null);
+                transaction.commit();
                 getDialog().dismiss();
 //                Toast.makeText(getActivity(), R.string.tagging_toast_complete, Toast.LENGTH_SHORT).show();
             }
@@ -102,6 +105,4 @@ public class TaggingDialogFragment extends DialogFragment {
 
         return view;
     }
-
-
 }
