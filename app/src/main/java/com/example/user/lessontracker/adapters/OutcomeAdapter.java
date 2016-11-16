@@ -13,6 +13,7 @@ import com.example.user.lessontracker.database.LessonTrackerDbHelper;
 import com.example.user.lessontracker.models.LearningObjective;
 import com.example.user.lessontracker.models.Outcome;
 import com.example.user.lessontracker.models.Tag;
+import com.example.user.lessontracker.models.Tagging;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -52,7 +53,7 @@ public class OutcomeAdapter extends ArrayAdapter<Outcome> {
 
         viewHolder.mLearningObjectiveTitle.setText(mLearningObjective.getTitle());
 
-//        List<Tag> outcomeTags = new ArrayList<>(mDbhelper.findT);
+        List<Tagging> outcomeTags = new ArrayList<>(mDbhelper.findT);
 
 
         return view;

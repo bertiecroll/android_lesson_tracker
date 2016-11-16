@@ -511,6 +511,36 @@ public class LessonTrackerDbHelper extends SQLiteOpenHelper {
         return tags;
     }
 
+    public List<Tag> findOutcomeTags(long outcomeId) {
+        List<Tag> tags = new ArrayList<>();
+        SQLiteDatabase database = getDatabase();
+
+        String tableName = TagTable.NAME + " inner join " + TaggingTable.NAME + " on "
+                + TagTable.NAME + "." + TagTable.Cols.ID + " = " + TaggingTable.NAME + "."
+                + TaggingTable.Cols.TAG_ID;
+        String[] tableColumns = new String[] { "*." + TagTable.NAME };
+        String whereClause = TaggingTable.Cols.OUTCOME_ID + " = ?";
+
+        Cursor cursor = database.query(
+                tableName, tableColumns, whereClause,
+                new String[] { Long.toString(outcomeId) }, null, null, null);
+
+        LessonTrackerCursorWrapper lessonTrackerCursorWrapper =
+                new LessonTrackerCursorWrapper(cursor);
+
+        try {
+            cursor.moveToFirst();
+            while (!cursor.isAfterLast()) {
+                tags.add(lessonTrackerCursorWrapper.getTag());
+                cursor.moveToNext();
+            }
+        } finally {
+            cursor.close();
+        }
+
+        return tags;
+    }
+
     // TAGGING CRUD ACTIONS
 
     public long saveTagging(Tagging tagging) {
