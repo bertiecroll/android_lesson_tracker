@@ -27,11 +27,11 @@ public class LessonHistoryListFragment extends Fragment {
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_list, container, false);
+        View view = inflater.inflate(R.layout.fragment_list_history, container, false);
 
         mDbHelper = new LessonTrackerDbHelper(getActivity());
 
-        mCompletedLessonList = (ListView) view.findViewById(R.id.teachable_list);
+        mCompletedLessonList = (ListView) view.findViewById(R.id.lesson_history_list);
         List<Lesson> lessons = new ArrayList<>(mDbHelper.findCompletedLessons());
         CompletedLessonAdapter completedLessonAdapter =
                 new CompletedLessonAdapter(getActivity(), lessons);

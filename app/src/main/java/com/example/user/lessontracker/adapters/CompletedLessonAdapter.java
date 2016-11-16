@@ -6,6 +6,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.example.user.lessontracker.R;
@@ -23,7 +24,10 @@ public class CompletedLessonAdapter extends ArrayAdapter<Lesson> {
     private static class ViewHolder {
         TextView lessonDetailsTextView;
         TextView topicTitleTextView;
-        TextView outcomeReviewTextView;
+        LinearLayout outcomeReviewLayout;
+        TextView outcomePositiveText;
+        TextView outcomeNegativeText;
+        TextView outcomeImprovementText;
     }
 
     LessonTrackerDbHelper mDbHelper;
@@ -44,7 +48,10 @@ public class CompletedLessonAdapter extends ArrayAdapter<Lesson> {
             view = inflater.inflate(R.layout.item_completed_lesson, parent, false);
             viewHolder.lessonDetailsTextView = (TextView) view.findViewById(R.id.completed_lesson_list_item_lesson);
             viewHolder.topicTitleTextView = (TextView) view.findViewById(R.id.completed_lesson_list_item_topic);
-            viewHolder.outcomeReviewTextView = (TextView) view.findViewById(R.id.completed_lesson_outcome_review);
+            viewHolder.outcomeReviewLayout = (LinearLayout) view.findViewById(R.id.completed_lesson_outcome_review_layout);
+            viewHolder.outcomePositiveText = (TextView) view.findViewById(R.id.completed_lesson_outcome_positive);
+            viewHolder.outcomeNegativeText = (TextView) view.findViewById(R.id.completed_lesson_outcome_negative);
+            viewHolder.outcomeImprovementText = (TextView) view.findViewById(R.id.completed_lesson_outcome_improvement);
             view.setTag(viewHolder);
         } else {
             viewHolder = (CompletedLessonAdapter.ViewHolder) view.getTag();
@@ -57,27 +64,24 @@ public class CompletedLessonAdapter extends ArrayAdapter<Lesson> {
 
         List<Outcome> lessonOutcomes = mDbHelper.findOutcomesByLesson(completedLesson.getId());
         HashMap<String, Integer> tagTypeCount = new HashMap<>();
+        tagTypeCount.put("positive", 0);
+        tagTypeCount.put("negative", 0);
+        tagTypeCount.put("improvement", 0);
+
         for (Outcome outcome : lessonOutcomes) {
             List<Tag> outcomeTags = mDbHelper.findOutcomeTags(outcome.getId());
             for (Tag tag : outcomeTags) {
                 String tagType = tag.getType();
-                if (tagTypeCount.get(tagType) == null) {
-                    tagTypeCount.put(tagType, 0);
-                } else {
-                    tagTypeCount.put(tagType, tagTypeCount.get(tagType) + 1);
-                }
+                tagTypeCount.put(tagType, tagTypeCount.get(tagType) + 1);
             }
         }
-        String outcomeReview = "";
-        if (tagTypeCount.get("negative") == null && tagTypeCount.get("improvement") == null) {
-            outcomeReview += "Perfect lesson! No improvements needed";
-        } else if (tagTypeCount.get("negative") == null) {
-            outcomeReview += "Good lesson, though some improvements required";
-        } else {
-            outcomeReview += "Lesson needs work. Check full review";
-        }
 
-        viewHolder.outcomeReviewTextView.setText(outcomeReview);
+        String positives = "Objectives Met: " + tagTypeCount.get("positive");
+        viewHolder.outcomePositiveText.setText(positives);
+        String negatives = "Objectives Not Met: " + tagTypeCount.get("negative");
+        viewHolder.outcomeNegativeText.setText(negatives);
+        String improvements = "Improvements: " + tagTypeCount.get("improvement");
+        viewHolder.outcomeImprovementText.setText(improvements);
 
         return view;
     }
