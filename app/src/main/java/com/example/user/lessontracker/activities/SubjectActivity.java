@@ -9,12 +9,12 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.Button;
-import android.widget.ImageButton;
 import android.widget.LinearLayout;
-import android.widget.TextView;
 
 import com.example.user.lessontracker.R;
+import com.example.user.lessontracker.fragments.LessonHistoryListFragment;
 import com.example.user.lessontracker.fragments.LessonListFragment;
 import com.example.user.lessontracker.fragments.SubjectListFragment;
 
@@ -38,6 +38,17 @@ public class SubjectActivity extends AppCompatActivity {
 
         mLessonTrackerFooter = (LinearLayout) findViewById(R.id.lesson_tracker_footer_menu);
         mCompletedLessonsButton = (Button) findViewById(R.id.lesson_tracker_footer_completed_lessons_button);
+        mCompletedLessonsButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
+                LessonHistoryListFragment lessonHistoryListFragment =
+                        new LessonHistoryListFragment();
+                transaction.replace(R.id.fragment_container, lessonHistoryListFragment, null);
+                transaction.addToBackStack(null);
+                transaction.commit();
+            }
+        });
     }
 
     @Override
