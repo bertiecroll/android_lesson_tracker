@@ -14,6 +14,7 @@ import android.widget.ListView;
 import android.widget.TextView;
 
 import com.example.user.lessontracker.R;
+import com.example.user.lessontracker.adapters.TopicAdapter;
 import com.example.user.lessontracker.database.LessonTrackerDbHelper;
 import com.example.user.lessontracker.models.Subject;
 import com.example.user.lessontracker.models.Topic;
@@ -77,8 +78,7 @@ public class SubjectFragment extends Fragment {
             });
 
             List<Topic> topics = new ArrayList<>(mDbHelper.findTopicsBySubject(mSubject.getId()));
-            ArrayAdapter<Topic> adapter = new ArrayAdapter<>(getActivity(),
-                    android.R.layout.simple_list_item_1, topics);
+            TopicAdapter adapter = new TopicAdapter(getActivity(), topics);
 
             mTopicList.setAdapter(adapter);
 

@@ -2,10 +2,13 @@ package com.example.user.lessontracker.adapters;
 
 import android.content.Context;
 import android.graphics.Color;
+import android.graphics.drawable.Drawable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -21,6 +24,8 @@ import com.example.user.lessontracker.models.Topic;
 import java.util.ArrayList;
 import java.util.List;
 
+import static android.R.attr.tag;
+
 public class TopicAdapter extends ArrayAdapter<Topic> {
 
     public static class ViewHolder {
@@ -30,7 +35,6 @@ public class TopicAdapter extends ArrayAdapter<Topic> {
 
     LessonTrackerDbHelper mDbhelper;
     Topic mTopic;
-    LearningObjective mLearningObjective;
 
     public TopicAdapter(Context context, List<Topic> topics) {
         super(context, R.layout.item_outcome, topics);
@@ -48,9 +52,20 @@ public class TopicAdapter extends ArrayAdapter<Topic> {
             view = inflater.inflate(R.layout.item_outcome, parent, false);
             viewHolder.mTopicTitle = (TextView) view.findViewById(R.id.outcome_list_item_outcome);
             viewHolder.mLightsLayout = (LinearLayout) view.findViewById(R.id.outcome_tag_layout);
+
+            ImageView lightView = new ImageView(getContext());
+            lightView.setImageResource(android.R.drawable.btn_star);
+            lightView.setBackgroundColor(Color.TRANSPARENT);
+            LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT,
+                    LinearLayout.LayoutParams.WRAP_CONTENT);
+            params.setMargins(0, 15, 40, 15);
+            viewHolder.mLightsLayout.addView(lightView, params);
+
+            viewHolder.mTopicTitle.setText(mTopic.getTitle());
+
             view.setTag(viewHolder);
-            LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(
-                    LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT);
+        } else {
+            viewHolder = (TopicAdapter.ViewHolder) view.getTag();
         }
 
         return view;

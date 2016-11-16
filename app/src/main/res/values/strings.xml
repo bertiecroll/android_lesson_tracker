@@ -36,6 +36,7 @@
 
     <string name="take_lesson_complete_button">Complete Lesson</string>
     <string name="take_lesson_toast_taught_success">Lesson has been taught, well done!</string>
+    <string name="take_lesson_notes_hint">Add notes here...</string>
 
     <string name="lesson_history_filter_button">Filter</string>
 
