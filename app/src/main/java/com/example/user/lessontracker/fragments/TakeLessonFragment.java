@@ -8,6 +8,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -31,6 +32,7 @@ public class TakeLessonFragment extends Fragment {
     TextView mDetailsTextView;
     TextView mTopicTitleTextView;
     ListView mOutcomeList;
+    EditText mNotesEditText;
     Button mCompleteButton;
 
     @Override
@@ -81,11 +83,14 @@ public class TakeLessonFragment extends Fragment {
             }
         });
 
+        mNotesEditText = (EditText) view.findViewById(R.id.take_lesson_notes_edit);
+
         mCompleteButton = (Button) view.findViewById(R.id.take_lesson_complete_button);
         mCompleteButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 mLesson.teach();
+                mLesson.setNotes(mNotesEditText.getText().toString());
                 mDbHelper.updateLesson(mLesson);
                 getFragmentManager().popBackStack();
                 Toast.makeText(getActivity(), R.string.take_lesson_toast_taught_success, Toast.LENGTH_SHORT).show();

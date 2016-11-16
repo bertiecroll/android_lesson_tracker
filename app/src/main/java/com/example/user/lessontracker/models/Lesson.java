@@ -2,7 +2,7 @@ package com.example.user.lessontracker.models;
 
 import android.content.ContentValues;
 
-import com.example.user.lessontracker.database.LessonTrackerSchema;
+
 import com.example.user.lessontracker.database.LessonTrackerSchema.LessonTable;
 
 import java.text.SimpleDateFormat;
@@ -91,7 +91,7 @@ public class Lesson {
         return mNotes;
     }
 
-    public String setNotes(String newNotes) {
+    public void setNotes(String newNotes) {
         mNotes = newNotes;
     }
 
