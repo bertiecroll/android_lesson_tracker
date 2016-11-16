@@ -12,6 +12,7 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.user.lessontracker.R;
 import com.example.user.lessontracker.database.LessonTrackerDbHelper;
@@ -90,6 +91,8 @@ public class TopicFragment extends Fragment {
                 LearningObjective selectedLearningObjective =
                         (LearningObjective) mLearningObjectiveList.getItemAtPosition(position);
                 Log.d("LessonTracker", selectedLearningObjective + " selected");
+                String toastText = selectedLearningObjective.getDetail();
+                Toast.makeText(getActivity(), toastText, Toast.LENGTH_LONG).show();
             }
         });
 

@@ -101,7 +101,7 @@ public class LessonHistoryListFragment extends Fragment {
                 Bundle args = new Bundle();
                 args.putLong("lessonId", selectedLesson.getId());
                 outcomeDialogFragment.setArguments(args);
-                transaction.add(R.id.fragment_container, outcomeDialogFragment);
+                transaction.add(outcomeDialogFragment, null);
                 transaction.commit();
             }
         });

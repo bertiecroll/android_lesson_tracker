@@ -71,6 +71,14 @@ public class LessonTrackerDbHelper extends SQLiteOpenHelper {
             + " integer references " + OutcomeTable.NAME + "(" + OutcomeTable.Cols.ID
             + ") on delete cascade )";
 
+    private static final String ADD_DEFAULT_FIX_TAG = "insert into " + TagTable.NAME + "("
+            + TagTable.Cols.ICON_RESOURCE_ID + ", " + TagTable.Cols.TITLE + ", " + TagTable.Cols.TYPE
+            + ") values ( 17301570, 'Some sections need fixed', 'improvement' )";
+
+    private static final String ADD_DEFAULT_REDO_TAG = "insert into " + TagTable.NAME + "("
+            + TagTable.Cols.ICON_RESOURCE_ID + ", " + TagTable.Cols.TITLE + ", " + TagTable.Cols.TYPE
+            + ") values ( 17301581, 'Redo required', 'improvement' )";
+
     private static final String ADD_DEFAULT_NO_TIME_TAG = "insert into " + TagTable.NAME + "("
             + TagTable.Cols.ICON_RESOURCE_ID + ", " + TagTable.Cols.TITLE + ", " + TagTable.Cols.TYPE
             + ") values ( 17301578, 'Not Enough Time', 'improvement' )";
@@ -100,6 +108,8 @@ public class LessonTrackerDbHelper extends SQLiteOpenHelper {
         db.execSQL(ADD_DEFAULT_PASS_TAG);
         db.execSQL(ADD_DEFAULT_FAIL_TAG);
         db.execSQL(ADD_DEFAULT_NO_TIME_TAG);
+        db.execSQL(ADD_DEFAULT_FIX_TAG);
+        db.execSQL(ADD_DEFAULT_REDO_TAG);
     }
 
     @Override

@@ -4,29 +4,60 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
+    <RelativeLayout
+        android:id="@+id/list_fragment_header_layout"
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:elevation="8dp"
+        android:background="@color/colorPrimaryDark">
+
     <TextView
         android:id="@+id/teachable_parent_title"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="" />
+        android:paddingTop="16dp"
+        android:layout_marginLeft="16dp"
+        android:textSize="16dp"
+        android:textAllCaps="true"
+        android:layout_alignParentLeft="true"
+        android:text=""
+        android:textColor="@android:color/background_light" />
 
     <TextView
         android:id="@+id/teachable_title"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="" />
+        android:layout_marginLeft="16dp"
+        android:textSize="16dp"
+        android:textAllCaps="true"
+        android:layout_below="@+id/teachable_parent_title"
+        android:text=""
+        android:textColor="@android:color/background_light" />
 
     <TextView
         android:id="@+id/teachable_detail"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="" />
+        android:layout_below="@+id/teachable_parent_title"
+        android:text=""
+        android:textColor="@android:color/background_light" />
 
     <Button
         android:id="@+id/teachable_child_new_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/topic_new_learning_objective_button"/>
+        android:layout_marginBottom="32dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginRight="16dp"
+        android:layout_alignParentRight="true"
+        android:text=""
+        android:elevation="8dp"
+        android:textColor="@color/colorPrimaryDark"
+        android:background="@android:color/background_light"
+        android:padding="4dp" />
+
+    </RelativeLayout>
 
     <ListView
         android:id="@+id/teachable_child_list"

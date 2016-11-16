@@ -20,7 +20,6 @@ import java.util.List;
 public class OutcomeDialogFragment extends DialogFragment {
 
     LessonTrackerDbHelper mDbHelper;
-    LinearLayout mReviewLayout;
     TextView mReviewPositiveText;
     TextView mReviewNegativeText;
     TextView mReviewImprovementText;
@@ -34,7 +33,7 @@ public class OutcomeDialogFragment extends DialogFragment {
         Bundle arguments = getArguments();
         final long lessonId = arguments.getLong("lessonId");
 
-        mReviewLayout = (LinearLayout) view.findViewById(R.id.completed_lesson_outcome_review_layout);
+//        mReviewLayout = (LinearLayout) view.findViewById(R.id.completed_lesson_outcome_review_layout);
         mReviewPositiveText = (TextView) view.findViewById(R.id.completed_lesson_outcome_positive);
         mReviewNegativeText = (TextView) view.findViewById(R.id.completed_lesson_outcome_negative);
         mReviewImprovementText = (TextView) view.findViewById(R.id.completed_lesson_outcome_improvement);

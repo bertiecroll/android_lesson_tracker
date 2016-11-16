@@ -10,7 +10,8 @@
         android:layout_height="wrap_content"
         android:orientation="horizontal"
         android:layout_marginBottom="32dp"
-        android:elevation="4dp">
+        android:elevation="8dp"
+        android:background="@color/colorPrimaryDark">
 
         <Spinner
             android:id="@+id/lesson_history_subject_spinner"
@@ -26,6 +27,10 @@
             android:id="@+id/lesson_history_filter_button"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:textColor="@color/colorPrimaryDark"
+            android:background="@android:color/background_light"
+            android:padding="4dp"
+            android:elevation="8dp"
             android:text="@string/lesson_history_filter_button"/>
 
     </LinearLayout>
