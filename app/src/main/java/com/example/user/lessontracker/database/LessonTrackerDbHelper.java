@@ -530,7 +530,7 @@ public class LessonTrackerDbHelper extends SQLiteOpenHelper {
 
     public Tagging findTagging(long id) {
         LessonTrackerCursorWrapper cursor = query(TaggingTable.NAME,
-                TaggingTable.Cols.ID + " = ?", new String[] { Long.toString(id)} );
+                TaggingTable.Cols.ID + " = ?", new String[] { Long.toString(id) } );
 
         try {
             if (cursor.getCount() == 0) {
@@ -542,6 +542,24 @@ public class LessonTrackerDbHelper extends SQLiteOpenHelper {
         } finally {
             cursor.close();
         }
+    }
+
+    public List<Tagging> findTaggingsByOutcome(long outcomeId) {
+        List<Tagging> taggings = new ArrayList<>();
+
+        LessonTrackerCursorWrapper cursor = query(TaggingTable.NAME,
+                TaggingTable.Cols.OUTCOME_ID + " = ?", new String[] { Long.toString(outcomeId) } );
+
+        try {
+            cursor.moveToFirst();
+            while (!cursor.isAfterLast()) {
+                taggings.add(cursor.getTagging());
+                cursor.moveToNext();
+            }
+        } finally {
+            cursor.close();
+        }
+        return taggings;
     }
 
     public List<Tagging> allTagging() {
