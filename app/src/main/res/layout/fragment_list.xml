@@ -35,6 +35,7 @@
             android:layout_alignParentRight="true"
             android:textColor="@color/colorPrimaryDark"
             android:background="@android:color/background_light"
+            android:textSize="10dp"
             android:padding="4dp" />
 
     </RelativeLayout>

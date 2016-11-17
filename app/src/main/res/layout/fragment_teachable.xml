@@ -39,7 +39,10 @@
         android:id="@+id/teachable_detail"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/teachable_parent_title"
+        android:textSize="12dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginLeft="16dp"
+        android:layout_below="@+id/teachable_title"
         android:text=""
         android:textColor="@android:color/background_light" />
 
@@ -55,6 +58,7 @@
         android:elevation="8dp"
         android:textColor="@color/colorPrimaryDark"
         android:background="@android:color/background_light"
+        android:textSize="10dp"
         android:padding="4dp" />
 
     </RelativeLayout>
