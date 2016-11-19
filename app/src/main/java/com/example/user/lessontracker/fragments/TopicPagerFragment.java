@@ -10,10 +10,6 @@ import android.view.ViewGroup;
 
 import com.example.user.lessontracker.R;
 
-/**
- * Created by B on 19/11/2016.
- */
-
 public class TopicPagerFragment extends Fragment {
 
     ViewPager mViewPager;
