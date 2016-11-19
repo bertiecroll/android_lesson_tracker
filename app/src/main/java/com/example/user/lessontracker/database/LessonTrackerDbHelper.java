@@ -184,13 +184,13 @@ public class LessonTrackerDbHelper extends SQLiteOpenHelper {
 
     public void saveTopic(Topic topic) {
         SQLiteDatabase database = getDatabase();
-        long id = database.insert(TopicTable.NAME, null, topic.getContentValues());
+        long id = database.insert(TopicTable.NAME, null, getTopicValues(topic));
         topic.setId(id);
     }
 
     public void updateTopic(Topic topic) {
         SQLiteDatabase database = getDatabase();
-        database.update(TopicTable.NAME, topic.getContentValues(),
+        database.update(TopicTable.NAME, getTopicValues(topic),
                 TopicTable.Cols.ID + " = ?", new String[] { String.valueOf(topic.getId())});
     }
 
@@ -693,6 +693,15 @@ public class LessonTrackerDbHelper extends SQLiteOpenHelper {
         ContentValues values = new ContentValues();
         values.put(SubjectTable.Cols.TITLE, subject.getTitle());
         values.put(SubjectTable.Cols.DETAIL, subject.getDetail());
+
+        return values;
+    }
+
+    public ContentValues getTopicValues(Topic topic) {
+        ContentValues values = new ContentValues();
+        values.put(TopicTable.Cols.SUBJECT_ID, topic.getSubjectId());
+        values.put(TopicTable.Cols.TITLE, topic.getTitle());
+        values.put(TopicTable.Cols.DETAIL, topic.getDetail());
 
         return values;
     }
