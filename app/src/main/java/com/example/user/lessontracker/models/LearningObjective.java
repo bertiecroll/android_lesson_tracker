@@ -1,9 +1,6 @@
 package com.example.user.lessontracker.models;
 
-import android.content.ContentValues;
-
 import com.example.user.lessontracker.Teachable;
-import com.example.user.lessontracker.database.LessonTrackerSchema.LearningObjectiveTable;
 
 public class LearningObjective implements Teachable {
 
@@ -60,14 +57,5 @@ public class LearningObjective implements Teachable {
 
     public void setId(long newId) {
         mId = newId;
-    }
-
-    public ContentValues getContentValues() {
-        ContentValues values = new ContentValues();
-        values.put(LearningObjectiveTable.Cols.TOPIC_ID, mTopicId);
-        values.put(LearningObjectiveTable.Cols.TITLE, mTitle);
-        values.put(LearningObjectiveTable.Cols.DETAIL, mDetail);
-
-        return values;
     }
 }

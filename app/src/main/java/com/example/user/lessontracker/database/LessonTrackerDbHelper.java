@@ -741,4 +741,13 @@ public class LessonTrackerDbHelper extends SQLiteOpenHelper {
 
         return values;
     }
+
+    public ContentValues getLearningObjectiveValues(LearningObjective learningObjective) {
+        ContentValues values = new ContentValues();
+        values.put(LearningObjectiveTable.Cols.TOPIC_ID, learningObjective.getTopicId());
+        values.put(LearningObjectiveTable.Cols.TITLE, learningObjective.getTitle());
+        values.put(LearningObjectiveTable.Cols.DETAIL, learningObjective.getDetail());
+
+        return values;
+    }
 }
