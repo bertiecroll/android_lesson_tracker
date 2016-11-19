@@ -3,7 +3,6 @@ package com.example.user.lessontracker.models;
 import android.content.ContentValues;
 
 import com.example.user.lessontracker.Teachable;
-import com.example.user.lessontracker.database.LessonTrackerSchema.SubjectTable;
 
 public class Subject implements Teachable {
 
@@ -50,14 +49,5 @@ public class Subject implements Teachable {
     public void setId(long id) {
         mId = id;
     }
-
-    public ContentValues getContentValues() {
-        ContentValues values = new ContentValues();
-        values.put(SubjectTable.Cols.TITLE, mTitle);
-        values.put(SubjectTable.Cols.DETAIL, mDetail);
-
-        return values;
-    }
-
 
 }
