@@ -611,7 +611,7 @@ public class LessonTrackerDbHelper extends SQLiteOpenHelper {
 
     public long saveTagging(Tagging tagging) {
         SQLiteDatabase database = getDatabase();
-        long id = database.insert(TaggingTable.NAME, null, tagging.getContentValues());
+        long id = database.insert(TaggingTable.NAME, null, getTaggingValues(tagging));
         tagging.setId(id);
         return id;
     }
@@ -619,7 +619,7 @@ public class LessonTrackerDbHelper extends SQLiteOpenHelper {
     public void updateTagging(Tagging tagging) {
         SQLiteDatabase database = getDatabase();
         long id = tagging.getId();
-        database.update(TaggingTable.NAME, tagging.getContentValues(),
+        database.update(TaggingTable.NAME, getTaggingValues(tagging),
                 TaggingTable.Cols.ID + " = ?",
                 new String[] { String.valueOf(id)});
     }
@@ -702,6 +702,14 @@ public class LessonTrackerDbHelper extends SQLiteOpenHelper {
         values.put(TopicTable.Cols.SUBJECT_ID, topic.getSubjectId());
         values.put(TopicTable.Cols.TITLE, topic.getTitle());
         values.put(TopicTable.Cols.DETAIL, topic.getDetail());
+
+        return values;
+    }
+
+    public ContentValues getTaggingValues(Tagging tagging) {
+        ContentValues values = new ContentValues();
+        values.put(TaggingTable.Cols.TAG_ID, tagging.getTagId());
+        values.put(TaggingTable.Cols.OUTCOME_ID, tagging.getOutcomeId());
 
         return values;
     }
