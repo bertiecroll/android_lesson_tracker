@@ -1,10 +1,5 @@
 package com.example.user.lessontracker.models;
 
-import android.content.ContentValues;
-
-import com.example.user.lessontracker.database.LessonTrackerSchema;
-import com.example.user.lessontracker.database.LessonTrackerSchema.OutcomeTable;
-
 public class Outcome {
 
     private long mId;
@@ -44,13 +39,5 @@ public class Outcome {
 
     public void setId(long newId) {
         mId = newId;
-    }
-
-    public ContentValues getContentValues() {
-        ContentValues values = new ContentValues();
-        values.put(OutcomeTable.Cols.LESSON_ID, mLessonId);
-        values.put(OutcomeTable.Cols.LEARNING_OBJECTIVE_ID, mLearningObjectiveId);
-
-        return values;
     }
 }

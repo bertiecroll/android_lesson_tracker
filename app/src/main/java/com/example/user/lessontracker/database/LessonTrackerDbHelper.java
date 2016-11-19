@@ -404,14 +404,14 @@ public class LessonTrackerDbHelper extends SQLiteOpenHelper {
 
     public void saveOutcome(Outcome outcome) {
         SQLiteDatabase database = getDatabase();
-        long id = database.insert(OutcomeTable.NAME, null, outcome.getContentValues());
+        long id = database.insert(OutcomeTable.NAME, null, getOutcomeValues(outcome));
         outcome.setId(id);
     }
 
     public void updateOutcome(Outcome outcome) {
         SQLiteDatabase database = getDatabase();
         long id = outcome.getId();
-        database.update(OutcomeTable.NAME, outcome.getContentValues(),
+        database.update(OutcomeTable.NAME, getOutcomeValues(outcome),
                 LessonTable.Cols.ID + " = ?",
                 new String[] { String.valueOf(id)});
     }
@@ -719,6 +719,14 @@ public class LessonTrackerDbHelper extends SQLiteOpenHelper {
         values.put(TagTable.Cols.ICON_RESOURCE_ID, tag.getIconResourceId());
         values.put(TagTable.Cols.TITLE, tag.getTitle());
         values.put(TagTable.Cols.TYPE, tag.getType());
+
+        return values;
+    }
+
+    public ContentValues getOutcomeValues(Outcome outcome) {
+        ContentValues values = new ContentValues();
+        values.put(OutcomeTable.Cols.LESSON_ID, outcome.getLessonId());
+        values.put(OutcomeTable.Cols.LEARNING_OBJECTIVE_ID, outcome.getLearningObjectiveId());
 
         return values;
     }
