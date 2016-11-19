@@ -24,6 +24,9 @@ import java.util.List;
 
 public class SubjectFragment extends Fragment {
 
+    public static final String SUBJECT_ID = "subjectId";
+    public static final String SUBJECT_TITLE = "subjectTitle";
+
     LessonTrackerDbHelper mDbHelper;
     TextView mTitleTextView;
     TextView mDetailTextView;
@@ -52,8 +55,8 @@ public class SubjectFragment extends Fragment {
         mTopicList = (ListView) view.findViewById(R.id.teachable_child_list);
 
         Bundle arguments = getArguments();
-        if (arguments != null && arguments.containsKey("subjectId")) {
-            long subjectId = arguments.getLong("subjectId");
+        if (arguments != null && arguments.containsKey(SUBJECT_ID)) {
+            long subjectId = arguments.getLong(SUBJECT_ID);
             mSubject = mDbHelper.findSubject(subjectId);
         }
 
@@ -68,8 +71,8 @@ public class SubjectFragment extends Fragment {
                     AddTopicFragment addTopicFragment = new AddTopicFragment();
 
                     Bundle args = new Bundle();
-                    args.putLong("subjectId", mSubject.getId());
-                    args.putString("subjectTitle", mSubject.getTitle());
+                    args.putLong(SUBJECT_ID, mSubject.getId());
+                    args.putString(SUBJECT_TITLE, mSubject.getTitle());
                     addTopicFragment.setArguments(args);
                     transaction.replace(R.id.fragment_container, addTopicFragment);
                     transaction.addToBackStack(null);
@@ -92,8 +95,8 @@ public class SubjectFragment extends Fragment {
                     TopicFragment topicFrag = new TopicFragment();
 
                     Bundle args = new Bundle();
-                    args.putLong("topicId", selectedTopic.getId());
-                    args.putString("subjectTitle", mSubject.getTitle());
+                    args.putLong(TopicFragment.TOPIC_ID, selectedTopic.getId());
+                    args.putString(SUBJECT_TITLE, mSubject.getTitle());
                     topicFrag.setArguments(args);
                     transaction.replace(R.id.fragment_container, topicFrag);
                     transaction.addToBackStack(null);

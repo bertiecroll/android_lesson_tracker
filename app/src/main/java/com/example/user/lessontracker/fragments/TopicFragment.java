@@ -24,6 +24,9 @@ import java.util.List;
 
 public class TopicFragment extends Fragment {
 
+    public static final String TOPIC_ID = "topicId";
+    public static final String TOPIC_TITLE = "topicTitle";
+
     LessonTrackerDbHelper mDbHelper;
     Topic mTopic;
     TextView mSubjectTitleTextView;
@@ -43,8 +46,8 @@ public class TopicFragment extends Fragment {
 
         mDbHelper = new LessonTrackerDbHelper(getActivity());
         Bundle arguments = getArguments();
-        long topicId = arguments.getLong("topicId");
-        String subjectTitle = arguments.getString("subjectTitle");
+        long topicId = arguments.getLong(TOPIC_ID);
+        String subjectTitle = arguments.getString(SubjectFragment.SUBJECT_TITLE);
         mTopic = mDbHelper.findTopic(topicId);
 
         mSubjectTitleTextView = (TextView) view.findViewById(R.id.teachable_parent_title);
@@ -66,8 +69,8 @@ public class TopicFragment extends Fragment {
                         new AddLearningObjectiveFragment();
 
                 Bundle args = new Bundle();
-                args.putLong("topicId", mTopic.getId());
-                args.putString("topicTitle", mTopic.getTitle());
+                args.putLong(TOPIC_ID, mTopic.getId());
+                args.putString(TOPIC_TITLE, mTopic.getTitle());
                 addLearningObjectiveFragment.setArguments(args);
 
                 transaction.replace(R.id.fragment_container, addLearningObjectiveFragment);

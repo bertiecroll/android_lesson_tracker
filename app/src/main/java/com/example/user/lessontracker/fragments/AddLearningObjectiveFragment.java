@@ -34,7 +34,7 @@ public class AddLearningObjectiveFragment extends Fragment {
 
         mDbHelper = new LessonTrackerDbHelper(getActivity());
 
-        String topicTitle = getArguments().getString("topicTitle");
+        String topicTitle = getArguments().getString(TopicFragment.TOPIC_TITLE);
         mTopicText = (TextView) view.findViewById(R.id.add_parent_title_text);
         mTopicText.setText(topicTitle);
 
@@ -50,7 +50,7 @@ public class AddLearningObjectiveFragment extends Fragment {
             @Override
             public void onClick(View view) {
                 Log.d("LessonTracker", "AddLearningObjective button clicked");
-                long topicId = getArguments().getLong("topicId");
+                long topicId = getArguments().getLong(TopicFragment.TOPIC_ID);
                 String title = mTitleEditText.getText().toString();
                 String detail = mDetailEditText.getText().toString();
                 LearningObjective learningObjective =
