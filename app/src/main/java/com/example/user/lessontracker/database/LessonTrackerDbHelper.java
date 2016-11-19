@@ -317,7 +317,7 @@ public class LessonTrackerDbHelper extends SQLiteOpenHelper {
 
     public long saveLesson(Lesson lesson) {
         SQLiteDatabase database = getDatabase();
-        long id = database.insert(LessonTable.NAME, null, lesson.getContentValues());
+        long id = database.insert(LessonTable.NAME, null, getLessonValues(lesson));
         lesson.setId(id);
         return id;
     }
@@ -325,7 +325,7 @@ public class LessonTrackerDbHelper extends SQLiteOpenHelper {
     public void updateLesson(Lesson lesson) {
         SQLiteDatabase database = getDatabase();
         long id = lesson.getId();
-        database.update(LessonTable.NAME, lesson.getContentValues(),
+        database.update(LessonTable.NAME, getLessonValues(lesson),
                 LessonTable.Cols.ID + " = ?",
                 new String[] { String.valueOf(id)});
 
@@ -727,6 +727,17 @@ public class LessonTrackerDbHelper extends SQLiteOpenHelper {
         ContentValues values = new ContentValues();
         values.put(OutcomeTable.Cols.LESSON_ID, outcome.getLessonId());
         values.put(OutcomeTable.Cols.LEARNING_OBJECTIVE_ID, outcome.getLearningObjectiveId());
+
+        return values;
+    }
+
+    public ContentValues getLessonValues(Lesson lesson) {
+        ContentValues values = new ContentValues();
+        values.put(LessonTable.Cols.COHORT_ID, lesson.getCohortId());
+        values.put(LessonTable.Cols.TOPIC_ID, lesson.getTopicId());
+        values.put(LessonTable.Cols.DATE, lesson.getDate().getTime());
+        values.put(LessonTable.Cols.TAUGHT, lesson.taughtAsInt());
+        values.put(LessonTable.Cols.NOTES, lesson.getNotes());
 
         return values;
     }
