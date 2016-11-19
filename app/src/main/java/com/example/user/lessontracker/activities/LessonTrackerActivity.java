@@ -35,12 +35,8 @@ public abstract class LessonTrackerActivity extends AppCompatActivity {
         mCompletedLessonsButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
-                LessonHistoryListFragment lessonHistoryListFragment =
-                        new LessonHistoryListFragment();
-                transaction.replace(R.id.fragment_container, lessonHistoryListFragment, null);
-                transaction.addToBackStack(null);
-                transaction.commit();
+                Intent intent = new Intent(LessonTrackerActivity.this, LessonHistoryActivity.class);
+                startActivity(intent);
             }
         });
         mPendingLessonsButton = (Button) findViewById(R.id.lesson_tracker_footer_take_lesson_button);
@@ -56,12 +52,8 @@ public abstract class LessonTrackerActivity extends AppCompatActivity {
         mSubjectsButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
-                SubjectListFragment subjectListFragment =
-                        new SubjectListFragment();
-                transaction.replace(R.id.fragment_container, subjectListFragment, null);
-                transaction.addToBackStack(null);
-                transaction.commit();
+                Intent intent = new Intent(LessonTrackerActivity.this, TeachableActivity.class);
+                startActivity(intent);
             }
         });
 
