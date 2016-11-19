@@ -249,14 +249,14 @@ public class LessonTrackerDbHelper extends SQLiteOpenHelper {
 
     public void saveLearningObjective(LearningObjective learningObjective) {
         SQLiteDatabase database = getDatabase();
-        long id = database.insert(LearningObjectiveTable.NAME, null, learningObjective.getContentValues());
+        long id = database.insert(LearningObjectiveTable.NAME, null, getLearningObjectiveValues(learningObjective));
         learningObjective.setId(id);
     }
 
     public void updateLearningObjective(LearningObjective learningObjective) {
         SQLiteDatabase database = getDatabase();
         long id = learningObjective.getId();
-        database.update(LearningObjectiveTable.NAME, learningObjective.getContentValues(),
+        database.update(LearningObjectiveTable.NAME, getLearningObjectiveValues(learningObjective),
                 LearningObjectiveTable.Cols.ID + " = ?",
                 new String[] { String.valueOf(id)});
     }

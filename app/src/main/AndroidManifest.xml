@@ -9,7 +9,7 @@
         android:theme="@style/AppTheme">
 
         <activity
-            android:name=".activities.SubjectActivity"
+            android:name=".activities.TeachableActivity"
             android:label="@string/app_name"
             android:windowSoftInputMode="adjustPan">
 

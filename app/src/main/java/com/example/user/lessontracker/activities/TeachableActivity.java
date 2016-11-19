@@ -5,10 +5,6 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
-import android.view.Menu;
-import android.view.MenuInflater;
-import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.LinearLayout;
@@ -19,7 +15,7 @@ import com.example.user.lessontracker.fragments.LessonHistoryListFragment;
 import com.example.user.lessontracker.fragments.LessonListFragment;
 import com.example.user.lessontracker.fragments.SubjectListFragment;
 
-public class SubjectActivity extends AppCompatActivity {
+public class TeachableActivity extends AppCompatActivity {
 
     LinearLayout mLessonTrackerFooter;
     Button mCompletedLessonsButton;
@@ -82,7 +78,7 @@ public class SubjectActivity extends AppCompatActivity {
         mTagsButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Toast.makeText(SubjectActivity.this, "Custom Tags Coming Soon!", Toast.LENGTH_SHORT).show();
+                Toast.makeText(TeachableActivity.this, "Custom Tags Coming Soon!", Toast.LENGTH_SHORT).show();
             }
         });
     }
