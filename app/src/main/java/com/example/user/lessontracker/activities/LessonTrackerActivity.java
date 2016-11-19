@@ -1,5 +1,6 @@
 package com.example.user.lessontracker.activities;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
@@ -46,14 +47,11 @@ public abstract class LessonTrackerActivity extends AppCompatActivity {
         mPendingLessonsButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
-                LessonListFragment lessonListFragment =
-                        new LessonListFragment();
-                transaction.replace(R.id.fragment_container, lessonListFragment, null);
-                transaction.addToBackStack(null);
-                transaction.commit();
+                Intent intent = new Intent(LessonTrackerActivity.this, TakeLessonActivity.class);
+                startActivity(intent);
             }
         });
+
         mSubjectsButton = (Button) findViewById(R.id.lesson_tracker_footer_subjects_button);
         mSubjectsButton.setOnClickListener(new View.OnClickListener() {
             @Override
