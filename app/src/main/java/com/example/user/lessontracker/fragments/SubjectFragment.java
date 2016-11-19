@@ -92,7 +92,7 @@ public class SubjectFragment extends Fragment {
                     Log.d("mTopicList", selectedTopic + " selected");
 
                     FragmentTransaction transaction = getFragmentManager().beginTransaction();
-                    TopicFragment topicFrag = new TopicFragment();
+                    TopicPagerFragment topicFrag = new TopicPagerFragment();
 
                     Bundle args = new Bundle();
                     args.putLong(TopicFragment.TOPIC_ID, selectedTopic.getId());
