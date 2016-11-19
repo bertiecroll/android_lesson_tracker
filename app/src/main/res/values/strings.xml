@@ -12,7 +12,7 @@
     <string name="topic_add_button">Add Topic</string>
     <string name="topic_new_learning_objective_button">Add New Objective</string>
     <string name="topic_toast_add_success">New Topic Has Been Added!</string>
-    <string name="topic_toast_stats_title">Topic Statistics</string>
+    <string name="topic_stats_title">Topic Statistics</string>
 
     <string name="learning_objective_title_hint">Enter Learning Objective Title</string>
     <string name="learning_objective_detail_hint">Enter Learning Objective Details</string>
