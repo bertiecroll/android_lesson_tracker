@@ -34,8 +34,11 @@ public class AddTopicFragment extends Fragment {
 
         mDbHelper = new LessonTrackerDbHelper(getActivity());
 
+        final Bundle receivedArgs = getArguments();
+        final long subjectId = receivedArgs.getLong(SubjectFragment.SUBJECT_ID);
+        final String subjectTitle = receivedArgs.getString(SubjectFragment.SUBJECT_TITLE);
+
         mSubjectText = (TextView) view.findViewById(R.id.add_parent_title_text);
-        String subjectTitle = getArguments().getString("subjectTitle");
         mSubjectText.setText(subjectTitle);
 
         mTitleEditText = (EditText) view.findViewById(R.id.add_title_edit);
@@ -49,12 +52,22 @@ public class AddTopicFragment extends Fragment {
         mAddButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                long subjectId = getArguments().getLong("subjectId");
-                String title = mTitleEditText.getText().toString();
-                String detail = mDetailEditText.getText().toString();
-                Topic topic = new Topic(subjectId, title, detail);
-                mDbHelper.saveTopic(topic);
-                getFragmentManager().popBackStack();
+                String topicTitle = mTitleEditText.getText().toString();
+                String topicDetail = mDetailEditText.getText().toString();
+                Topic topic = new Topic(subjectId, topicTitle, topicDetail);
+                long topicId = mDbHelper.saveTopic(topic);
+
+                FragmentTransaction transaction = getFragmentManager().beginTransaction();
+                AddLearningObjectiveFragment addLearningObjectiveFragment =
+                        new AddLearningObjectiveFragment();
+
+                Bundle args = new Bundle();
+                args.putLong(TopicFragment.TOPIC_ID, topicId);
+                args.putString(TopicFragment.TOPIC_TITLE, topicTitle);
+                args.putLong(SubjectFragment.SUBJECT_ID, subjectId);
+                addLearningObjectiveFragment.setArguments(args);
+                transaction.replace(R.id.fragment_container, addLearningObjectiveFragment);
+                transaction.commit();
                 Toast.makeText(getActivity(), R.string.topic_toast_add_success, Toast.LENGTH_SHORT).show();
             }
         });

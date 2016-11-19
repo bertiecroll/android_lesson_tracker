@@ -33,7 +33,6 @@ public class TopicFragment extends Fragment {
     TextView mSubjectTitleTextView;
     TextView mTitleTextView;
     TextView mDetailTextView;
-    Button mNewLearningObjectiveButton;
     ListView mLearningObjectiveList;
 
     @Override
@@ -59,26 +58,6 @@ public class TopicFragment extends Fragment {
 
         mDetailTextView = (TextView) view.findViewById(R.id.teachable_detail);
         mDetailTextView.setText(mTopic.getDetail());
-
-        mNewLearningObjectiveButton = (Button) view.findViewById(R.id.teachable_child_new_button);
-        mNewLearningObjectiveButton.setText(R.string.topic_new_learning_objective_button);
-        mNewLearningObjectiveButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                FragmentTransaction transaction = getFragmentManager().beginTransaction();
-                AddLearningObjectiveFragment addLearningObjectiveFragment =
-                        new AddLearningObjectiveFragment();
-
-                Bundle args = new Bundle();
-                args.putLong(TOPIC_ID, mTopic.getId());
-                args.putString(TOPIC_TITLE, mTopic.getTitle());
-                addLearningObjectiveFragment.setArguments(args);
-
-                transaction.replace(R.id.fragment_container, addLearningObjectiveFragment);
-                transaction.addToBackStack(null);
-                transaction.commit();
-            }
-        });
 
         mLearningObjectiveList = (ListView) view.findViewById(R.id.teachable_child_list);
 

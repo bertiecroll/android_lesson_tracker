@@ -2,6 +2,7 @@ package com.example.user.lessontracker.fragments;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentTransaction;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -34,7 +35,11 @@ public class AddLearningObjectiveFragment extends Fragment {
 
         mDbHelper = new LessonTrackerDbHelper(getActivity());
 
-        String topicTitle = getArguments().getString(TopicFragment.TOPIC_TITLE);
+        Bundle receivedArgs = getArguments();
+        final String topicTitle = receivedArgs.getString(TopicFragment.TOPIC_TITLE);
+        final long subjectId = receivedArgs.getLong(SubjectFragment.SUBJECT_ID);
+        final long topicId = receivedArgs.getLong(TopicFragment.TOPIC_ID);
+
         mTopicText = (TextView) view.findViewById(R.id.add_parent_title_text);
         mTopicText.setText(topicTitle);
 
@@ -50,13 +55,24 @@ public class AddLearningObjectiveFragment extends Fragment {
             @Override
             public void onClick(View view) {
                 Log.d("LessonTracker", "AddLearningObjective button clicked");
-                long topicId = getArguments().getLong(TopicFragment.TOPIC_ID);
+
                 String title = mTitleEditText.getText().toString();
                 String detail = mDetailEditText.getText().toString();
                 LearningObjective learningObjective =
                         new LearningObjective(topicId, title, detail);
                 mDbHelper.saveLearningObjective(learningObjective);
+
+                FragmentTransaction transaction = getFragmentManager().beginTransaction();
+                SubjectFragment subjectFrag = new SubjectFragment();
+
+                Bundle subjectArgs = new Bundle();
+                subjectArgs.putLong(SubjectFragment.SUBJECT_ID, subjectId);
+                subjectFrag.setArguments(subjectArgs);
+
+                transaction.remove(AddLearningObjectiveFragment.this);
+                transaction.commit();
                 getFragmentManager().popBackStack();
+
                 Toast.makeText(getActivity(), R.string.learning_objective_toast_add_success, Toast.LENGTH_SHORT).show();
             }
         });

@@ -182,10 +182,11 @@ public class LessonTrackerDbHelper extends SQLiteOpenHelper {
 
     // TOPIC CRUD ACTIONS
 
-    public void saveTopic(Topic topic) {
+    public long saveTopic(Topic topic) {
         SQLiteDatabase database = getDatabase();
         long id = database.insert(TopicTable.NAME, null, getTopicValues(topic));
         topic.setId(id);
+        return id;
     }
 
     public void updateTopic(Topic topic) {
