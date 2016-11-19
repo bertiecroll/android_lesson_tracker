@@ -1,10 +1,5 @@
 package com.example.user.lessontracker.models;
 
-import android.content.ContentValues;
-
-import com.example.user.lessontracker.database.LessonTrackerSchema;
-import com.example.user.lessontracker.database.LessonTrackerSchema.TagTable;
-
 public class Tag {
 
     private long mId;
@@ -55,16 +50,6 @@ public class Tag {
 
     private void setType(String newType) {
         mType = newType;
-    }
-
-    public ContentValues getContentValues() {
-        ContentValues values = new ContentValues();
-        values.put(TagTable.Cols.ID, mId);
-        values.put(TagTable.Cols.ICON_RESOURCE_ID, mIconResourceId);
-        values.put(TagTable.Cols.TITLE, mTitle);
-        values.put(TagTable.Cols.TYPE, mType);
-
-        return values;
     }
 
 }
