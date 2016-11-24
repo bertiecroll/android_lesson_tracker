@@ -1,5 +1,6 @@
 package com.example.user.lessontracker.fragments;
 
+import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
@@ -33,6 +34,7 @@ public class TopicFragment extends Fragment {
     TextView mSubjectTitleTextView;
     TextView mTitleTextView;
     TextView mDetailTextView;
+    Button mNewLearningObjectiveButton;
     ListView mLearningObjectiveList;
 
     @Override
@@ -58,6 +60,9 @@ public class TopicFragment extends Fragment {
 
         mDetailTextView = (TextView) view.findViewById(R.id.teachable_detail);
         mDetailTextView.setText(mTopic.getDetail());
+
+        mNewLearningObjectiveButton = (Button) view.findViewById(R.id.teachable_child_new_button);
+        mNewLearningObjectiveButton.setBackgroundColor(Color.TRANSPARENT);
 
         mLearningObjectiveList = (ListView) view.findViewById(R.id.teachable_child_list);
 
