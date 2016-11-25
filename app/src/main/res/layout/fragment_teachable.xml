@@ -22,7 +22,6 @@
         android:textSize="16dp"
         android:textAllCaps="true"
         android:layout_alignParentLeft="true"
-        android:text=""
         android:textColor="@android:color/background_light" />
 
     <TextView

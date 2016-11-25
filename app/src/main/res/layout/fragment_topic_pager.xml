@@ -4,6 +4,50 @@
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="match_parent">
 
+    <RelativeLayout
+        android:id="@+id/topic_view_pager_header_layout"
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/colorPrimaryDark">
+
+        <TextView
+            android:id="@+id/topic_view_pager_subject_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingTop="14dp"
+            android:layout_marginLeft="16dp"
+            android:textSize="18dp"
+            android:textAllCaps="true"
+            android:layout_alignParentLeft="true"
+            android:text=""
+            android:textColor="@android:color/background_light" />
+
+        <TextView
+            android:id="@+id/topic_view_pager_topic_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingTop="18dp"
+            android:layout_marginLeft="16dp"
+            android:textSize="14dp"
+            android:textAllCaps="true"
+            android:layout_toRightOf="@+id/topic_view_pager_subject_title"
+            android:text=""
+            android:textColor="@android:color/background_light" />
+
+        <TextView
+            android:id="@+id/topic_view_pager_topic_detail"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="12dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginLeft="16dp"
+            android:layout_below="@+id/topic_view_pager_subject_title"
+            android:text=""
+            android:textColor="@android:color/background_light" />
+
+    </RelativeLayout>
+
     <android.support.design.widget.TabLayout
         android:id="@+id/topic_view_pager_tab"
         android:layout_width="match_parent"

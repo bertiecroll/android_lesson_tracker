@@ -12,6 +12,7 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListView;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -31,10 +32,7 @@ public class TopicFragment extends Fragment {
     LessonTrackerDbHelper mDbHelper;
     Topic mTopic;
 
-    TextView mSubjectTitleTextView;
-    TextView mTitleTextView;
-    TextView mDetailTextView;
-    Button mNewLearningObjectiveButton;
+    RelativeLayout mRelativeLayout;
     ListView mLearningObjectiveList;
 
     @Override
@@ -49,20 +47,10 @@ public class TopicFragment extends Fragment {
         mDbHelper = new LessonTrackerDbHelper(getActivity());
         Bundle arguments = getArguments();
         long topicId = arguments.getLong(TOPIC_ID);
-        String subjectTitle = arguments.getString(SubjectFragment.SUBJECT_TITLE);
         mTopic = mDbHelper.findTopic(topicId);
 
-        mSubjectTitleTextView = (TextView) view.findViewById(R.id.teachable_parent_title);
-        mSubjectTitleTextView.setText(subjectTitle);
-
-        mTitleTextView = (TextView) view.findViewById(R.id.teachable_title);
-        mTitleTextView.setText(mTopic.getTitle());
-
-        mDetailTextView = (TextView) view.findViewById(R.id.teachable_detail);
-        mDetailTextView.setText(mTopic.getDetail());
-
-        mNewLearningObjectiveButton = (Button) view.findViewById(R.id.teachable_child_new_button);
-        mNewLearningObjectiveButton.setBackgroundColor(Color.TRANSPARENT);
+        mRelativeLayout = (RelativeLayout) view.findViewById(R.id.list_fragment_header_layout);
+        mRelativeLayout.setVisibility(View.GONE);
 
         mLearningObjectiveList = (ListView) view.findViewById(R.id.teachable_child_list);
 
