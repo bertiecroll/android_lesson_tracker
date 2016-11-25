@@ -18,15 +18,17 @@ public class Lesson {
         mTopicId = topicId;
         mDate = new Date(date);
         mTaught = (taught == 1);
+        mDuration = 0;
         mNotes = "";
     }
 
-    public Lesson(long id, long cohortId, long topicId, long date, int taught, String notes) {
+    public Lesson(long id, long cohortId, long topicId, long date, int taught, long duration, String notes) {
         mId = id;
         mCohortId = cohortId;
         mTopicId = topicId;
         mDate = new Date(date);
         mTaught = (taught == 1);
+        mDuration = duration;
         mNotes = notes;
     }
 

@@ -20,7 +20,7 @@ public class LessonTest {
         long topicId = 1;
         Date date = new Date();
         lesson = new Lesson(cohortId, topicId, date.getTime(), 0);
-        lessonWithId = new Lesson(1, cohortId, topicId, date.getTime(), 1, "");
+        lessonWithId = new Lesson(1, cohortId, topicId, date.getTime(), 1, 45000, "");
     }
 
     @Test

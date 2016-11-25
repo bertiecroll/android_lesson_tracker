@@ -21,9 +21,13 @@ import com.example.user.lessontracker.database.LessonTrackerDbHelper;
 import com.example.user.lessontracker.models.Lesson;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 public class LessonListFragment extends Fragment {
+
+    public static final String LESSON_ID = "lessonId";
+    public static final String LESSON_START_TIME = "lessonStartTime";
 
     LessonTrackerDbHelper mDbHelper;
     RelativeLayout mHeaderLayout;
@@ -77,16 +81,17 @@ public class LessonListFragment extends Fragment {
                 FragmentTransaction transaction = getFragmentManager().beginTransaction();
                 TakeLessonFragment takeLessonFragment = new TakeLessonFragment();
 
+                long lessonStartTime = new Date().getTime();
+
                 Bundle args = new Bundle();
-                args.putLong("lessonId", selectedLesson.getId());
+                args.putLong(LESSON_ID, selectedLesson.getId());
+                args.putLong(LESSON_START_TIME, lessonStartTime);
                 takeLessonFragment.setArguments(args);
                 transaction.replace(R.id.fragment_container, takeLessonFragment);
                 transaction.addToBackStack(null);
                 transaction.commit();
             }
         });
-
-
 
         return view;
     }

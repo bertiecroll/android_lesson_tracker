@@ -22,6 +22,7 @@ import com.example.user.lessontracker.models.Outcome;
 import com.example.user.lessontracker.models.Topic;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 public class TakeLessonFragment extends Fragment {
@@ -46,7 +47,8 @@ public class TakeLessonFragment extends Fragment {
 
         mDbHelper = new LessonTrackerDbHelper(getActivity());
         Bundle arguments = getArguments();
-        final long lessonId = arguments.getLong("lessonId");
+        final long lessonId = arguments.getLong(LessonListFragment.LESSON_ID);
+        final long lessonStartTime = arguments.getLong(LessonListFragment.LESSON_START_TIME);
         mLesson = mDbHelper.findLesson(lessonId);
         mTopic = mDbHelper.findTopic(mLesson.getTopicId());
 
@@ -89,7 +91,9 @@ public class TakeLessonFragment extends Fragment {
         mCompleteButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                mLesson.teach(50);
+                long lessonEndTime = new Date().getTime();
+                long duration = lessonEndTime - lessonStartTime;
+                mLesson.teach(duration);
                 mLesson.setNotes(mNotesEditText.getText().toString());
                 mDbHelper.updateLesson(mLesson);
                 getFragmentManager().popBackStack();

@@ -51,6 +51,7 @@ public class LessonTrackerDbHelper extends SQLiteOpenHelper {
             + LessonTable.Cols.COHORT_ID + " integer, " + LessonTable.Cols.TOPIC_ID +
             " integer references " + TopicTable.NAME + "(" + TopicTable.Cols.ID +
             ") on delete cascade, " + LessonTable.Cols.TAUGHT + " integer, "
+            + LessonTable.Cols.DURATION + " integer, "
             + LessonTable.Cols.DATE + " integer, " + LessonTable.Cols.NOTES + " text)";
 
     private static final String CREATE_TABLE_OUTCOME = "create table "
@@ -738,6 +739,7 @@ public class LessonTrackerDbHelper extends SQLiteOpenHelper {
         values.put(LessonTable.Cols.TOPIC_ID, lesson.getTopicId());
         values.put(LessonTable.Cols.DATE, lesson.getDate().getTime());
         values.put(LessonTable.Cols.TAUGHT, lesson.taughtAsInt());
+        values.put(LessonTable.Cols.DURATION, lesson.getDuration());
         values.put(LessonTable.Cols.NOTES, lesson.getNotes());
 
         return values;
