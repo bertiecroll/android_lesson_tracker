@@ -89,7 +89,7 @@ public class TakeLessonFragment extends Fragment {
         mCompleteButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                mLesson.teach();
+                mLesson.teach(50);
                 mLesson.setNotes(mNotesEditText.getText().toString());
                 mDbHelper.updateLesson(mLesson);
                 getFragmentManager().popBackStack();

@@ -10,6 +10,7 @@ public class Lesson {
     private long mTopicId;
     private Date mDate;
     private boolean mTaught;
+    private long mDuration;
     private String mNotes;
 
     public Lesson(long cohortId, long topicId, long date, int taught) {
@@ -74,8 +75,13 @@ public class Lesson {
         return mTaught;
     }
 
-    public void teach() {
+    public void teach(long duration) {
         mTaught = true;
+        mDuration = duration;
+    }
+
+    public long getDuration() {
+        return mDuration;
     }
 
     public int taughtAsInt() {

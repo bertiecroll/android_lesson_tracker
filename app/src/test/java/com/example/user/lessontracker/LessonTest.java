@@ -20,7 +20,7 @@ public class LessonTest {
         long topicId = 1;
         Date date = new Date();
         lesson = new Lesson(cohortId, topicId, date.getTime(), 0);
-        lessonWithId = new Lesson(1, cohortId, topicId, date.getTime(), 1);
+        lessonWithId = new Lesson(1, cohortId, topicId, date.getTime(), 1, "");
     }
 
     @Test
@@ -49,7 +49,7 @@ public class LessonTest {
     @Test
     public void getDate() {
         Date testDate = new Date();
-        assertEquals(testDate.getTime(), lesson.getDate().getTime(), 0.01);
+        assertEquals(testDate.getTime(), lesson.getDate().getTime(), 0.1);
     }
 
     @Test
@@ -70,13 +70,19 @@ public class LessonTest {
 
     @Test
     public void canTeachLesson() {
-        lesson.teach();
+        lesson.teach(50);
         assertEquals(true, lesson.hasBeenTaught());
     }
 
     @Test
+    public void canGetLessonDuration() {
+        lesson.teach(50);
+        assertEquals(50, lesson.getDuration());
+    }
+
+    @Test
     public void canGetDateAsString() {
-        assertEquals("15/11/16", lesson.printDate());
+        assertEquals("25/11/16", lesson.printDate());
     }
 
 
