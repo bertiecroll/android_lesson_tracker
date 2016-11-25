@@ -19,6 +19,7 @@ public class AddSubjectFragment extends Fragment {
     EditText mTitleEditText;
     EditText mDetailEditText;
     Button mAddButton;
+    Button mFinishButton;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -49,6 +50,9 @@ public class AddSubjectFragment extends Fragment {
                 Toast.makeText(getActivity(), R.string.subject_toast_add_success, Toast.LENGTH_SHORT).show();
             }
         });
+
+        mFinishButton = (Button) view.findViewById(R.id.add_finish_button);
+        mFinishButton.setVisibility(View.GONE);
 
         return view;
     }

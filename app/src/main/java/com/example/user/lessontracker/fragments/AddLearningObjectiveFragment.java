@@ -23,6 +23,7 @@ public class AddLearningObjectiveFragment extends Fragment {
     EditText mTitleEditText;
     EditText mDetailEditText;
     Button mAddButton;
+    Button mFinishButton;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -62,6 +63,18 @@ public class AddLearningObjectiveFragment extends Fragment {
                         new LearningObjective(topicId, title, detail);
                 mDbHelper.saveLearningObjective(learningObjective);
 
+                mTitleEditText.setText(null);
+                mDetailEditText.setText(null);
+                Toast.makeText(getActivity(), R.string.learning_objective_toast_add_success, Toast.LENGTH_SHORT).show();
+            }
+        });
+
+        mFinishButton = (Button) view.findViewById(R.id.add_finish_button);
+        mFinishButton.setText(R.string.learning_objective_finish_button);
+        mFinishButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
                 FragmentTransaction transaction = getFragmentManager().beginTransaction();
                 SubjectFragment subjectFrag = new SubjectFragment();
 
@@ -72,8 +85,7 @@ public class AddLearningObjectiveFragment extends Fragment {
                 transaction.remove(AddLearningObjectiveFragment.this);
                 transaction.commit();
                 getFragmentManager().popBackStack();
-
-                Toast.makeText(getActivity(), R.string.learning_objective_toast_add_success, Toast.LENGTH_SHORT).show();
+                Toast.makeText(getActivity(), R.string.topic_toast_add_success, Toast.LENGTH_SHORT).show();
             }
         });
 
