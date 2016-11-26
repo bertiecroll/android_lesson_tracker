@@ -37,7 +37,8 @@ public class TaggingDialogFragment extends DialogFragment {
         Bundle arguments = getArguments();
         String learningObjectiveTitle = arguments.getString("learningObjectiveTitle");
         final long outcomeId = arguments.getLong("outcomeId");
-        final long lessonId = arguments.getLong("lessonId");
+        final long lessonId = arguments.getLong(LessonListFragment.LESSON_ID);
+        final long lessonStartTime = arguments.getLong(LessonListFragment.LESSON_START_TIME);
 
 
         List<Tag> allTags = new ArrayList<>(mDbHelper.allTags());
@@ -93,13 +94,13 @@ public class TaggingDialogFragment extends DialogFragment {
                 FragmentTransaction transaction = getFragmentManager().beginTransaction();
                 TakeLessonFragment takeLessonFragment = new TakeLessonFragment();
                 Bundle args = new Bundle();
-                args.putLong("lessonId", lessonId);
+                args.putLong(LessonListFragment.LESSON_ID, lessonId);
+                args.putLong(LessonListFragment.LESSON_START_TIME, lessonStartTime);
                 takeLessonFragment.setArguments(args);
                 transaction.replace(R.id.fragment_container, takeLessonFragment);
                 transaction.addToBackStack(null);
                 transaction.commit();
                 getDialog().dismiss();
-//                Toast.makeText(getActivity(), R.string.tagging_toast_complete, Toast.LENGTH_SHORT).show();
             }
         });
 

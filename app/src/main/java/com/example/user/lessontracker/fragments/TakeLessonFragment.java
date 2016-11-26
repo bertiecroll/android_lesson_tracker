@@ -3,6 +3,7 @@ package com.example.user.lessontracker.fragments;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -77,7 +78,8 @@ public class TakeLessonFragment extends Fragment {
                 Bundle args = new Bundle();
                 args.putString("learningObjectiveTitle", learningObjectiveTitle);
                 args.putLong("outcomeId", selectedOutcome.getId());
-                args.putLong("lessonId", lessonId);
+                args.putLong(LessonListFragment.LESSON_ID, lessonId);
+                args.putLong(LessonListFragment.LESSON_START_TIME, lessonStartTime);
 
                 taggingDialog.setArguments(args);
                 transaction.add(taggingDialog, null);
