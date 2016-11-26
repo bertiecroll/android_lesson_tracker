@@ -24,6 +24,7 @@ public class CompletedLessonAdapter extends ArrayAdapter<Lesson> {
     private static class ViewHolder {
         TextView lessonDetailsTextView;
         TextView topicTitleTextView;
+        TextView lessonDuration;
     }
 
     LessonTrackerDbHelper mDbHelper;
@@ -44,6 +45,7 @@ public class CompletedLessonAdapter extends ArrayAdapter<Lesson> {
             view = inflater.inflate(R.layout.item_completed_lesson, parent, false);
             viewHolder.topicTitleTextView = (TextView) view.findViewById(R.id.completed_lesson_list_item_topic);
             viewHolder.lessonDetailsTextView = (TextView) view.findViewById(R.id.completed_lesson_list_item_lesson);
+            viewHolder.lessonDuration = (TextView) view.findViewById(R.id.completed_lesson_list_item_duration);
             view.setTag(viewHolder);
         } else {
             viewHolder = (CompletedLessonAdapter.ViewHolder) view.getTag();
@@ -53,6 +55,9 @@ public class CompletedLessonAdapter extends ArrayAdapter<Lesson> {
         viewHolder.topicTitleTextView.setText(topic.getTitle());
 
         viewHolder.lessonDetailsTextView.setText(completedLesson.toString());
+
+        long durationSecs = completedLesson.getDuration()/1000;
+        viewHolder.lessonDuration.setText(Long.toString(durationSecs));
 
         return view;
     }
