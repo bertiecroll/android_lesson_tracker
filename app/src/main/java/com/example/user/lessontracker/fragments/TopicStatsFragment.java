@@ -5,10 +5,20 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
 import com.example.user.lessontracker.R;
+import com.example.user.lessontracker.database.LessonTrackerDbHelper;
+import com.example.user.lessontracker.models.Topic;
 
 public class TopicStatsFragment extends Fragment {
+
+    LessonTrackerDbHelper mDbHelper;
+    Topic mTopic;
+
+    TextView mPageTitle;
+    TextView mAverageDuration;
+    TextView mPercentObjectivesMet;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -18,6 +28,19 @@ public class TopicStatsFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_topic_stats, container, false);
+
+        mDbHelper = new LessonTrackerDbHelper(getActivity());
+        Bundle arguments = getArguments();
+        long topicId = arguments.getLong(TopicFragment.TOPIC_ID);
+        mTopic = mDbHelper.findTopic(topicId);
+
+        mPageTitle = (TextView) view.findViewById(R.id.topic_stats_title);
+
+        mAverageDuration = (TextView) view.findViewById(R.id.topic_stats_average_duration);
+        mAverageDuration.setText(R.string.topic_stats_average_duration);
+
+        mPercentObjectivesMet = (TextView) view.findViewById(R.id.topic_stats_percent_objectives_met);
+        mPercentObjectivesMet.setText(R.string.topic_stats_percent_objectives_met);
 
         return view;
     }

@@ -12,7 +12,8 @@
     <string name="topic_add_button">Add Topic</string>
     <string name="topic_new_learning_objective_button">Add New Objective</string>
     <string name="topic_toast_add_success">New Topic Has Been Added!</string>
-    <string name="topic_stats_title">Topic Statistics</string>
+    <string name="topic_stats_average_duration">Average Lesson Duration</string>
+    <string name="topic_stats_percent_objectives_met">Percentage of Objectives Met</string>
 
     <string name="learning_objective_title_hint">Enter Learning Objective Title</string>
     <string name="learning_objective_detail_hint">Enter Learning Objective Details</string>
@@ -41,5 +42,6 @@
     <string name="take_lesson_notes_hint">Add notes here...</string>
 
     <string name="lesson_history_filter_button">Filter</string>
+    <string name="lesson_history_title">Completed Lessons</string>
 
 </resources>

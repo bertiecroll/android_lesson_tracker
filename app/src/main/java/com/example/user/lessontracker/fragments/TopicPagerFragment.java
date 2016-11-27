@@ -43,10 +43,10 @@ public class TopicPagerFragment extends Fragment {
         final TopicFragment topicFragment = new TopicFragment();
         Bundle topicArgs = new Bundle();
         topicArgs.putLong(TopicFragment.TOPIC_ID, topicId);
-        topicArgs.putString(SubjectFragment.SUBJECT_TITLE, subjectTitle);
         topicFragment.setArguments(topicArgs);
 
         final TopicStatsFragment topicStatsFragment = new TopicStatsFragment();
+        topicStatsFragment.setArguments(topicArgs);
 
         mSubjectTitleTextView = (TextView) view.findViewById(R.id.topic_view_pager_subject_title);
         mSubjectTitleTextView.setText(subjectTitle);

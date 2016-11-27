@@ -10,9 +10,9 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
-import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.Spinner;
+import android.widget.TextView;
 
 import com.example.user.lessontracker.R;
 import com.example.user.lessontracker.adapters.CompletedLessonAdapter;
@@ -27,7 +27,7 @@ import java.util.List;
 public class LessonHistoryListFragment extends Fragment {
 
     LessonTrackerDbHelper mDbHelper;
-    LinearLayout mSpinnerLayout;
+    TextView mTitle;
     Spinner mSubjectSpinner;
     Spinner mTopicSpinner;
     Button mLessonFilterButton;
@@ -44,7 +44,8 @@ public class LessonHistoryListFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_list_history, container, false);
 
         mDbHelper = new LessonTrackerDbHelper(getActivity());
-        mSpinnerLayout = (LinearLayout) view.findViewById(R.id.lesson_history_spinner_layout);
+
+        mTitle = (TextView) view.findViewById(R.id.lesson_history_title);
 
         mSubjectSpinner = (Spinner) view.findViewById(R.id.lesson_history_subject_spinner);
         List<Subject> subjects = new ArrayList<>(mDbHelper.allSubjects());

@@ -6,14 +6,23 @@
     android:layout_height="match_parent">
 
     <TextView
-        android:id="@+id/topic_stats_title"
+        android:id="@+id/topic_stats_average_duration"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:paddingTop="16dp"
+        android:paddingTop="8dp"
         android:layout_marginLeft="16dp"
-        android:textSize="16dp"
+        android:textSize="14dp"
         android:textAllCaps="true"
-        android:text="@string/topic_stats_title"
-        android:textColor="@android:color/background_light" />
+        android:textColor="@color/colorPrimaryDark"/>
+
+    <TextView
+        android:id="@+id/topic_stats_percent_objectives_met"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingTop="8dp"
+        android:layout_marginLeft="16dp"
+        android:textSize="14dp"
+        android:textAllCaps="true"
+        android:textColor="@color/colorPrimaryDark"/>
 
 </LinearLayout>
