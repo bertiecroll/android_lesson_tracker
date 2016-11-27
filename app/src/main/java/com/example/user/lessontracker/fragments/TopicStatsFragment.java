@@ -14,9 +14,7 @@ import com.example.user.lessontracker.models.Topic;
 public class TopicStatsFragment extends Fragment {
 
     LessonTrackerDbHelper mDbHelper;
-    Topic mTopic;
 
-    TextView mPageTitle;
     TextView mAverageDuration;
     TextView mPercentObjectivesMet;
 
@@ -32,12 +30,10 @@ public class TopicStatsFragment extends Fragment {
         mDbHelper = new LessonTrackerDbHelper(getActivity());
         Bundle arguments = getArguments();
         long topicId = arguments.getLong(TopicFragment.TOPIC_ID);
-        mTopic = mDbHelper.findTopic(topicId);
-
-        mPageTitle = (TextView) view.findViewById(R.id.topic_stats_title);
+        double averageDuration = mDbHelper.averageLessonDurationByTopic(topicId);
 
         mAverageDuration = (TextView) view.findViewById(R.id.topic_stats_average_duration);
-        mAverageDuration.setText(R.string.topic_stats_average_duration);
+        mAverageDuration.setText(Double.toString(averageDuration));
 
         mPercentObjectivesMet = (TextView) view.findViewById(R.id.topic_stats_percent_objectives_met);
         mPercentObjectivesMet.setText(R.string.topic_stats_percent_objectives_met);

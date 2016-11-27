@@ -335,7 +335,7 @@ public class LessonTrackerDbHelper extends SQLiteOpenHelper {
 
     public Lesson findLesson(long id) {
         LessonTrackerCursorWrapper cursor = query(LessonTable.NAME,
-                LessonTable.Cols.ID + " = ?", new String[] { Long.toString(id)} );
+                LessonTable.Cols.ID + " = ?", new String[] { Long.toString(id) } );
 
         try {
             if (cursor.getCount() == 0) {
@@ -400,6 +400,26 @@ public class LessonTrackerDbHelper extends SQLiteOpenHelper {
         }
 
         return lessons;
+    }
+
+    public double averageLessonDurationByTopic(long topicId) {
+        SQLiteDatabase database = getDatabase();
+
+        Cursor cursor = database.query(
+                LessonTable.NAME, new String[] { "AVG(" + LessonTable.Cols.DURATION + ")" },
+                LessonTable.Cols.TOPIC_ID + " = ?", new String[] { Long.toString(topicId) },
+                null, null, null);
+
+        try {
+            if (cursor.getCount() == 0) {
+                return 0;
+            }
+            cursor.moveToFirst();
+            return cursor.getDouble(0);
+
+        } finally {
+            cursor.close();
+        }
     }
 
     // OUTCOME CRUD ACTIONS
