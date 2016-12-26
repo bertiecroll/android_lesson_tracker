@@ -384,6 +384,25 @@ public class LessonTrackerDbHelper extends SQLiteOpenHelper {
         return lessons;
     }
 
+    public List<Lesson> findLessonsByTopic(long topicId) {
+        List<Lesson> lessons = new ArrayList<>();
+
+        LessonTrackerCursorWrapper cursor = query(LessonTable.NAME,
+                LessonTable.Cols.TOPIC_ID + " = ?", new String[] {Long.toString(topicId)});
+
+        try {
+            cursor.moveToFirst();
+            while (!cursor.isAfterLast()) {
+                lessons.add(cursor.getLesson());
+                cursor.moveToNext();
+            }
+        } finally {
+            cursor.close();
+        }
+
+        return lessons;
+    }
+
     public List<Lesson> allLessons() {
         List<Lesson> lessons = new ArrayList<>();
 
