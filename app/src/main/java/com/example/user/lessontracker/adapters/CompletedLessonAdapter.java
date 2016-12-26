@@ -1,22 +1,17 @@
 package com.example.user.lessontracker.adapters;
 
 import android.content.Context;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
-import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.example.user.lessontracker.R;
 import com.example.user.lessontracker.database.LessonTrackerDbHelper;
 import com.example.user.lessontracker.models.Lesson;
-import com.example.user.lessontracker.models.Outcome;
-import com.example.user.lessontracker.models.Tag;
 import com.example.user.lessontracker.models.Topic;
 
-import java.util.HashMap;
 import java.util.List;
 
 public class CompletedLessonAdapter extends ArrayAdapter<Lesson> {
@@ -55,6 +50,7 @@ public class CompletedLessonAdapter extends ArrayAdapter<Lesson> {
         viewHolder.topicTitleTextView.setText(topic.getTitle());
 
         viewHolder.lessonDetailsTextView.setText(completedLesson.toString());
+
 
         long durationSecs = completedLesson.getDuration()/1000;
         viewHolder.lessonDuration.setText(Long.toString(durationSecs));

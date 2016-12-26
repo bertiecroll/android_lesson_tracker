@@ -3,6 +3,7 @@ package com.example.user.lessontracker.fragments;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -48,7 +49,7 @@ public class TakeLessonFragment extends Fragment {
         mDbHelper = new LessonTrackerDbHelper(getActivity());
         Bundle arguments = getArguments();
         final long lessonId = arguments.getLong(LessonListFragment.LESSON_ID);
-        final long lessonStartTime = arguments.getLong(LessonListFragment.LESSON_START_TIME);
+        final long lessonStartTime = new Date().getTime();
         mLesson = mDbHelper.findLesson(lessonId);
         mTopic = mDbHelper.findTopic(mLesson.getTopicId());
 
@@ -92,7 +93,10 @@ public class TakeLessonFragment extends Fragment {
             @Override
             public void onClick(View view) {
                 long lessonEndTime = new Date().getTime();
-                long duration = lessonEndTime - lessonStartTime;
+                Log.d("LessonTracker", "Start time again = " + Long.toString(lessonStartTime));
+                Log.d("LessonTracker", "End time = " + Long.toString(lessonEndTime));
+                long duration = (lessonEndTime - lessonStartTime);
+                Log.d("LessonTracker", "lesson duration = " + Long.toString(duration));
                 mLesson.teach(duration);
                 mLesson.setNotes(mNotesEditText.getText().toString());
                 mDbHelper.updateLesson(mLesson);
