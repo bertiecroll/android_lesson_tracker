@@ -5,20 +5,56 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <TextView
-        android:id="@+id/topic_stats_title"
+    <RelativeLayout
+        android:id="@+id/topic_stats_button_layout"
+        android:orientation="horizontal"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:paddingTop="16dp"
-        android:layout_marginLeft="16dp"
-        android:textSize="16dp"
-        android:textAllCaps="true"
-        android:text="@string/topic_stats_title"
-        android:textColor="@android:color/background_light" />
+        android:layout_marginBottom="8dp"
+        android:paddingBottom="2dp" >
+
+        <Button
+            android:id="@+id/topic_stats_button_linechart"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_marginTop="8dp"
+            android:layout_marginLeft="8dp"
+            android:elevation="8dp"
+            android:background="@color/colorPrimaryDark"
+            android:textColor="@android:color/background_light"
+            android:padding="2dp"
+            android:textSize="10dp"
+            android:text="@string/topic_stats_button_linechart"/>
+
+        <Button
+            android:id="@+id/topic_stats_button_barchart"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toRightOf="@+id/topic_stats_button_linechart"
+            android:layout_marginTop="8dp"
+            android:layout_marginLeft="8dp"
+            android:elevation="8dp"
+            android:background="@color/colorPrimaryDark"
+            android:textColor="@android:color/background_light"
+            android:padding="2dp"
+            android:textSize="10dp"
+            android:text="@string/topic_stats_button_barchart"/>
+
+    </RelativeLayout>
 
     <com.github.mikephil.charting.charts.LineChart
         android:id="@+id/topic_stats_linechart"
         android:layout_width="match_parent"
-        android:layout_height="match_parent" />
+        android:layout_height="match_parent"
+        android:layout_margin="8dp"
+        android:visibility="gone" />
+
+    <com.github.mikephil.charting.charts.BarChart
+        android:id="@+id/topic_stats_barchart"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_margin="8dp"
+        android:visibility="gone" />
 
 </LinearLayout>
