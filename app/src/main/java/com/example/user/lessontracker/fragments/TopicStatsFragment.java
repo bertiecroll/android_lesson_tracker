@@ -9,18 +9,37 @@ import android.widget.Button;
 
 import com.example.user.lessontracker.R;
 import com.example.user.lessontracker.database.LessonTrackerDbHelper;
+import com.example.user.lessontracker.models.LearningObjective;
 import com.example.user.lessontracker.models.Lesson;
 import com.github.mikephil.charting.charts.BarChart;
 import com.github.mikephil.charting.charts.LineChart;
+import com.github.mikephil.charting.components.AxisBase;
 import com.github.mikephil.charting.components.XAxis;
+import com.github.mikephil.charting.data.BarData;
+import com.github.mikephil.charting.data.BarDataSet;
+import com.github.mikephil.charting.data.BarEntry;
 import com.github.mikephil.charting.data.Entry;
 import com.github.mikephil.charting.data.LineData;
 import com.github.mikephil.charting.data.LineDataSet;
+import com.github.mikephil.charting.formatter.IAxisValueFormatter;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class TopicStatsFragment extends Fragment {
+
+    private class ObjectivesXAxisFormatter implements IAxisValueFormatter {
+        private List<String> mValues;
+
+        public ObjectivesXAxisFormatter(List<String> values) {
+            this.mValues = values;
+        }
+
+        @Override
+        public String getFormattedValue(float value, AxisBase axis) {
+            return mValues.get((int) value);
+        }
+    }
 
     LineChart mDurationLineChart;
     BarChart mObjectivesBarChart;
@@ -50,9 +69,9 @@ public class TopicStatsFragment extends Fragment {
             List<Entry> lineChartEntries = new ArrayList<>();
 
             for (Lesson lesson : mLessons) {
-                long xValue = lesson.getId();
-                long yValue = lesson.getDuration() / 1000;
-                lineChartEntries.add(new Entry(xValue, yValue));
+                long xValueDuration = lesson.getId();
+                long yValueDuration = lesson.getDuration() / 1000;
+                lineChartEntries.add(new Entry(xValueDuration, yValueDuration));
             }
 
             LineDataSet lineChartDataSet = new LineDataSet(lineChartEntries, "lesson Duration in Seconds");
@@ -62,6 +81,30 @@ public class TopicStatsFragment extends Fragment {
 
             XAxis xaxis = mDurationLineChart.getXAxis();
             xaxis.setLabelCount(mLessons.size(), true);
+
+            List<BarEntry> barChartEntries = new ArrayList<>();
+            List<LearningObjective> learningObjectives = mDbHelper.findLearningObjectivesByTopic(topicId);
+            List<String> objectiveTitles = new ArrayList<>();
+
+            long xValueCounter = 0;
+            for(LearningObjective objective : learningObjectives) {
+                String title = objective.getTitle();
+                objectiveTitles.add(title);
+                long xValueObjective = xValueCounter;
+                xValueCounter++;
+
+                long yValueObjective = xValueCounter;
+                barChartEntries.add(new BarEntry(xValueObjective, yValueObjective));
+            }
+
+            BarDataSet barChartDataSet = new BarDataSet(barChartEntries, "% of Objectives Met");
+            BarData barData = new BarData(barChartDataSet);
+            mObjectivesBarChart.setData(barData);
+            mObjectivesBarChart.setDescription(null);
+
+            XAxis objectiveXAxis = mObjectivesBarChart.getXAxis();
+            objectiveXAxis.setValueFormatter(new ObjectivesXAxisFormatter(objectiveTitles));
+            objectiveXAxis.setGranularity(1f);
         }
 
         mDurationChartButton = (Button) view.findViewById(R.id.topic_stats_button_linechart);
