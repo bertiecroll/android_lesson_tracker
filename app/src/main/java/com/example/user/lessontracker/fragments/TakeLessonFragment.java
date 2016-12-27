@@ -49,7 +49,8 @@ public class TakeLessonFragment extends Fragment {
         mDbHelper = new LessonTrackerDbHelper(getActivity());
         Bundle arguments = getArguments();
         final long lessonId = arguments.getLong(LessonListFragment.LESSON_ID);
-        final long lessonStartTime = new Date().getTime();
+        final long lessonStartTime = arguments.getLong(LessonListFragment.LESSON_START_TIME);
+        Log.d("LessonTracker", "Start time first = " + Long.toString(lessonStartTime));
         mLesson = mDbHelper.findLesson(lessonId);
         mTopic = mDbHelper.findTopic(mLesson.getTopicId());
 
@@ -94,7 +95,7 @@ public class TakeLessonFragment extends Fragment {
             @Override
             public void onClick(View view) {
                 long lessonEndTime = new Date().getTime();
-                Log.d("LessonTracker", "Start time again = " + Long.toString(lessonStartTime));
+                Log.d("LessonTracker", "Start time second = " + Long.toString(lessonStartTime));
                 Log.d("LessonTracker", "End time = " + Long.toString(lessonEndTime));
                 long duration = (lessonEndTime - lessonStartTime);
                 Log.d("LessonTracker", "lesson duration = " + Long.toString(duration));

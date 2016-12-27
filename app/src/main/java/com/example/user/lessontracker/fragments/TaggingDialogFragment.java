@@ -40,7 +40,6 @@ public class TaggingDialogFragment extends DialogFragment {
         final long lessonId = arguments.getLong(LessonListFragment.LESSON_ID);
         final long lessonStartTime = arguments.getLong(LessonListFragment.LESSON_START_TIME);
 
-
         List<Tag> allTags = new ArrayList<>(mDbHelper.allTags());
         List<Long> usedTagIds = new ArrayList<>(mDbHelper.findOutcomeTagIds(outcomeId));
 
@@ -62,7 +61,7 @@ public class TaggingDialogFragment extends DialogFragment {
                         Log.d("LessonTracker", tag.getTitle() + "Tag button normal click");
                         Tagging tagging = new Tagging(tag.getId(), outcomeId);
                         mDbHelper.saveTagging(tagging);
-                        tagButton.setVisibility(View.INVISIBLE);
+                        tagButton.setVisibility(View.GONE);
                     }
                 });
 
