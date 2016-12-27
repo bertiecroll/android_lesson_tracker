@@ -10,10 +10,8 @@ import android.widget.Button;
 import com.example.user.lessontracker.R;
 import com.example.user.lessontracker.database.LessonTrackerDbHelper;
 import com.example.user.lessontracker.models.Lesson;
-import com.example.user.lessontracker.models.Topic;
 import com.github.mikephil.charting.charts.BarChart;
 import com.github.mikephil.charting.charts.LineChart;
-import com.github.mikephil.charting.components.Description;
 import com.github.mikephil.charting.components.XAxis;
 import com.github.mikephil.charting.data.Entry;
 import com.github.mikephil.charting.data.LineData;
@@ -83,7 +81,6 @@ public class TopicStatsFragment extends Fragment {
                 mObjectivesBarChart.setVisibility(View.VISIBLE);
             }
         });
-
 
         return view;
     }

@@ -43,7 +43,6 @@ public class TopicPagerFragment extends Fragment {
         final TopicFragment topicFragment = new TopicFragment();
         Bundle topicArgs = new Bundle();
         topicArgs.putLong(TopicFragment.TOPIC_ID, topicId);
-        topicArgs.putString(SubjectFragment.SUBJECT_TITLE, subjectTitle);
         topicFragment.setArguments(topicArgs);
 
         final TopicStatsFragment topicStatsFragment = new TopicStatsFragment();

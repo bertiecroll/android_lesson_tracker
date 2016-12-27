@@ -78,7 +78,8 @@ public class TakeLessonFragment extends Fragment {
                 Bundle args = new Bundle();
                 args.putString("learningObjectiveTitle", learningObjectiveTitle);
                 args.putLong("outcomeId", selectedOutcome.getId());
-                args.putLong("lessonId", lessonId);
+                args.putLong(LessonListFragment.LESSON_ID, lessonId);
+                args.putLong(LessonListFragment.LESSON_START_TIME, lessonStartTime);
 
                 taggingDialog.setArguments(args);
                 transaction.add(taggingDialog, null);

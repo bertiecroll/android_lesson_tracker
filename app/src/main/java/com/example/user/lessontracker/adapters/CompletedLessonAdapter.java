@@ -53,7 +53,8 @@ public class CompletedLessonAdapter extends ArrayAdapter<Lesson> {
 
 
         long durationSecs = completedLesson.getDuration()/1000;
-        viewHolder.lessonDuration.setText(Long.toString(durationSecs));
+        String durationText = "Lesson Duration " + Long.toString(durationSecs) + " seconds.";
+        viewHolder.lessonDuration.setText(durationText);
 
         return view;
     }
