@@ -55,6 +55,7 @@ public class LessonTrackerSchema {
             public static final String ID = "_id";
             public static final String LESSON_ID = "lesson_id";
             public static final String LEARNING_OBJECTIVE_ID = "learning_objective_id";
+            public static final String OBJECTIVE_MET = "objective_met";
         }
     }
 

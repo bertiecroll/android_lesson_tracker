@@ -14,9 +14,11 @@ import android.widget.LinearLayout;
 import android.widget.LinearLayout.LayoutParams;
 import android.widget.TextView;
 import android.widget.Toast;
+import android.widget.ToggleButton;
 
 import com.example.user.lessontracker.R;
 import com.example.user.lessontracker.database.LessonTrackerDbHelper;
+import com.example.user.lessontracker.models.Outcome;
 import com.example.user.lessontracker.models.Tag;
 import com.example.user.lessontracker.models.Tagging;
 
@@ -28,6 +30,8 @@ public class TaggingDialogFragment extends DialogFragment {
     LessonTrackerDbHelper mDbHelper;
     TextView mTaggingTitle;
     TextView mLearningObjectiveTitle;
+    ToggleButton mObjectiveMetToggle;
+    Outcome mCurrentOutcome;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -36,10 +40,13 @@ public class TaggingDialogFragment extends DialogFragment {
         mDbHelper = new LessonTrackerDbHelper(getActivity());
         Bundle arguments = getArguments();
         String learningObjectiveTitle = arguments.getString("learningObjectiveTitle");
-        final long outcomeId = arguments.getLong("outcomeId");
+        final long outcomeId = arguments.getLong(LessonListFragment.OUTCOME_ID);
         final long lessonId = arguments.getLong(LessonListFragment.LESSON_ID);
         final long lessonStartTime = arguments.getLong(LessonListFragment.LESSON_START_TIME);
 
+        mObjectiveMetToggle = (ToggleButton) view.findViewById(R.id.tagging_objective_met_toggle);
+
+        mCurrentOutcome = mDbHelper.findOutcome(outcomeId);
         List<Tag> allTags = new ArrayList<>(mDbHelper.allTags());
         List<Long> usedTagIds = new ArrayList<>(mDbHelper.findOutcomeTagIds(outcomeId));
 
@@ -89,6 +96,10 @@ public class TaggingDialogFragment extends DialogFragment {
             @Override
             public void onClick(View view) {
                 Log.d("LessonTracker", "Complete button click");
+                if(mObjectiveMetToggle.isChecked()) {
+                    mCurrentOutcome.achieveObjective();
+                    mDbHelper.updateOutcome(mCurrentOutcome);
+                }
                 getFragmentManager().popBackStack();
                 FragmentTransaction transaction = getFragmentManager().beginTransaction();
                 TakeLessonFragment takeLessonFragment = new TakeLessonFragment();

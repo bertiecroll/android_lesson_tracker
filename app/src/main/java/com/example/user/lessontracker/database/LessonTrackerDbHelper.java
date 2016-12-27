@@ -59,7 +59,7 @@ public class LessonTrackerDbHelper extends SQLiteOpenHelper {
             + OutcomeTable.Cols.LESSON_ID + " integer references " + LessonTable.NAME + "("
             + LessonTable.Cols.ID + ") on delete cascade, " + OutcomeTable.Cols.LEARNING_OBJECTIVE_ID
             + " integer references " + LearningObjectiveTable.NAME + "(" + LearningObjectiveTable.Cols.ID
-            + ") on delete cascade )";
+            + ") on delete cascade, " + OutcomeTable.Cols.OBJECTIVE_MET + " integer)";
 
     private static final String CREATE_TABLE_TAG = "create table "
             + TagTable.NAME + "(" + TagTable.Cols.ID + " integer primary key autoincrement, "
@@ -85,13 +85,13 @@ public class LessonTrackerDbHelper extends SQLiteOpenHelper {
             + TagTable.Cols.ICON_RESOURCE_ID + ", " + TagTable.Cols.TITLE + ", " + TagTable.Cols.TYPE
             + ") values ( 17301578, 'Not Enough Time', 'improvement' )";
 
-    private static final String ADD_DEFAULT_PASS_TAG = "insert into " + TagTable.NAME + "("
-            + TagTable.Cols.ICON_RESOURCE_ID + ", " + TagTable.Cols.TITLE + ", " + TagTable.Cols.TYPE
-            + ") values ( 17301515, 'Objective Met', 'positive' )";
-
-    private static final String ADD_DEFAULT_FAIL_TAG = "insert into " + TagTable.NAME + "("
-            + TagTable.Cols.ICON_RESOURCE_ID + ", " + TagTable.Cols.TITLE + ", " + TagTable.Cols.TYPE
-            + ") values ( 17301564, 'Unable to Meet Objective', 'negative' )";
+//    private static final String ADD_DEFAULT_PASS_TAG = "insert into " + TagTable.NAME + "("
+//            + TagTable.Cols.ICON_RESOURCE_ID + ", " + TagTable.Cols.TITLE + ", " + TagTable.Cols.TYPE
+//            + ") values ( 17301515, 'Objective Met', 'positive' )";
+//
+//    private static final String ADD_DEFAULT_FAIL_TAG = "insert into " + TagTable.NAME + "("
+//            + TagTable.Cols.ICON_RESOURCE_ID + ", " + TagTable.Cols.TITLE + ", " + TagTable.Cols.TYPE
+//            + ") values ( 17301564, 'Unable to Meet Objective', 'negative' )";
 
 
     public LessonTrackerDbHelper(Context context) {
@@ -107,8 +107,6 @@ public class LessonTrackerDbHelper extends SQLiteOpenHelper {
         db.execSQL(CREATE_TABLE_OUTCOME);
         db.execSQL(CREATE_TABLE_TAG);
         db.execSQL(CREATE_TABLE_TAGGING);
-        db.execSQL(ADD_DEFAULT_PASS_TAG);
-        db.execSQL(ADD_DEFAULT_FAIL_TAG);
         db.execSQL(ADD_DEFAULT_NO_TIME_TAG);
         db.execSQL(ADD_DEFAULT_FIX_TAG);
         db.execSQL(ADD_DEFAULT_REDO_TAG);
@@ -131,7 +129,6 @@ public class LessonTrackerDbHelper extends SQLiteOpenHelper {
         db.execSQL(CREATE_TABLE_OUTCOME);
         db.execSQL(CREATE_TABLE_TAG);
         db.execSQL(CREATE_TABLE_TAGGING);
-        db.execSQL(ADD_DEFAULT_PASS_TAG);
     }
 
     // SUBJECT CRUD ACTIONS
@@ -768,6 +765,7 @@ public class LessonTrackerDbHelper extends SQLiteOpenHelper {
         ContentValues values = new ContentValues();
         values.put(OutcomeTable.Cols.LESSON_ID, outcome.getLessonId());
         values.put(OutcomeTable.Cols.LEARNING_OBJECTIVE_ID, outcome.getLearningObjectiveId());
+        values.put(OutcomeTable.Cols.OBJECTIVE_MET, outcome.hasObjectiveBeenMetAsInt());
 
         return values;
     }

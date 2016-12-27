@@ -27,4 +27,12 @@
         android:textAllCaps="true"
         android:text="@string/tagging_title" />
 
+    <ToggleButton
+        android:id="@+id/tagging_objective_met_toggle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAllCaps="true"
+        android:textOn="Yes"
+        android:textOff="No"/>
+
 </LinearLayout>

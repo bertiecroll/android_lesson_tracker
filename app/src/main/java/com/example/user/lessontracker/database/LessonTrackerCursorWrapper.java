@@ -74,8 +74,9 @@ public class LessonTrackerCursorWrapper extends CursorWrapper {
         long id = getLong(getColumnIndex(OutcomeTable.Cols.ID));
         long lessonId = getLong(getColumnIndex(OutcomeTable.Cols.LESSON_ID));
         long learningObjectiveId = getLong(getColumnIndex(OutcomeTable.Cols.LEARNING_OBJECTIVE_ID));
+        int objectiveMet = getInt(getColumnIndex(OutcomeTable.Cols.OBJECTIVE_MET));
 
-        Outcome outcome = new Outcome(id, lessonId, learningObjectiveId);
+        Outcome outcome = new Outcome(id, lessonId, learningObjectiveId, objectiveMet);
         return outcome;
     }
 

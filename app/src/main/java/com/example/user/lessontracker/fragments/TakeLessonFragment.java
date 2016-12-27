@@ -78,7 +78,7 @@ public class TakeLessonFragment extends Fragment {
                 String learningObjectiveTitle = learningObjective.getTitle();
                 Bundle args = new Bundle();
                 args.putString("learningObjectiveTitle", learningObjectiveTitle);
-                args.putLong("outcomeId", selectedOutcome.getId());
+                args.putLong(LessonListFragment.OUTCOME_ID, selectedOutcome.getId());
                 args.putLong(LessonListFragment.LESSON_ID, lessonId);
                 args.putLong(LessonListFragment.LESSON_START_TIME, lessonStartTime);
 

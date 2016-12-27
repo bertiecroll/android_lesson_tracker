@@ -28,6 +28,7 @@ public class LessonListFragment extends Fragment {
 
     public static final String LESSON_ID = "lessonId";
     public static final String LESSON_START_TIME = "lessonStartTime";
+    public static final String OUTCOME_ID = "outcomeId";
 
     LessonTrackerDbHelper mDbHelper;
     RelativeLayout mHeaderLayout;

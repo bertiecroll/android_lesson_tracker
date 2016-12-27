@@ -5,16 +5,19 @@ public class Outcome {
     private long mId;
     private long mLessonId;
     private long mLearningObjectiveId;
+    private boolean mObjectiveMet;
 
     public Outcome(long lessonId, long learningObjectiveId) {
         mLessonId = lessonId;
         mLearningObjectiveId  = learningObjectiveId;
+        mObjectiveMet = false;
     }
 
-    public Outcome(long id, long lessonId, long learningObjectiveId) {
+    public Outcome(long id, long lessonId, long learningObjectiveId, int objectiveMet) {
         mId = id;
         mLessonId = lessonId;
         mLearningObjectiveId  = learningObjectiveId;
+        mObjectiveMet = (objectiveMet == 1);
     }
 
     public long getLessonId() {
@@ -39,5 +42,17 @@ public class Outcome {
 
     public void setId(long newId) {
         mId = newId;
+    }
+
+    public boolean hasObjectiveBeenMet() {
+        return mObjectiveMet;
+    }
+
+    public int hasObjectiveBeenMetAsInt() {
+        return (mObjectiveMet)? 1 : 0;
+    }
+
+    public void achieveObjective() {
+        mObjectiveMet = true;
     }
 }
