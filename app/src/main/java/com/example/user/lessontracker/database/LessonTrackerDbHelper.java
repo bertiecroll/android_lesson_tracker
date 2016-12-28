@@ -381,11 +381,13 @@ public class LessonTrackerDbHelper extends SQLiteOpenHelper {
         return lessons;
     }
 
-    public List<Lesson> findLessonsByTopic(long topicId) {
+    public List<Lesson> findLessonsByTopic(long topicId, boolean taught) {
         List<Lesson> lessons = new ArrayList<>();
+        String taughtClause = (taught) ? "1" : "0";
 
         LessonTrackerCursorWrapper cursor = query(LessonTable.NAME,
-                LessonTable.Cols.TOPIC_ID + " = ?", new String[] {Long.toString(topicId)});
+                LessonTable.Cols.TOPIC_ID + " = ? AND " + LessonTable.Cols.TAUGHT + " = ? ",
+                new String[] {Long.toString(topicId), taughtClause});
 
         try {
             cursor.moveToFirst();
@@ -525,6 +527,20 @@ public class LessonTrackerDbHelper extends SQLiteOpenHelper {
         }
 
         return outcomes;
+    }
+
+    public int countMetOutcomesByLearningObjective(long learningObjectiveId) {
+
+        LessonTrackerCursorWrapper cursor = query(OutcomeTable.NAME,
+                OutcomeTable.Cols.LEARNING_OBJECTIVE_ID + " = ? AND " + OutcomeTable.Cols.OBJECTIVE_MET + " = ? ",
+                new String[] { Long.toString(learningObjectiveId), "1" });
+
+        try {
+            return cursor.getCount();
+
+        } finally {
+            cursor.close();
+        }
     }
 
     // TAG CRUD ACTIONS

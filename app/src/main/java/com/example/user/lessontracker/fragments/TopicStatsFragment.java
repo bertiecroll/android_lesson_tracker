@@ -2,6 +2,7 @@ package com.example.user.lessontracker.fragments;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -15,6 +16,7 @@ import com.github.mikephil.charting.charts.BarChart;
 import com.github.mikephil.charting.charts.LineChart;
 import com.github.mikephil.charting.components.AxisBase;
 import com.github.mikephil.charting.components.XAxis;
+import com.github.mikephil.charting.components.YAxis;
 import com.github.mikephil.charting.data.BarData;
 import com.github.mikephil.charting.data.BarDataSet;
 import com.github.mikephil.charting.data.BarEntry;
@@ -64,7 +66,7 @@ public class TopicStatsFragment extends Fragment {
         mDurationLineChart = (LineChart) view.findViewById(R.id.topic_stats_linechart);
         mObjectivesBarChart = (BarChart) view.findViewById(R.id.topic_stats_barchart);
 
-        mLessons = mDbHelper.findLessonsByTopic(topicId);
+        mLessons = mDbHelper.findLessonsByTopic(topicId, true);
         if(!mLessons.isEmpty()) {
             List<Entry> lineChartEntries = new ArrayList<>();
 
@@ -75,6 +77,8 @@ public class TopicStatsFragment extends Fragment {
             }
 
             LineDataSet lineChartDataSet = new LineDataSet(lineChartEntries, "lesson Duration in Seconds");
+            lineChartDataSet.setColor(-16776961);
+            lineChartDataSet.setLineWidth(2);
             LineData lineData = new LineData(lineChartDataSet);
             mDurationLineChart.setData(lineData);
             mDurationLineChart.setDescription(null);
@@ -92,12 +96,15 @@ public class TopicStatsFragment extends Fragment {
                 objectiveTitles.add(title);
                 long xValueObjective = xValueCounter;
                 xValueCounter++;
-
-                long yValueObjective = xValueCounter;
+                int metObjectiveCount = mDbHelper.countMetOutcomesByLearningObjective(objective.getId());
+                Log.d("LessonTracker", "Percentage " + mLessons.size());
+                long metPercentage = metObjectiveCount * 100 / mLessons.size();
+                long yValueObjective = metPercentage;
                 barChartEntries.add(new BarEntry(xValueObjective, yValueObjective));
             }
 
             BarDataSet barChartDataSet = new BarDataSet(barChartEntries, "% of Objectives Met");
+            barChartDataSet.setColor(-16776961);
             BarData barData = new BarData(barChartDataSet);
             mObjectivesBarChart.setData(barData);
             mObjectivesBarChart.setDescription(null);
@@ -105,6 +112,13 @@ public class TopicStatsFragment extends Fragment {
             XAxis objectiveXAxis = mObjectivesBarChart.getXAxis();
             objectiveXAxis.setValueFormatter(new ObjectivesXAxisFormatter(objectiveTitles));
             objectiveXAxis.setGranularity(1f);
+
+            YAxis objectiveLeftAxis = mObjectivesBarChart.getAxisLeft();
+            objectiveLeftAxis.setAxisMaximum(100);
+            objectiveLeftAxis.setAxisMinimum(0);
+            mObjectivesBarChart.getAxisRight().setEnabled(false);
+
+
         }
 
         mDurationChartButton = (Button) view.findViewById(R.id.topic_stats_button_linechart);
