@@ -47,6 +47,12 @@ public class OutcomeAdapter extends ArrayAdapter<Outcome> {
             viewHolder = new OutcomeAdapter.ViewHolder();
             LayoutInflater inflater = LayoutInflater.from(getContext());
             view = inflater.inflate(R.layout.item_outcome, parent, false);
+            if (mOutcome.hasObjectiveBeenMet()) {
+                view.setBackgroundColor(Color.GREEN);
+            } else {
+                view.setBackgroundColor(Color.RED);
+            }
+            view.setAlpha(0.75f);
             viewHolder.mLearningObjectiveTitle = (TextView) view.findViewById(R.id.outcome_list_item_outcome);
             viewHolder.mTagLayout = (LinearLayout) view.findViewById(R.id.outcome_tag_layout);
             view.setTag(viewHolder);

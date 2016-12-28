@@ -19,7 +19,7 @@
 
     <string name="learning_objective_title_hint">Enter Learning Objective Title</string>
     <string name="learning_objective_detail_hint">Enter Learning Objective Details</string>
-    <string name="learning_objective_add_button">Add Another Objective</string>
+    <string name="learning_objective_add_button">Add Objective</string>
     <string name="learning_objective_finish_button">Finish</string>
     <string name="learning_objective_toast_add_success">New Learning Objective Has Been Added!</string>
 
