@@ -70,10 +70,12 @@ public class TopicStatsFragment extends Fragment {
         if(!mLessons.isEmpty()) {
             List<Entry> lineChartEntries = new ArrayList<>();
 
+            long xLineValueCounter = 1;
             for (Lesson lesson : mLessons) {
-                long xValueDuration = lesson.getId();
+                long xValueDuration = xLineValueCounter;
                 long yValueDuration = lesson.getDuration() / 1000;
                 lineChartEntries.add(new Entry(xValueDuration, yValueDuration));
+                xLineValueCounter++;
             }
 
             LineDataSet lineChartDataSet = new LineDataSet(lineChartEntries, "lesson Duration in Seconds");
@@ -90,12 +92,12 @@ public class TopicStatsFragment extends Fragment {
             List<LearningObjective> learningObjectives = mDbHelper.findLearningObjectivesByTopic(topicId);
             List<String> objectiveTitles = new ArrayList<>();
 
-            long xValueCounter = 0;
+            long xBarValueCounter = 0;
             for(LearningObjective objective : learningObjectives) {
                 String title = objective.getTitle();
                 objectiveTitles.add(title);
-                long xValueObjective = xValueCounter;
-                xValueCounter++;
+                long xValueObjective = xBarValueCounter;
+                xBarValueCounter++;
                 int metObjectiveCount = mDbHelper.countMetOutcomesByLearningObjective(objective.getId());
                 Log.d("LessonTracker", "Percentage " + mLessons.size());
                 long metPercentage = metObjectiveCount * 100 / mLessons.size();
@@ -112,6 +114,7 @@ public class TopicStatsFragment extends Fragment {
             XAxis objectiveXAxis = mObjectivesBarChart.getXAxis();
             objectiveXAxis.setValueFormatter(new ObjectivesXAxisFormatter(objectiveTitles));
             objectiveXAxis.setGranularity(1f);
+            objectiveXAxis.setPosition(XAxis.XAxisPosition.BOTTOM);
 
             YAxis objectiveLeftAxis = mObjectivesBarChart.getAxisLeft();
             objectiveLeftAxis.setAxisMaximum(100);
