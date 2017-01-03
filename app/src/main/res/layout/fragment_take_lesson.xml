@@ -15,22 +15,22 @@
         android:background="@color/colorPrimaryDark">
 
     <TextView
+        style="@style/InverseTextStyle"
         android:id="@+id/take_lesson_details"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentLeft="true"
         android:textSize="20dp"
-        android:textColor="@android:color/background_light"
         android:textAllCaps="true"
         android:text=""/>
 
     <TextView
+        style="@style/InverseTextStyle"
         android:id="@+id/take_lesson_topic_title"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@+id/take_lesson_details"
         android:textSize="16dp"
-        android:textColor="@android:color/background_light"
         android:textAllCaps="true"
         android:text=""/>
 

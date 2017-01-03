@@ -12,6 +12,7 @@
         android:background="@color/colorPrimaryDark">
 
         <TextView
+            style="@style/InverseTextStyle"
             android:id="@+id/topic_view_pager_subject_title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -20,10 +21,10 @@
             android:textSize="18dp"
             android:textAllCaps="true"
             android:layout_alignParentLeft="true"
-            android:text=""
-            android:textColor="@android:color/background_light" />
+            android:text="" />
 
         <TextView
+            style="@style/InverseTextStyle"
             android:id="@+id/topic_view_pager_topic_title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -32,10 +33,10 @@
             android:textSize="14dp"
             android:textAllCaps="true"
             android:layout_toRightOf="@+id/topic_view_pager_subject_title"
-            android:text=""
-            android:textColor="@android:color/background_light" />
+            android:text="" />
 
         <TextView
+            style="@style/InverseTextStyle"
             android:id="@+id/topic_view_pager_topic_detail"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -43,8 +44,7 @@
             android:layout_marginTop="8dp"
             android:layout_marginLeft="16dp"
             android:layout_below="@+id/topic_view_pager_subject_title"
-            android:text=""
-            android:textColor="@android:color/background_light" />
+            android:text="" />
 
     </RelativeLayout>
 

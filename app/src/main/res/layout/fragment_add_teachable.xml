@@ -4,13 +4,13 @@
     android:layout_height="match_parent">
 
     <TextView
+        style="@style/MainTextStyle"
         android:id="@+id/add_parent_title_text"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:paddingTop="16dp"
         android:layout_marginLeft="16dp"
         android:textSize="16dp"
-        android:textColor="@android:color/background_light"
         android:textAllCaps="true"
         android:text=""/>
 

@@ -24,4 +24,12 @@
         <item name="android:padding">4dp</item>
     </style>
 
+    <style name="MainTextStyle">
+        <item name="android:textColor">@color/navyBlue</item>
+    </style>
+
+    <style name="InverseTextStyle">
+        <item name="android:textColor">@color/offWhite</item>
+    </style>
+
 </resources>

@@ -14,6 +14,7 @@
         android:background="@color/colorPrimaryDark">
 
     <TextView
+        style="@style/InverseTextStyle"
         android:id="@+id/teachable_parent_title"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -21,10 +22,10 @@
         android:layout_marginLeft="16dp"
         android:textSize="16dp"
         android:textAllCaps="true"
-        android:layout_alignParentLeft="true"
-        android:textColor="@android:color/background_light" />
+        android:layout_alignParentLeft="true" />
 
     <TextView
+        style="@style/InverseTextStyle"
         android:id="@+id/teachable_title"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -32,10 +33,10 @@
         android:textSize="16dp"
         android:textAllCaps="true"
         android:layout_below="@+id/teachable_parent_title"
-        android:text=""
-        android:textColor="@android:color/background_light" />
+        android:text="" />
 
     <TextView
+        style="@style/InverseTextStyle"
         android:id="@+id/teachable_detail"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -43,11 +44,10 @@
         android:layout_marginTop="8dp"
         android:layout_marginLeft="16dp"
         android:layout_below="@+id/teachable_title"
-        android:text=""
-        android:textColor="@android:color/background_light" />
+        android:text="" />
 
     <Button
-        style="@style/MainButtonStyle"
+        style="@style/InverseButtonStyle"
         android:id="@+id/teachable_child_new_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
