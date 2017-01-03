@@ -5,12 +5,12 @@
     android:layout_height="match_parent">
 
     <RelativeLayout
+        style="@style/HeaderStyle"
         android:id="@+id/list_fragment_header_layout"
         android:orientation="horizontal"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:elevation="8dp"
-        android:background="@color/colorPrimaryDark">
+        android:elevation="8dp" >
 
         <TextView
             style="@style/InverseTextStyle"
@@ -20,7 +20,7 @@
             android:layout_alignParentLeft="true"
             android:paddingTop="16dp"
             android:layout_marginLeft="16dp"
-            android:textSize="16dp"
+            android:textSize="20sp"
             android:textAllCaps="true"/>
 
         <Button

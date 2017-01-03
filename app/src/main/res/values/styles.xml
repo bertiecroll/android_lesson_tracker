@@ -32,4 +32,16 @@
         <item name="android:textColor">@color/offWhite</item>
     </style>
 
+    <style name="HeaderStyle">
+        <item name="android:background">@color/navyBlue</item>
+        <item name="android:textColor">@color/offWhite</item>
+    </style>
+
+    <style name="FooterStyle">
+        <item name="android:background">@color/navyBlue</item>
+        <item name="android:textColor">@color/offWhite</item>
+        <item name="android:textSize">8sp</item>
+        <item name="android:textScaleX">0.8</item>
+    </style>
+
 </resources>

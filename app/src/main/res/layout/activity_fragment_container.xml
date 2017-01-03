@@ -5,6 +5,7 @@
     android:layout_height="wrap_content">
 
     <TextView
+        style="@style/HeaderStyle"
         android:id="@+id/app_title"
         android:layout_alignParentTop="true"
         android:layout_width="match_parent"
@@ -12,8 +13,6 @@
         android:text="@string/app_name"
         android:padding="4dp"
         android:paddingBottom="8dp"
-        android:background="@color/colorPrimaryDark"
-        android:textColor="@android:color/background_light"
         android:textAlignment="center"
         android:textSize="16sp" />
 
@@ -27,60 +26,48 @@
     </FrameLayout>
 
     <LinearLayout
+        style="@style/FooterStyle"
         android:id="@+id/lesson_tracker_footer_menu"
         android:orientation="horizontal"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/colorPrimaryDark"
         android:layout_alignParentBottom="true">
 
         <Button
+            style="@style/FooterStyle"
             android:id="@+id/lesson_tracker_footer_take_lesson_button"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:drawableTop="@android:drawable/ic_menu_save"
             android:layout_margin="4dp"
-            android:text="Take&#10;Lesson"
-            android:textSize="8sp"
-            android:textScaleX="0.8"
-            android:background="@color/colorPrimaryDark"
-            android:textColor="@android:color/background_light"/>
+            android:text="Take&#10;Lesson"/>
 
         <Button
+            style="@style/FooterStyle"
             android:id="@+id/lesson_tracker_footer_completed_lessons_button"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:drawableTop="@android:drawable/ic_menu_search"
             android:layout_margin="4dp"
-            android:text="Lesson&#10;History"
-            android:textSize="8sp"
-            android:textScaleX="0.8"
-            android:background="@color/colorPrimaryDark"
-            android:textColor="@android:color/background_light"/>
+            android:text="Lesson&#10;History"/>
 
         <Button
+            style="@style/FooterStyle"
             android:id="@+id/lesson_tracker_footer_subjects_button"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:drawableTop="@android:drawable/ic_menu_edit"
             android:layout_margin="4dp"
-            android:text="View&#10;Subjects"
-            android:textSize="8sp"
-            android:textScaleX="0.8"
-            android:background="@color/colorPrimaryDark"
-            android:textColor="@android:color/background_light"/>
+            android:text="View&#10;Subjects"/>
 
         <Button
+            style="@style/FooterStyle"
             android:id="@+id/lesson_tracker_footer_tags_button"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:drawableTop="@android:drawable/ic_menu_preferences"
             android:layout_margin="4dp"
-            android:text="Make&#10;Tags"
-            android:textSize="8sp"
-            android:textScaleX="0.8"
-            android:background="@color/colorPrimaryDark"
-            android:textColor="@android:color/background_light"/>
+            android:text="Make&#10;Tags"/>
 
     </LinearLayout>
 

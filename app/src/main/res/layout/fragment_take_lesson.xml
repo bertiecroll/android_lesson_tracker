@@ -4,15 +4,14 @@
     android:layout_height="match_parent">
 
     <RelativeLayout
+        style="@style/HeaderStyle"
         android:id="@+id/list_fragment_header_layout"
         android:orientation="horizontal"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginBottom="16dp"
         android:paddingBottom="16dp"
-        android:elevation="8dp"
-
-        android:background="@color/colorPrimaryDark">
+        android:elevation="8dp" >
 
     <TextView
         style="@style/InverseTextStyle"

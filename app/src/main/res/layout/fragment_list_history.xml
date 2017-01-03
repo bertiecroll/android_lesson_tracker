@@ -5,13 +5,13 @@
     android:layout_height="match_parent">
 
     <RelativeLayout
+        style="@style/HeaderStyle"
         android:id="@+id/lesson_history_spinner_layout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginBottom="16dp"
         android:paddingTop="8dp"
-        android:elevation="8dp"
-        android:background="@color/colorPrimaryDark">
+        android:elevation="8dp" >
 
         <TextView
             style="@style/InverseTextStyle"
