@@ -1,7 +1,5 @@
 package com.example.user.lessontracker.models;
 
-import android.content.ContentValues;
-
 import com.example.user.lessontracker.Teachable;
 
 public class Subject implements Teachable {
