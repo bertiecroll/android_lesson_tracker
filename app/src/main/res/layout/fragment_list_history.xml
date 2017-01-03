@@ -29,14 +29,18 @@
             android:id="@+id/lesson_history_subject_spinner"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/lesson_history_title"/>
+            android:layout_below="@+id/lesson_history_title"
+            android:dropDownVerticalOffset="30dp"
+            android:backgroundTint="@color/offWhite"/>
 
         <Spinner
             android:id="@+id/lesson_history_topic_spinner"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@+id/lesson_history_title"
-            android:layout_toRightOf="@+id/lesson_history_subject_spinner"/>
+            android:layout_toRightOf="@+id/lesson_history_subject_spinner"
+            android:dropDownVerticalOffset="30dp"
+            android:backgroundTint="@color/offWhite"/>
 
         <Button
             style="@style/InverseButtonStyle"

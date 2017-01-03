@@ -55,7 +55,8 @@ public class AddLessonFragment extends Fragment {
         mSubjectSpinner = (Spinner) view.findViewById(R.id.lesson_subject_spinner);
         List<Subject> subjects = new ArrayList<>(mDbHelper.allSubjects());
         ArrayAdapter<Subject> subjectAdapter =
-                new ArrayAdapter<>(activity, android.R.layout.simple_spinner_item, subjects);
+                new ArrayAdapter<>(activity, R.layout.spinner_item_main, subjects);
+        subjectAdapter.setDropDownViewResource(R.layout.spinner_dropdown_main);
         mSubjectSpinner.setAdapter(subjectAdapter);
 
         mTopicSpinner = (Spinner) view.findViewById(R.id.lesson_topic_spinner);
@@ -68,7 +69,8 @@ public class AddLessonFragment extends Fragment {
 
                 List<Topic> topics = new ArrayList<>(mDbHelper.findTopicsBySubject(subjectId));
                 ArrayAdapter<Topic> topicAdapter =
-                        new ArrayAdapter<>(getActivity(), android.R.layout.simple_spinner_item, topics);
+                        new ArrayAdapter<>(getActivity(), R.layout.spinner_item_main, topics);
+                topicAdapter.setDropDownViewResource(R.layout.spinner_dropdown_main);
                 mTopicSpinner.setAdapter(topicAdapter);
                 mTopicSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
                     @Override
