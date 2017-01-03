@@ -58,7 +58,7 @@ public class TopicFragment extends Fragment {
                 new ArrayList<>(mDbHelper.findLearningObjectivesByTopic(topicId));
 
         ArrayAdapter<LearningObjective> adapter =
-        new ArrayAdapter<>(getActivity(), android.R.layout.simple_list_item_1, learningObjectives);
+        new ArrayAdapter<>(getActivity(), R.layout.list_item_simple, learningObjectives);
 
         mLearningObjectiveList.setAdapter(adapter);
         mLearningObjectiveList.setOnItemClickListener(new AdapterView.OnItemClickListener() {

@@ -63,7 +63,7 @@ public class SubjectListFragment extends Fragment {
         mSubjectList = (ListView) view.findViewById(R.id.teachable_list);
         List<Subject> subjects = new ArrayList<>(mDbHelper.allSubjects());
         ArrayAdapter<Subject> adapter =
-                new ArrayAdapter<>(activity, android.R.layout.simple_list_item_1, subjects);
+                new ArrayAdapter<>(activity, R.layout.list_item_simple, subjects);
         mSubjectList.setAdapter(adapter);
 
         mSubjectList.setOnItemClickListener(new AdapterView.OnItemClickListener() {

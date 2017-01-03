@@ -11,7 +11,6 @@
         android:layout_height="wrap_content"
         android:text=""
         android:layout_marginTop="16dp"
-        android:layout_marginLeft="16dp"
         android:textSize="20dp"
         android:layout_alignParentLeft="true" />
 
@@ -20,7 +19,6 @@
         android:orientation="horizontal"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginRight="16dp"
         android:layout_alignParentRight="true">
 
     </LinearLayout>
