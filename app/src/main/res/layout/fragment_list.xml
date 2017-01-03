@@ -24,19 +24,15 @@
             android:textAllCaps="true"/>
 
         <Button
+            style="@style/InverseButtonStyle"
             android:id="@+id/list_new_button"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text=""
-            android:elevation="8dp"
             android:layout_marginTop="8dp"
             android:layout_marginBottom="32dp"
             android:layout_marginRight="16dp"
-            android:layout_alignParentRight="true"
-            android:textColor="@color/colorPrimaryDark"
-            android:background="@android:color/background_light"
-            android:textSize="10dp"
-            android:padding="4dp" />
+            android:layout_alignParentRight="true" />
 
     </RelativeLayout>
 

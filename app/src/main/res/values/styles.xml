@@ -8,4 +8,20 @@
         <item name="colorAccent">@color/colorAccent</item>
     </style>
 
+    <style name="MainButtonStyle">
+        <item name="android:background">@color/navyBlue</item>
+        <item name="android:textColor">@color/offWhite</item>
+        <item name="android:textSize">10sp</item>
+        <item name="android:elevation">8dp</item>
+        <item name="android:padding">4dp</item>
+    </style>
+
+    <style name="InverseButtonStyle">
+        <item name="android:background">@color/offWhite</item>
+        <item name="android:textColor">@color/navyBlue</item>
+        <item name="android:textSize">10sp</item>
+        <item name="android:elevation">8dp</item>
+        <item name="android:padding">4dp</item>
+    </style>
+
 </resources>

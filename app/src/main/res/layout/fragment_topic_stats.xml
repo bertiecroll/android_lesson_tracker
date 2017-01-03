@@ -14,31 +14,23 @@
         android:paddingBottom="2dp" >
 
         <Button
+            style="@style/MainButtonStyle"
             android:id="@+id/topic_stats_button_linechart"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentLeft="true"
             android:layout_marginTop="8dp"
             android:layout_marginLeft="8dp"
-            android:elevation="8dp"
-            android:background="@color/colorPrimaryDark"
-            android:textColor="@android:color/background_light"
-            android:padding="2dp"
-            android:textSize="10dp"
             android:text="@string/topic_stats_button_linechart"/>
 
         <Button
+            style="@style/MainButtonStyle"
             android:id="@+id/topic_stats_button_barchart"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_toRightOf="@+id/topic_stats_button_linechart"
             android:layout_marginTop="8dp"
             android:layout_marginLeft="8dp"
-            android:elevation="8dp"
-            android:background="@color/colorPrimaryDark"
-            android:textColor="@android:color/background_light"
-            android:padding="2dp"
-            android:textSize="10dp"
             android:text="@string/topic_stats_button_barchart"/>
 
     </RelativeLayout>

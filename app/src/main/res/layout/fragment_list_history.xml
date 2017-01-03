@@ -39,16 +39,13 @@
             android:layout_toRightOf="@+id/lesson_history_subject_spinner"/>
 
         <Button
+            style="@style/InverseButtonStyle"
             android:id="@+id/lesson_history_filter_button"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentRight="true"
-            android:textColor="@color/colorPrimaryDark"
-            android:background="@android:color/background_light"
             android:layout_marginBottom="8dp"
             android:layout_marginRight="8dp"
-            android:elevation="8dp"
-            android:textSize="10dp"
             android:text="@string/lesson_history_filter_button"/>
 
     </RelativeLayout>
