@@ -1,38 +1,82 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/tagging_dialog_fragment"
-    android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:background="@color/colorPrimaryDark">
+    android:background="@color/gold">
 
     <TextView
         style="@style/InverseTextStyle"
         android:id="@+id/tagging_learning_objective_title"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
         android:layout_margin="16dp"
         android:textSize="20dp"
         android:textAllCaps="true"
         android:text=""
         android:textAlignment="center" />
 
+
     <TextView
         style="@style/InverseTextStyle"
-        android:id="@+id/tagging_title"
+        android:id="@+id/tagging_objective_question"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_below="@id/tagging_learning_objective_title"
         android:layout_margin="16dp"
-        android:textSize="16dp"
+        android:textSize="12dp"
         android:textAllCaps="true"
-        android:text="@string/tagging_title" />
+        android:textAlignment="center"
+        android:text="@string/tagging_objective_question" />
+
 
     <ToggleButton
+        style="@style/InverseButtonStyle"
         android:id="@+id/tagging_objective_met_toggle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_below="@id/tagging_learning_objective_title"
+        android:layout_toRightOf="@id/tagging_objective_question"
+        android:layout_marginLeft="16dp"
+        android:layout_marginRight="16dp"
         android:textAllCaps="true"
         android:textOn="@string/tagging_objective_met"
         android:textOff="@string/tagging_objective_not_met"/>
 
-</LinearLayout>
+    <TextView
+        style="@style/InverseTextStyle"
+        android:id="@+id/tagging_title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/tagging_objective_question"
+        android:layout_margin="16dp"
+        android:textSize="12dp"
+        android:textAllCaps="true"
+        android:textAlignment="center"
+        android:text="@string/tagging_title" />
+
+    <LinearLayout
+        android:id="@+id/tagging_tag_container"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/tagging_title"
+        android:layout_marginLeft="32dp"
+        android:layout_marginRight="32dp"
+        android:orientation="horizontal">
+
+    </LinearLayout>
+
+    <Button
+        style="@style/InverseButtonStyle"
+        android:id="@+id/tagging_complete_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/tagging_tag_container"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="16dp"
+        android:layout_marginBottom="16dp"
+        android:text="@string/tagging_complete_button"
+        android:layout_gravity="center" />
+
+</RelativeLayout>

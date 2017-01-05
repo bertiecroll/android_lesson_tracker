@@ -35,11 +35,12 @@
     <string name="lesson_toast_add_success">New Lesson Has Been Added!</string>
 
 
-    <string name="tagging_title">Click Tag To Add</string>
+    <string name="tagging_title">Click Tag To Add Improvement Recommendation</string>
     <string name="tagging_complete_button">Done</string>
     <string name="tagging_toast_complete">Tags Added!</string>
-    <string name="tagging_objective_met">Objective Met</string>
-    <string name="tagging_objective_not_met">Objective Not Met</string>
+    <string name="tagging_objective_question">Was Objective Met?</string>
+    <string name="tagging_objective_met">Yes</string>
+    <string name="tagging_objective_not_met">No</string>
 
     <string name="take_lesson_complete_button">Complete Lesson</string>
     <string name="take_lesson_toast_taught_success">Lesson has been taught, well done!</string>

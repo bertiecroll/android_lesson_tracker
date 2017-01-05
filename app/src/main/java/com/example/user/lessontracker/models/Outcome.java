@@ -52,7 +52,8 @@ public class Outcome {
         return (mObjectiveMet)? 1 : 0;
     }
 
-    public void achieveObjective() {
-        mObjectiveMet = true;
+    public void setObjectiveMet(boolean met) {
+        mObjectiveMet = met;
     }
+
 }

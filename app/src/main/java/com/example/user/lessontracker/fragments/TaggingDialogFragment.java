@@ -31,6 +31,8 @@ public class TaggingDialogFragment extends DialogFragment {
     TextView mTaggingTitle;
     TextView mLearningObjectiveTitle;
     ToggleButton mObjectiveMetToggle;
+    LinearLayout mTagContainer;
+    Button mCompleteButton;
     Outcome mCurrentOutcome;
 
     @Override
@@ -44,23 +46,26 @@ public class TaggingDialogFragment extends DialogFragment {
         final long lessonId = arguments.getLong(LessonListFragment.LESSON_ID);
         final long lessonStartTime = arguments.getLong(LessonListFragment.LESSON_START_TIME);
 
-        mObjectiveMetToggle = (ToggleButton) view.findViewById(R.id.tagging_objective_met_toggle);
-
         mCurrentOutcome = mDbHelper.findOutcome(outcomeId);
+
+        mObjectiveMetToggle = (ToggleButton) view.findViewById(R.id.tagging_objective_met_toggle);
+        if (mCurrentOutcome.hasObjectiveBeenMet()) {
+            mObjectiveMetToggle.setChecked(true);
+        } else {
+            mObjectiveMetToggle.setChecked(false);
+        }
+
         List<Tag> allTags = new ArrayList<>(mDbHelper.allTags());
         List<Long> usedTagIds = new ArrayList<>(mDbHelper.findOutcomeTagIds(outcomeId));
 
-        LinearLayout linearLayout = (LinearLayout) view.findViewById(R.id.tagging_dialog_fragment);
-        LinearLayout buttonLayout = new LinearLayout(getActivity());
-        buttonLayout.setOrientation(LinearLayout.HORIZONTAL);
-        linearLayout.addView(buttonLayout);
+        mTagContainer = (LinearLayout) view.findViewById(R.id.tagging_tag_container);
         for (final Tag tag : allTags) {
             if (!usedTagIds.contains(tag.getId())) {
                 final ImageButton tagButton = new ImageButton(getActivity());
                 int ResId = tag.getIconResourceId();
                 tagButton.setImageResource(ResId);
                 tagButton.setBackgroundColor(Color.TRANSPARENT);
-                buttonLayout.addView(tagButton,
+                mTagContainer.addView(tagButton,
                         new LayoutParams(LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT));
                 tagButton.setOnClickListener(new View.OnClickListener() {
                     @Override
@@ -88,18 +93,17 @@ public class TaggingDialogFragment extends DialogFragment {
         mLearningObjectiveTitle = (TextView) view.findViewById(R.id.tagging_learning_objective_title);
         mLearningObjectiveTitle.setText(learningObjectiveTitle);
 
-        Button completeButton = new Button(getActivity());
-        completeButton.setText(R.string.tagging_complete_button);
-        linearLayout.addView(completeButton, new LayoutParams(LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT));
-
-        completeButton.setOnClickListener(new View.OnClickListener() {
+        mCompleteButton = (Button) view.findViewById(R.id.tagging_complete_button);
+        mCompleteButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Log.d("LessonTracker", "Complete button click");
                 if(mObjectiveMetToggle.isChecked()) {
-                    mCurrentOutcome.achieveObjective();
-                    mDbHelper.updateOutcome(mCurrentOutcome);
+                    mCurrentOutcome.setObjectiveMet(true);
+                } else {
+                    mCurrentOutcome.setObjectiveMet(false);
                 }
+                mDbHelper.updateOutcome(mCurrentOutcome);
                 getFragmentManager().popBackStack();
                 FragmentTransaction transaction = getFragmentManager().beginTransaction();
                 TakeLessonFragment takeLessonFragment = new TakeLessonFragment();

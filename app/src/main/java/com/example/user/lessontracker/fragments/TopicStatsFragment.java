@@ -1,7 +1,9 @@
 package com.example.user.lessontracker.fragments;
 
+import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v4.content.ContextCompat;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -72,14 +74,14 @@ public class TopicStatsFragment extends Fragment {
 
             long xLineValueCounter = 1;
             for (Lesson lesson : mLessons) {
-                long xValueDuration = xLineValueCounter;
-                long yValueDuration = lesson.getDuration() / 1000;
-                lineChartEntries.add(new Entry(xValueDuration, yValueDuration));
+                long yValueDurationMinutes = lesson.getDuration() / 1000 / 60;
+                lineChartEntries.add(new Entry(xLineValueCounter, yValueDurationMinutes));
                 xLineValueCounter++;
             }
 
-            LineDataSet lineChartDataSet = new LineDataSet(lineChartEntries, "lesson Duration in Seconds");
-            lineChartDataSet.setColor(-16776961);
+            LineDataSet lineChartDataSet = new LineDataSet(lineChartEntries, "lesson Duration in Minutes");
+            int lineColor = ContextCompat.getColor(getContext(), R.color.navyBlue);
+            lineChartDataSet.setColor(lineColor);
             lineChartDataSet.setLineWidth(2);
             LineData lineData = new LineData(lineChartDataSet);
             mDurationLineChart.setData(lineData);
@@ -96,17 +98,16 @@ public class TopicStatsFragment extends Fragment {
             for(LearningObjective objective : learningObjectives) {
                 String title = objective.getTitle();
                 objectiveTitles.add(title);
-                long xValueObjective = xBarValueCounter;
-                xBarValueCounter++;
                 int metObjectiveCount = mDbHelper.countMetOutcomesByLearningObjective(objective.getId());
                 Log.d("LessonTracker", "Percentage " + mLessons.size());
-                long metPercentage = metObjectiveCount * 100 / mLessons.size();
-                long yValueObjective = metPercentage;
-                barChartEntries.add(new BarEntry(xValueObjective, yValueObjective));
+                long yValueMetPercentage = metObjectiveCount * 100 / mLessons.size();
+                barChartEntries.add(new BarEntry(xBarValueCounter, yValueMetPercentage));
+                xBarValueCounter++;
             }
 
             BarDataSet barChartDataSet = new BarDataSet(barChartEntries, "% of Objectives Met");
-            barChartDataSet.setColor(-16776961);
+            int barColor = ContextCompat.getColor(getContext(), R.color.gold);
+            barChartDataSet.setColor(barColor);
             BarData barData = new BarData(barChartDataSet);
             mObjectivesBarChart.setData(barData);
             mObjectivesBarChart.setDescription(null);
