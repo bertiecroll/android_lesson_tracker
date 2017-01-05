@@ -15,7 +15,7 @@ import android.widget.Spinner;
 import android.widget.TextView;
 
 import com.example.user.lessontracker.R;
-import com.example.user.lessontracker.adapters.CompletedLessonAdapter;
+import com.example.user.lessontracker.adapters.LessonAdapter;
 import com.example.user.lessontracker.database.LessonTrackerDbHelper;
 import com.example.user.lessontracker.models.Lesson;
 import com.example.user.lessontracker.models.Subject;
@@ -88,9 +88,9 @@ public class LessonHistoryListFragment extends Fragment {
 
         mCompletedLessonList = (ListView) view.findViewById(R.id.lesson_history_list);
         final List<Lesson> lessons = new ArrayList<>(mDbHelper.findCompletedLessons());
-        CompletedLessonAdapter completedLessonAdapter =
-                new CompletedLessonAdapter(getActivity(), lessons);
-        mCompletedLessonList.setAdapter(completedLessonAdapter);
+        LessonAdapter lessonAdapter =
+                new LessonAdapter(getActivity(), lessons);
+        mCompletedLessonList.setAdapter(lessonAdapter);
 
         mCompletedLessonList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
@@ -120,9 +120,9 @@ public class LessonHistoryListFragment extends Fragment {
                         topicLessons.add(lesson);
                     }
                 }
-                CompletedLessonAdapter completedLessonAdapter =
-                        new CompletedLessonAdapter(getActivity(), topicLessons);
-                mCompletedLessonList.setAdapter(completedLessonAdapter);
+                LessonAdapter lessonAdapter =
+                        new LessonAdapter(getActivity(), topicLessons);
+                mCompletedLessonList.setAdapter(lessonAdapter);
             }
         });
 
