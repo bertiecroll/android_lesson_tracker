@@ -14,6 +14,7 @@ import com.example.user.lessontracker.database.LessonTrackerSchema.SubjectTable;
 import com.example.user.lessontracker.database.LessonTrackerSchema.TagTable;
 import com.example.user.lessontracker.database.LessonTrackerSchema.TaggingTable;
 import com.example.user.lessontracker.database.LessonTrackerSchema.TopicTable;
+import com.example.user.lessontracker.models.Cohort;
 import com.example.user.lessontracker.models.LearningObjective;
 import com.example.user.lessontracker.models.Lesson;
 import com.example.user.lessontracker.models.Outcome;
@@ -738,6 +739,53 @@ public class LessonTrackerDbHelper extends SQLiteOpenHelper {
         return taggings;
     }
 
+    // COHORT CRUD ACTIONS
+
+    public void saveCohort(Cohort cohort) {
+        SQLiteDatabase database = getDatabase();
+        long id = database.insert(CohortTable.NAME, null, getCohortValues(cohort));
+        cohort.setId(id);
+    }
+
+    public void updateCohort(Cohort cohort) {
+        SQLiteDatabase database = getDatabase();
+        database.update(CohortTable.NAME, getCohortValues(cohort),
+                CohortTable.Cols.ID + " = ?", new String[] { String.valueOf(cohort.getId())});
+    }
+
+    public Cohort findCohort(long id) {
+        LessonTrackerCursorWrapper cursor = query(CohortTable.NAME,
+                CohortTable.Cols.ID + " = ?", new String[] { Long.toString(id)} );
+
+        try {
+            if (cursor.getCount() == 0) {
+                return null;
+            }
+            cursor.moveToFirst();
+            return cursor.getCohort();
+        } finally {
+            cursor.close();
+        }
+    }
+
+    public List<Cohort> allCohorts() {
+        List<Cohort> cohorts = new ArrayList<>();
+
+        LessonTrackerCursorWrapper cursor = query(CohortTable.NAME, null, null);
+
+        try {
+            cursor.moveToFirst();
+            while (!cursor.isAfterLast()) {
+                cohorts.add(cursor.getCohort());
+                cursor.moveToNext();
+            }
+        } finally {
+            cursor.close();
+        }
+
+        return cohorts;
+    }
+
     // PRIVATE HELPERS
 
     private SQLiteDatabase getDatabase() {
@@ -811,6 +859,13 @@ public class LessonTrackerDbHelper extends SQLiteOpenHelper {
         values.put(LearningObjectiveTable.Cols.TOPIC_ID, learningObjective.getTopicId());
         values.put(LearningObjectiveTable.Cols.TITLE, learningObjective.getTitle());
         values.put(LearningObjectiveTable.Cols.DETAIL, learningObjective.getDetail());
+
+        return values;
+    }
+
+    private ContentValues getCohortValues(Cohort cohort) {
+        ContentValues values = new ContentValues();
+        values.put(CohortTable.Cols.NAME, cohort.getName());
 
         return values;
     }
