@@ -6,20 +6,45 @@
 
     <TextView
         style="@style/MainTextStyle"
+        android:id="@+id/outcome_objective_met_indicator"
+        android:layout_width="16dp"
+        android:layout_height="40dp"
+        android:layout_marginTop="4dp"
+        android:layout_marginBottom="4dp"
+        android:text=""
+        android:textSize="10sp"
+        android:layout_alignParentLeft="true" />
+
+    <TextView
+        style="@style/MainTextStyle"
         android:id="@+id/outcome_list_item_outcome"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text=""
-        android:layout_marginTop="16dp"
-        android:textSize="20dp"
-        android:layout_alignParentLeft="true" />
+        android:layout_marginTop="8dp"
+        android:layout_marginLeft="8dp"
+        android:textSize="20sp"
+        android:layout_toRightOf="@id/outcome_objective_met_indicator"/>
+
+    <TextView
+        style="@style/MainTextStyle"
+        android:id="@+id/outcome_tag_header"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="4dp"
+        android:layout_alignParentRight="true"
+        android:textSize="10sp"
+        android:textAllCaps="true"
+        android:textAlignment="center"
+        android:text="@string/outcome_tag_header" />
 
     <LinearLayout
         android:id="@+id/outcome_tag_layout"
         android:orientation="horizontal"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentRight="true">
+        android:layout_alignParentRight="true"
+        android:layout_below="@id/outcome_tag_header">
 
     </LinearLayout>
 

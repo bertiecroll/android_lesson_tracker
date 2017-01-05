@@ -24,6 +24,7 @@ import java.util.List;
 public class OutcomeAdapter extends ArrayAdapter<Outcome> {
 
     public static class ViewHolder {
+        TextView mObjectiveMetIndicator;
         TextView mLearningObjectiveTitle;
         LinearLayout mTagLayout;
     }
@@ -47,12 +48,15 @@ public class OutcomeAdapter extends ArrayAdapter<Outcome> {
             viewHolder = new OutcomeAdapter.ViewHolder();
             LayoutInflater inflater = LayoutInflater.from(getContext());
             view = inflater.inflate(R.layout.item_outcome, parent, false);
+
+            viewHolder.mObjectiveMetIndicator = (TextView) view.findViewById(R.id.outcome_objective_met_indicator);
             if (mOutcome.hasObjectiveBeenMet()) {
-                view.setBackgroundColor(Color.GREEN);
+                viewHolder.mObjectiveMetIndicator.setBackgroundColor(Color.GREEN);
             } else {
-                view.setBackgroundColor(Color.RED);
+                viewHolder.mObjectiveMetIndicator.setBackgroundColor(Color.RED);
             }
-            view.setAlpha(0.75f);
+            viewHolder.mObjectiveMetIndicator.setAlpha(0.75f);
+
             viewHolder.mLearningObjectiveTitle = (TextView) view.findViewById(R.id.outcome_list_item_outcome);
             viewHolder.mTagLayout = (LinearLayout) view.findViewById(R.id.outcome_tag_layout);
             view.setTag(viewHolder);

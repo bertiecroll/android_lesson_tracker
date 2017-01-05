@@ -51,7 +51,7 @@
         android:layout_height="wrap_content"
         android:layout_below="@id/tagging_objective_question"
         android:layout_margin="16dp"
-        android:textSize="12dp"
+        android:textSize="12sp"
         android:textAllCaps="true"
         android:textAlignment="center"
         android:text="@string/tagging_title" />
