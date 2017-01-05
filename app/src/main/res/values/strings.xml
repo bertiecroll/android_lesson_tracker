@@ -27,6 +27,7 @@
 
     <string name="list_new_subject_button">Add New Subject</string>
     <string name="list_new_lesson_button">Add New Lesson</string>
+    <string name="list_new_cohort_button">Add New Cohort</string>
 
     <string name="lesson_cohort_hint">Enter Cohort ID</string>
     <string name="lesson_date_picker">Select Lesson Date</string>
