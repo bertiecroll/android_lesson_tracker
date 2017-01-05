@@ -14,6 +14,11 @@ public class Cohort {
         mName = name;
     }
 
+    @Override
+    public String toString() {
+        return mName;
+    }
+
     public String getName() {
         return mName;
     }

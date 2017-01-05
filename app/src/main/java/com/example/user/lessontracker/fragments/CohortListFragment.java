@@ -3,6 +3,7 @@ package com.example.user.lessontracker.fragments;
 import android.app.Activity;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentTransaction;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -43,6 +44,16 @@ public class CohortListFragment extends Fragment {
 
         mNewCohortButton = (Button) view.findViewById(R.id.list_new_button);
         mNewCohortButton.setText(R.string.list_new_cohort_button);
+        mNewCohortButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                FragmentTransaction transaction = getFragmentManager().beginTransaction();
+                AddCohortFragment addCohortFragment = new AddCohortFragment();
+                transaction.replace(R.id.fragment_container, addCohortFragment);
+                transaction.addToBackStack(null);
+                transaction.commit();
+            }
+        });
 
         mCohortList = (ListView) view.findViewById(R.id.teachable_list);
         List<Cohort> cohorts = new ArrayList<>(mDbHelper.allCohorts());
