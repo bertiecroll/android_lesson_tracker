@@ -80,4 +80,13 @@ public class LessonTrackerSchema {
         }
     }
 
+    public static final class CohortTable {
+        public static final String NAME = "cohorts";
+
+        public static final class Cols {
+            public static final String ID = "_id";
+            public static final String NAME = "name";
+        }
+    }
+
 }
