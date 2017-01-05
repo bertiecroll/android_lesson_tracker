@@ -29,7 +29,9 @@ import static android.R.attr.tag;
 public class TopicAdapter extends ArrayAdapter<Topic> {
 
     public static class ViewHolder {
+        TextView mObjectiveMetIndicator;
         TextView mTopicTitle;
+        TextView mTagHeader;
         LinearLayout mLightsLayout;
     }
 
@@ -50,7 +52,14 @@ public class TopicAdapter extends ArrayAdapter<Topic> {
             viewHolder = new TopicAdapter.ViewHolder();
             LayoutInflater inflater = LayoutInflater.from(getContext());
             view = inflater.inflate(R.layout.item_outcome, parent, false);
+
+            viewHolder.mObjectiveMetIndicator = (TextView) view.findViewById(R.id.outcome_objective_met_indicator);
+            viewHolder.mObjectiveMetIndicator.setBackgroundColor(Color.GREEN);
+
             viewHolder.mTopicTitle = (TextView) view.findViewById(R.id.outcome_list_item_outcome);
+            viewHolder.mTagHeader = (TextView) view.findViewById(R.id.outcome_tag_header);
+            viewHolder.mTagHeader.setVisibility(View.GONE);
+
             viewHolder.mLightsLayout = (LinearLayout) view.findViewById(R.id.outcome_tag_layout);
 
             ImageView lightView = new ImageView(getContext());
