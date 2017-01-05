@@ -3,6 +3,7 @@ package com.example.user.lessontracker.database;
 import android.database.Cursor;
 import android.database.CursorWrapper;
 
+import com.example.user.lessontracker.database.LessonTrackerSchema.CohortTable;
 import com.example.user.lessontracker.database.LessonTrackerSchema.LearningObjectiveTable;
 import com.example.user.lessontracker.database.LessonTrackerSchema.LessonTable;
 import com.example.user.lessontracker.database.LessonTrackerSchema.OutcomeTable;
@@ -10,6 +11,7 @@ import com.example.user.lessontracker.database.LessonTrackerSchema.SubjectTable;
 import com.example.user.lessontracker.database.LessonTrackerSchema.TagTable;
 import com.example.user.lessontracker.database.LessonTrackerSchema.TaggingTable;
 import com.example.user.lessontracker.database.LessonTrackerSchema.TopicTable;
+import com.example.user.lessontracker.models.Cohort;
 import com.example.user.lessontracker.models.LearningObjective;
 import com.example.user.lessontracker.models.Lesson;
 import com.example.user.lessontracker.models.Outcome;
@@ -97,5 +99,13 @@ public class LessonTrackerCursorWrapper extends CursorWrapper {
 
         Tagging tagging = new Tagging(id, tagId, outcomeId);
         return tagging;
+    }
+
+    public Cohort getCohort() {
+        long id = getLong(getColumnIndex(CohortTable.Cols.ID));
+        String name = getString(getColumnIndex(CohortTable.Cols.NAME));
+
+        Cohort cohort = new Cohort(id, name);
+        return cohort;
     }
 }
