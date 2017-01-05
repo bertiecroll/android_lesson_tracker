@@ -12,12 +12,12 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.DatePicker;
-import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.Toast;
 
 import com.example.user.lessontracker.R;
 import com.example.user.lessontracker.database.LessonTrackerDbHelper;
+import com.example.user.lessontracker.models.Cohort;
 import com.example.user.lessontracker.models.LearningObjective;
 import com.example.user.lessontracker.models.Lesson;
 import com.example.user.lessontracker.models.Outcome;
@@ -34,11 +34,12 @@ public class AddLessonFragment extends Fragment {
     LessonTrackerDbHelper mDbHelper;
     Spinner mSubjectSpinner;
     Spinner mTopicSpinner;
-    EditText mCohortEditText;
+    Spinner mCohortSpinner;
     DatePicker mDatePicker;
     CheckBox mTeachNowCheckBox;
     Button mAddButton;
     Topic mSelectedTopic;
+    Cohort mSelectedCohort;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -91,7 +92,24 @@ public class AddLessonFragment extends Fragment {
             }
         });
 
-        mCohortEditText = (EditText) view.findViewById(R.id.lesson_cohort_edit);
+        mCohortSpinner = (Spinner) view.findViewById(R.id.lesson_cohort_spinner);
+        List<Cohort> cohorts = new ArrayList<>(mDbHelper.allCohorts());
+        ArrayAdapter<Cohort> cohortAdapter =
+                new ArrayAdapter<>(activity, R.layout.spinner_item_main, cohorts);
+        cohortAdapter.setDropDownViewResource(R.layout.spinner_dropdown_main);
+        mCohortSpinner.setAdapter(cohortAdapter);
+        mCohortSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                mSelectedCohort = (Cohort) mCohortSpinner.getItemAtPosition(position);
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
+
         mDatePicker = (DatePicker) view.findViewById(R.id.lesson_date_picker);
 
         mTeachNowCheckBox = (CheckBox) view.findViewById(R.id.lesson_teach_check_box);
@@ -101,7 +119,7 @@ public class AddLessonFragment extends Fragment {
             @Override
             public void onClick(View view) {
                 Log.d("LessonTracker", "Add button selected");
-                long cohortID = Long.parseLong(mCohortEditText.getText().toString());
+                long cohortID = mSelectedCohort.getId();
                 long topicId = mSelectedTopic.getId();
                 int year = mDatePicker.getYear();
                 int month = mDatePicker.getMonth();
