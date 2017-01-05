@@ -30,6 +30,11 @@
             android:windowSoftInputMode="adjustPan"
             android:parentActivityName=".activities.TeachableActivity"/>
 
+        <activity android:name=".activities.CohortActivity"
+            android:label="@string/app_name"
+            android:windowSoftInputMode="adjustPan"
+            android:parentActivityName=".activities.TeachableActivity"/>
+
     </application>
 
 </manifest>

@@ -20,7 +20,7 @@ public abstract class LessonTrackerActivity extends AppCompatActivity {
     Button mCompletedLessonsButton;
     Button mPendingLessonsButton;
     Button mSubjectsButton;
-    Button mTagsButton;
+    Button mCohortsButton;
 
     protected abstract void getFragment();
 
@@ -57,11 +57,12 @@ public abstract class LessonTrackerActivity extends AppCompatActivity {
             }
         });
 
-        mTagsButton = (Button) findViewById(R.id.lesson_tracker_footer_tags_button);
-        mTagsButton.setOnClickListener(new View.OnClickListener() {
+        mCohortsButton = (Button) findViewById(R.id.lesson_tracker_footer_cohorts_button);
+        mCohortsButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Toast.makeText(getBaseContext(), "Custom Tags Coming Soon!", Toast.LENGTH_SHORT).show();
+                Intent intent = new Intent(LessonTrackerActivity.this, CohortActivity.class);
+                startActivity(intent);
             }
         });
     }

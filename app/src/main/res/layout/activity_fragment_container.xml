@@ -62,12 +62,12 @@
 
         <Button
             style="@style/FooterStyle"
-            android:id="@+id/lesson_tracker_footer_tags_button"
+            android:id="@+id/lesson_tracker_footer_cohorts_button"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:drawableTop="@android:drawable/ic_menu_myplaces"
             android:layout_margin="4dp"
-            android:text="Make&#10;Tags"/>
+            android:text="View&#10;Cohorts"/>
 
     </LinearLayout>
 
