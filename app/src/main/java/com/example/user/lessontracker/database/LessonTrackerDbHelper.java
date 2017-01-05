@@ -6,6 +6,7 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
+import com.example.user.lessontracker.database.LessonTrackerSchema.CohortTable;
 import com.example.user.lessontracker.database.LessonTrackerSchema.LearningObjectiveTable;
 import com.example.user.lessontracker.database.LessonTrackerSchema.LessonTable;
 import com.example.user.lessontracker.database.LessonTrackerSchema.OutcomeTable;
@@ -73,6 +74,10 @@ public class LessonTrackerDbHelper extends SQLiteOpenHelper {
             + " integer references " + OutcomeTable.NAME + "(" + OutcomeTable.Cols.ID
             + ") on delete cascade )";
 
+    private static final String CREATE_TABLE_COHORT = "create table "
+            + CohortTable.NAME + "(" + CohortTable.Cols.ID + " integer primary key autoincrement, "
+            + CohortTable.Cols.NAME + " text )";
+
     private static final String ADD_DEFAULT_FIX_TAG = "insert into " + TagTable.NAME + "("
             + TagTable.Cols.ICON_RESOURCE_ID + ", " + TagTable.Cols.TITLE + ", " + TagTable.Cols.TYPE
             + ") values ( 17301570, 'Some sections need fixed', 'improvement' )";
@@ -103,6 +108,7 @@ public class LessonTrackerDbHelper extends SQLiteOpenHelper {
         db.execSQL(CREATE_TABLE_SUBJECT);
         db.execSQL(CREATE_TABLE_TOPIC);
         db.execSQL(CREATE_TABLE_LEARNING_OBJECTIVE);
+        db.execSQL(CREATE_TABLE_COHORT);
         db.execSQL(CREATE_TABLE_LESSON);
         db.execSQL(CREATE_TABLE_OUTCOME);
         db.execSQL(CREATE_TABLE_TAG);
@@ -118,6 +124,7 @@ public class LessonTrackerDbHelper extends SQLiteOpenHelper {
         db.execSQL("DROP TABLE IF EXISTS " + OutcomeTable.NAME);
         db.execSQL("DROP TABLE IF EXISTS " + TagTable.NAME);
         db.execSQL("DROP TABLE IF EXISTS " + LessonTable.NAME);
+        db.execSQL("DROP TABLE IF EXISTS " + CohortTable.NAME);
         db.execSQL("DROP TABLE IF EXISTS " + LearningObjectiveTable.NAME);
         db.execSQL("DROP TABLE IF EXISTS " + TopicTable.NAME);
         db.execSQL("DROP TABLE IF EXISTS " + SubjectTable.NAME);
@@ -125,6 +132,7 @@ public class LessonTrackerDbHelper extends SQLiteOpenHelper {
         db.execSQL(CREATE_TABLE_SUBJECT);
         db.execSQL(CREATE_TABLE_TOPIC);
         db.execSQL(CREATE_TABLE_LEARNING_OBJECTIVE);
+        db.execSQL(CREATE_TABLE_COHORT);
         db.execSQL(CREATE_TABLE_LESSON);
         db.execSQL(CREATE_TABLE_OUTCOME);
         db.execSQL(CREATE_TABLE_TAG);
