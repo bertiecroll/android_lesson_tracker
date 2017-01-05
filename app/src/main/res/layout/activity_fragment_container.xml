@@ -40,7 +40,7 @@
             android:layout_height="wrap_content"
             android:drawableTop="@android:drawable/ic_menu_save"
             android:layout_margin="4dp"
-            android:text="Take&#10;Lesson"/>
+            android:text="@string/footer_take_lesson"/>
 
         <Button
             style="@style/FooterStyle"
@@ -49,7 +49,7 @@
             android:layout_height="wrap_content"
             android:drawableTop="@android:drawable/ic_menu_search"
             android:layout_margin="4dp"
-            android:text="Lesson&#10;History"/>
+            android:text="@string/footer_lesson_history"/>
 
         <Button
             style="@style/FooterStyle"
@@ -58,7 +58,7 @@
             android:layout_height="wrap_content"
             android:drawableTop="@android:drawable/ic_menu_edit"
             android:layout_margin="4dp"
-            android:text="View&#10;Subjects"/>
+            android:text="@string/footer_view_subjects"/>
 
         <Button
             style="@style/FooterStyle"
@@ -67,7 +67,7 @@
             android:layout_height="wrap_content"
             android:drawableTop="@android:drawable/ic_menu_myplaces"
             android:layout_margin="4dp"
-            android:text="View&#10;Cohorts"/>
+            android:text="@string/footer_view_cohorts"/>
 
     </LinearLayout>
 
