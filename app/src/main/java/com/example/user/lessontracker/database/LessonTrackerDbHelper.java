@@ -50,7 +50,8 @@ public class LessonTrackerDbHelper extends SQLiteOpenHelper {
 
     private static final String CREATE_TABLE_LESSON = "create table "
             + LessonTable.NAME + "(" + LessonTable.Cols.ID + " integer primary key autoincrement, "
-            + LessonTable.Cols.COHORT_ID + " integer, " + LessonTable.Cols.TOPIC_ID +
+            + LessonTable.Cols.COHORT_ID + " integer references " + CohortTable.NAME +
+            "(" + CohortTable.Cols.ID + ") on delete cascade, " + LessonTable.Cols.TOPIC_ID +
             " integer references " + TopicTable.NAME + "(" + TopicTable.Cols.ID +
             ") on delete cascade, " + LessonTable.Cols.TAUGHT + " integer, "
             + LessonTable.Cols.DURATION + " integer, "
