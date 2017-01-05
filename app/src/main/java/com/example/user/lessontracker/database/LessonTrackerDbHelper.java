@@ -412,6 +412,21 @@ public class LessonTrackerDbHelper extends SQLiteOpenHelper {
         return lessons;
     }
 
+    public int countLessonsByTopic(long topicId, boolean taught) {
+        String taughtClause = (taught) ? "1" : "0";
+
+        LessonTrackerCursorWrapper cursor = query(LessonTable.NAME,
+                LessonTable.Cols.TOPIC_ID + " = ? AND " + LessonTable.Cols.TAUGHT + " = ? ",
+                new String[] { Long.toString(topicId), taughtClause });
+
+        try {
+            return cursor.getCount();
+
+        } finally {
+            cursor.close();
+        }
+    }
+
     public List<Lesson> allLessons() {
         List<Lesson> lessons = new ArrayList<>();
 

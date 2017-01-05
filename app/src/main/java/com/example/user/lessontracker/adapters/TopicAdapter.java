@@ -40,21 +40,43 @@ public class TopicAdapter extends ArrayAdapter<Topic> {
 
     public TopicAdapter(Context context, List<Topic> topics) {
         super(context, R.layout.item_outcome, topics);
-        mDbhelper = new LessonTrackerDbHelper(context);
     }
 
     @Override
     public View getView(int position, View view, ViewGroup parent) {
         TopicAdapter.ViewHolder viewHolder;
         mTopic = getItem(position);
+        mDbhelper = new LessonTrackerDbHelper(getContext());
 
         if (view == null) {
             viewHolder = new TopicAdapter.ViewHolder();
             LayoutInflater inflater = LayoutInflater.from(getContext());
             view = inflater.inflate(R.layout.item_outcome, parent, false);
 
-            viewHolder.mObjectiveMetIndicator = (TextView) view.findViewById(R.id.outcome_objective_met_indicator);
-            viewHolder.mObjectiveMetIndicator.setBackgroundColor(Color.GREEN);
+
+            List<LearningObjective> learningObjectives =
+                    new ArrayList<>(mDbhelper.findLearningObjectivesByTopic(mTopic.getId()));
+
+            int objectiveMetCount = 0;
+            for(LearningObjective objective : learningObjectives) {
+                objectiveMetCount += mDbhelper.countMetOutcomesByLearningObjective(objective.getId());
+            }
+
+            int lessonsCount = mDbhelper.countLessonsByTopic(mTopic.getId(), true);
+            int totalObjectiveCount = lessonsCount * learningObjectives.size();
+
+            if (totalObjectiveCount > 0) {
+                double objectiveMetPercentage = objectiveMetCount / totalObjectiveCount;
+
+                viewHolder.mObjectiveMetIndicator = (TextView) view.findViewById(R.id.outcome_objective_met_indicator);
+                if (objectiveMetPercentage > 0.8) {
+                    viewHolder.mObjectiveMetIndicator.setBackgroundColor(Color.GREEN);
+                } else if (objectiveMetPercentage > 0.6) {
+                    viewHolder.mObjectiveMetIndicator.setBackgroundColor(Color.YELLOW);
+                } else {
+                    viewHolder.mObjectiveMetIndicator.setBackgroundColor(Color.RED);
+                }
+            }
 
             viewHolder.mTopicTitle = (TextView) view.findViewById(R.id.outcome_list_item_outcome);
             viewHolder.mTagHeader = (TextView) view.findViewById(R.id.outcome_tag_header);
