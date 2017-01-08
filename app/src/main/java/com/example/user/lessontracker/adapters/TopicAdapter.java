@@ -59,7 +59,7 @@ public class TopicAdapter extends ArrayAdapter<Topic> {
 
             int objectiveMetCount = 0;
             for(LearningObjective objective : learningObjectives) {
-                objectiveMetCount += mDbhelper.countMetOutcomesByLearningObjective(objective.getId());
+                objectiveMetCount += mDbhelper.countOutcomesByLearningObjective(objective.getId(), true);
             }
 
             int lessonsCount = mDbhelper.countLessonsByTopic(mTopic.getId(), true);

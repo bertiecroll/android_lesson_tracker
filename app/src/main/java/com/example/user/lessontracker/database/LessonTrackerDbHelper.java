@@ -554,11 +554,12 @@ public class LessonTrackerDbHelper extends SQLiteOpenHelper {
         return outcomes;
     }
 
-    public int countMetOutcomesByLearningObjective(long learningObjectiveId) {
+    public int countOutcomesByLearningObjective(long learningObjectiveId, boolean met) {
+        String metClause = (met) ? "1" : "0";
 
         LessonTrackerCursorWrapper cursor = query(OutcomeTable.NAME,
                 OutcomeTable.Cols.LEARNING_OBJECTIVE_ID + " = ? AND " + OutcomeTable.Cols.OBJECTIVE_MET + " = ? ",
-                new String[] { Long.toString(learningObjectiveId), "1" });
+                new String[] { Long.toString(learningObjectiveId), metClause });
 
         try {
             return cursor.getCount();

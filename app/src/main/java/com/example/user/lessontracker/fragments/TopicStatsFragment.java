@@ -16,6 +16,7 @@ import com.example.user.lessontracker.models.LearningObjective;
 import com.example.user.lessontracker.models.Lesson;
 import com.github.mikephil.charting.charts.BarChart;
 import com.github.mikephil.charting.charts.LineChart;
+import com.github.mikephil.charting.charts.PieChart;
 import com.github.mikephil.charting.components.AxisBase;
 import com.github.mikephil.charting.components.XAxis;
 import com.github.mikephil.charting.components.YAxis;
@@ -25,8 +26,15 @@ import com.github.mikephil.charting.data.BarEntry;
 import com.github.mikephil.charting.data.Entry;
 import com.github.mikephil.charting.data.LineData;
 import com.github.mikephil.charting.data.LineDataSet;
+import com.github.mikephil.charting.data.PieData;
+import com.github.mikephil.charting.data.PieDataSet;
+import com.github.mikephil.charting.data.PieEntry;
 import com.github.mikephil.charting.formatter.IAxisValueFormatter;
+import com.github.mikephil.charting.formatter.IValueFormatter;
+import com.github.mikephil.charting.utils.ColorTemplate;
+import com.github.mikephil.charting.utils.ViewPortHandler;
 
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -45,10 +53,25 @@ public class TopicStatsFragment extends Fragment {
         }
     }
 
+    private class PieChartValueFormatter implements IValueFormatter {
+        private DecimalFormat mValues;
+
+        public PieChartValueFormatter() {
+            this.mValues = new DecimalFormat("###,###,##0.0");
+        }
+
+        @Override
+        public String getFormattedValue(float value, Entry entry, int dataSetIndex, ViewPortHandler viewPortHandler) {
+            return mValues.format(value) + " %";
+        }
+    }
+
     LineChart mDurationLineChart;
     BarChart mObjectivesBarChart;
+    PieChart mNotMetPieChart;
     Button mDurationChartButton;
     Button mObjectivesChartButton;
+    Button mPieChartButton;
     LessonTrackerDbHelper mDbHelper;
     List<Lesson> mLessons;
 
@@ -66,7 +89,8 @@ public class TopicStatsFragment extends Fragment {
         long topicId = arguments.getLong(TopicFragment.TOPIC_ID);
 
         mDurationLineChart = (LineChart) view.findViewById(R.id.topic_stats_linechart);
-        mObjectivesBarChart = (BarChart) view.findViewById(R.id.topic_stats_barchart);
+        mObjectivesBarChart = (BarChart) view.findViewById(R.id.topic_stats_barchart_all);
+        mNotMetPieChart = (PieChart) view.findViewById(R.id.topic_stats_piechart);
 
         mLessons = mDbHelper.findLessonsByTopic(topicId, true);
         if(!mLessons.isEmpty()) {
@@ -90,7 +114,9 @@ public class TopicStatsFragment extends Fragment {
             XAxis xaxis = mDurationLineChart.getXAxis();
             xaxis.setLabelCount(mLessons.size(), true);
 
-            List<BarEntry> barChartEntries = new ArrayList<>();
+            List<BarEntry> allBarChartEntries = new ArrayList<>();
+            List<PieEntry> pieChartEntries = new ArrayList<>();
+
             List<LearningObjective> learningObjectives = mDbHelper.findLearningObjectivesByTopic(topicId);
             List<String> objectiveTitles = new ArrayList<>();
 
@@ -98,17 +124,19 @@ public class TopicStatsFragment extends Fragment {
             for(LearningObjective objective : learningObjectives) {
                 String title = objective.getTitle();
                 objectiveTitles.add(title);
-                int metObjectiveCount = mDbHelper.countMetOutcomesByLearningObjective(objective.getId());
-                Log.d("LessonTracker", "Percentage " + mLessons.size());
+                int metObjectiveCount = mDbHelper.countOutcomesByLearningObjective(objective.getId(), true);
+                int notMetCount = mLessons.size() - metObjectiveCount;
                 long yValueMetPercentage = metObjectiveCount * 100 / mLessons.size();
-                barChartEntries.add(new BarEntry(xBarValueCounter, yValueMetPercentage));
+
+                allBarChartEntries.add(new BarEntry(xBarValueCounter, yValueMetPercentage));
+                pieChartEntries.add(new PieEntry(notMetCount, title));
                 xBarValueCounter++;
             }
 
-            BarDataSet barChartDataSet = new BarDataSet(barChartEntries, "% of Objectives Met");
+            BarDataSet allBarChartDataSet = new BarDataSet(allBarChartEntries, "% of Objectives Met");
             int barColor = ContextCompat.getColor(getContext(), R.color.gold);
-            barChartDataSet.setColor(barColor);
-            BarData barData = new BarData(barChartDataSet);
+            allBarChartDataSet.setColor(barColor);
+            BarData barData = new BarData(allBarChartDataSet);
             mObjectivesBarChart.setData(barData);
             mObjectivesBarChart.setDescription(null);
 
@@ -122,7 +150,15 @@ public class TopicStatsFragment extends Fragment {
             objectiveLeftAxis.setAxisMinimum(0);
             mObjectivesBarChart.getAxisRight().setEnabled(false);
 
+            PieDataSet pieChartDataSet = new PieDataSet(pieChartEntries, "Not Met Percentage");
+            pieChartDataSet.setColors(ColorTemplate.MATERIAL_COLORS);
+            pieChartDataSet.setValueFormatter(new PieChartValueFormatter());
+            pieChartDataSet.setSliceSpace(2);
 
+            PieData pieData = new PieData(pieChartDataSet);
+            mNotMetPieChart.setData(pieData);
+            mNotMetPieChart.setUsePercentValues(true);
+            mNotMetPieChart.setDescription(null);
         }
 
         mDurationChartButton = (Button) view.findViewById(R.id.topic_stats_button_linechart);
@@ -130,16 +166,31 @@ public class TopicStatsFragment extends Fragment {
             @Override
             public void onClick(View view) {
                 mObjectivesBarChart.setVisibility(View.GONE);
+                mNotMetPieChart.setVisibility(View.GONE);
                 mDurationLineChart.setVisibility(View.VISIBLE);
+                mDurationLineChart.animateXY(1000, 1000);
             }
         });
 
-        mObjectivesChartButton = (Button) view.findViewById(R.id.topic_stats_button_barchart);
+        mObjectivesChartButton = (Button) view.findViewById(R.id.topic_stats_button_barchart_all);
         mObjectivesChartButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 mDurationLineChart.setVisibility(View.GONE);
+                mNotMetPieChart.setVisibility(View.GONE);
                 mObjectivesBarChart.setVisibility(View.VISIBLE);
+                mObjectivesBarChart.animateY(2000);
+            }
+        });
+
+        mPieChartButton = (Button) view.findViewById(R.id.topic_stats_button_piechart);
+        mPieChartButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                mDurationLineChart.setVisibility(View.GONE);
+                mObjectivesBarChart.setVisibility(View.GONE);
+                mNotMetPieChart.setVisibility(View.VISIBLE);
+                mNotMetPieChart.animateY(2000);
             }
         });
 
