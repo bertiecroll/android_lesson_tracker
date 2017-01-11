@@ -3,6 +3,7 @@ package com.example.user.lessontracker.adapters;
 import android.content.Context;
 import android.graphics.Color;
 import android.graphics.drawable.Drawable;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -57,17 +58,17 @@ public class TopicAdapter extends ArrayAdapter<Topic> {
             List<LearningObjective> learningObjectives =
                     new ArrayList<>(mDbhelper.findLearningObjectivesByTopic(mTopic.getId()));
 
-            int objectiveMetCount = 0;
+            double objectiveMetCount = 0;
             for(LearningObjective objective : learningObjectives) {
                 objectiveMetCount += mDbhelper.countOutcomesByLearningObjective(objective.getId(), true);
             }
 
             int lessonsCount = mDbhelper.countLessonsByTopic(mTopic.getId(), true);
-            int totalObjectiveCount = lessonsCount * learningObjectives.size();
+            double totalObjectiveCount = lessonsCount * learningObjectives.size();
 
             if (totalObjectiveCount > 0) {
                 double objectiveMetPercentage = objectiveMetCount / totalObjectiveCount;
-
+                Log.d("Topic Stats", Double.toString(objectiveMetPercentage));
                 viewHolder.mObjectiveMetIndicator = (TextView) view.findViewById(R.id.outcome_objective_met_indicator);
                 if (objectiveMetPercentage > 0.8) {
                     viewHolder.mObjectiveMetIndicator.setBackgroundColor(Color.GREEN);
